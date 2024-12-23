@@ -1,14 +1,14 @@
 package api
 
-import sttp.tapir._
+import sttp.tapir.ztapir._
 import sttp.tapir.generic.auto._
 import sttp.tapir.json.zio._
 import models._
 import sttp.model.StatusCode
-import sttp.tapir.ztapir._
+import zio.json._
 
 object TripEndpoints:
-  case class ErrorResponse(message: String)
+  case class ErrorResponse(message: String) derives JsonEncoder, JsonDecoder
 
   val registerEndpoint = endpoint
     .post

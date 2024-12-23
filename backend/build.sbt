@@ -4,7 +4,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     name := "back",
-    version := "0.1.0-SNAPSHOT",
+    version := "0.1.1",
     scalaVersion := scala3Version,
     libraryDependencies ++= Seq(
       "org.scalameta" %% "munit" % "1.0.3" % Test,
@@ -15,7 +15,8 @@ lazy val root = project
       "com.softwaremill.sttp.tapir" %% "tapir-zio-http-server" % "1.11.10",
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % "1.11.10",
       "com.softwaremill.sttp.tapir" %% "tapir-json-zio" % "1.11.10",
-      "dev.zio" %% "zio-json" % "0.7.3"
+      "dev.zio" %% "zio-json" % "0.7.3",
+      "com.auth0" % "java-jwt" % "4.4.0"
     ),
-    Compile / mainClass := Some("ServerBack")
+    Compile / mainClass := Some("Main")
   )

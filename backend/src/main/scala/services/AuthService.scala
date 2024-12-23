@@ -1,64 +1,64 @@
 package services
 
-import models._
 import zio._
-import pdi.jwt.{JwtAlgorithm, JwtCirce, JwtClaim}
+import models._
+import com.auth0.jwt.JWT
+import com.auth0.jwt.algorithms.Algorithm
 import java.time.Instant
 
 trait AuthService {
-  def register(userCreate: UserCreate): Task[User]
+  def register(user: UserCreate): Task[User]
   def login(credentials: UserLogin): Task[String]
   def authenticate(token: String): Task[Option[User]]
 }
 
-case class AuthServiceLive() extends AuthService {
-  private val secretKey = "your-secret-key" // À changer en production
-  private val algorithm = JwtAlgorithm.HS256
-  
-  // TODO: Implement actual database storage
-  private var users: List[User] = List.empty
+class AuthServiceLive(users: Ref[Map[String, User]]) extends AuthService {
+  private val secretKey = "your-secret-key-here"
+  private val algorithm = Algorithm.HMAC256(secretKey)
 
   override def register(userCreate: UserCreate): Task[User] = {
-    ZIO.succeed {
-      val newUser = User(
-        id = Some(users.length + 1L),
-        username = userCreate.username,
-        email = userCreate.email,
-        password = userCreate.password // TODO: Hash password
-      )
-      users = users :+ newUser
-      newUser
-    }
+    for {
+      userMap <- users.get
+      _ <- ZIO.fail(new Exception("Username already taken")).when(userMap.contains(userCreate.username))
+      newUser = User(Some(userMap.size + 1L), userCreate.username, userCreate.email, userCreate.password)
+      _ <- users.update(_ + (userCreate.username -> newUser))
+    } yield newUser
   }
 
   override def login(credentials: UserLogin): Task[String] = {
     for {
-      userOpt <- ZIO.succeed(users.find(u => 
-        u.username == credentials.username && 
-        u.password == credentials.password // TODO: Verify hashed password
-      ))
-      user <- ZIO.fromOption(userOpt).orElseFail(new Exception("Invalid credentials"))
-      token = createToken(user.username)
+      userMap <- users.get
+      user <- ZIO.fromOption(userMap.get(credentials.username))
+        .orElseFail(new Exception("User not found"))
+      _ <- ZIO.fail(new Exception("Invalid password"))
+        .when(user.password != credentials.password)
+      token <- ZIO.attempt(createToken(credentials.username))
     } yield token
   }
 
   override def authenticate(token: String): Task[Option[User]] = {
-    ZIO.succeed {
-      // TODO: Implement proper token verification
-      users.headOption
-    }
+    ZIO.attempt {
+      val verifier = JWT.require(algorithm).build()
+      val decoded = verifier.verify(token)
+      val username = decoded.getSubject
+      users.get.map(_.get(username))
+    }.flatten
   }
 
   private def createToken(username: String): String = {
-    val claim = JwtClaim(
-      expiration = Some(Instant.now.plusSeconds(3600).getEpochSecond),
-      issuedAt = Some(Instant.now.getEpochSecond),
-      subject = Some(username)
-    )
-    JwtCirce.encode(claim, secretKey, algorithm)
+    JWT.create()
+      .withSubject(username)
+      .withIssuedAt(Instant.now())
+      .withExpiresAt(Instant.now().plusSeconds(3600)) // Token expires in 1 hour
+      .sign(algorithm)
   }
 }
 
 object AuthService {
-  val layer: ULayer[AuthService] = ZLayer.succeed(AuthServiceLive())
+  def layer: ZLayer[Any, Nothing, AuthService] = 
+    ZLayer {
+      for {
+        ref <- Ref.make(Map.empty[String, User])
+      } yield AuthServiceLive(ref)
+    }
 }
