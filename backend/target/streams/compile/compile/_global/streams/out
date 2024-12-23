@@ -1,173 +1,173 @@
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:58:81 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m58 |[0m  [33mval[0m [36mall[0m: [35mList[0m[[35mServerEndpoint[0m[[35mAny[0m, [35mZIO[0m[[35mAuthService[0m [33mwith[0m [35mTripService[0m, [35mThrowable[0m, [35m*[0m]]] = List([0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                                                 ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                                                       Not found: type *[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:13:25 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m13 |[0m  [33mval[0m [36mregisterEndpoint[0m = endpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                         ^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Reference to endpoint is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:18:14 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m18 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Reference to statusCode is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:18:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m18 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of [33mmethod[0m [35mjsonBody[0m in [33mtrait[0m [35mTapirJsonZio[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    zio.json.JsonEncoder.unionOfStringEnumeration[[35mapi.TripEndpoints.ErrorResponse[0m]([0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      <empty>)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut [33mgiven instance[0m [35mderived[0m in [33mobject[0m [35mIsUnionOf[0m does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:20:22 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m20 |[0m  [33mval[0m [36mloginEndpoint[0m = endpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                      ^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Reference to endpoint is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:25:14 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Reference to statusCode is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:25:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of [33mmethod[0m [35mjsonBody[0m in [33mtrait[0m [35mTapirJsonZio[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    zio.json.JsonEncoder.unionOfStringEnumeration[[35mapi.TripEndpoints.ErrorResponse[0m]([0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      <empty>)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut [33mgiven instance[0m [35mderived[0m in [33mobject[0m [35mIsUnionOf[0m does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:27:27 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m27 |[0m  [33mval[0m [36mcreateTripEndpoint[0m = endpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                           ^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Reference to endpoint is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:33:14 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Reference to statusCode is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:33:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m33 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of [33mmethod[0m [35mjsonBody[0m in [33mtrait[0m [35mTapirJsonZio[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    zio.json.JsonEncoder.unionOfStringEnumeration[[35mapi.TripEndpoints.ErrorResponse[0m]([0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      <empty>)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut [33mgiven instance[0m [35mderived[0m in [33mobject[0m [35mIsUnionOf[0m does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:35:29 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m35 |[0m  [33mval[0m [36mgetUserTripsEndpoint[0m = endpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                             ^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Reference to endpoint is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:40:14 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m40 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Reference to statusCode is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:40:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m40 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of [33mmethod[0m [35mjsonBody[0m in [33mtrait[0m [35mTapirJsonZio[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    zio.json.JsonEncoder.unionOfStringEnumeration[[35mapi.TripEndpoints.ErrorResponse[0m]([0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      <empty>)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut [33mgiven instance[0m [35mderived[0m in [33mobject[0m [35mIsUnionOf[0m does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:42:30 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m42 |[0m  [33mval[0m [36mgetTotalStatsEndpoint[0m = endpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                              ^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 Reference to endpoint is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                 and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:46:14 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m46 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m              ^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              Reference to statusCode is ambiguous.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              It is both imported by import sttp.tapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m              and imported subsequently by import sttp.tapir.ztapir._[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:46:52 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m46 |[0m    .errorOut(statusCode and jsonBody[ErrorResponse])[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                                                    ^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mNo given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of [33mmethod[0m [35mjsonBody[0m in [33mtrait[0m [35mTapirJsonZio[0m.[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mI found:[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m    zio.json.JsonEncoder.unionOfStringEnumeration[[35mapi.TripEndpoints.ErrorResponse[0m]([0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m      <empty>)[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0mBut [33mgiven instance[0m [35mderived[0m in [33mobject[0m [35mIsUnionOf[0m does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:11:16 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m11 |[0m  [33mval[0m [36mregister[0m: [35mZServerEndpoint[0m[[35mAuthService[0m, [35mAny[0m] =[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                ^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                Not found: type ZServerEndpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:18:13 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m18 |[0m  [33mval[0m [36mlogin[0m: [35mZServerEndpoint[0m[[35mAuthService[0m, [35mAny[0m] =[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m             ^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m             Not found: type ZServerEndpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:25:18 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m25 |[0m  [33mval[0m [36mcreateTrip[0m: [35mZServerEndpoint[0m[[35mAuthService[0m [33mwith[0m [35mTripService[0m, [35mAny[0m] =[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                  ^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                  Not found: type ZServerEndpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:38:20 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m38 |[0m  [33mval[0m [36mgetUserTrips[0m: [35mZServerEndpoint[0m[[35mAuthService[0m [33mwith[0m [35mTripService[0m, [35mAny[0m] =[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                    ^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                    Not found: type ZServerEndpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:51:21 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m51 |[0m  [33mval[0m [36mgetTotalStats[0m: [35mZServerEndpoint[0m[[35mTripService[0m, [35mAny[0m] =[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m   |[0m                     ^^^^^^^^^^^^^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m                     Not found: type ZServerEndpoint[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m   |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m-- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/services/AuthService.scala:5:7 [0m[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m5 |[0m[33mimport[0m pdi.jwt.{JwtAlgorithm, JwtCirce, JwtClaim}[0m
-[0m[[0m[31merror[0m] [0m[0m[31m[31m  |[0m       ^^^[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0m       Not found: pdi[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0m[0m
-[0m[[0m[31merror[0m] [0m[0m[31m  |[0m longer explanation available when compiling with `-explain`[0m
-[0m[[0m[31merror[0m] [0m[0m22 errors found[0m
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:58:81 
+[error] 58 |  val all: List[ServerEndpoint[Any, ZIO[AuthService with TripService, Throwable, *]]] = List(
+[error]    |                                                                                 ^
+[error]    |                                                       Not found: type *
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:13:25 
+[error] 13 |  val registerEndpoint = endpoint
+[error]    |                         ^^^^^^^^
+[error]    |                 Reference to endpoint is ambiguous.
+[error]    |                 It is both imported by import sttp.tapir._
+[error]    |                 and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:18:14 
+[error] 18 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |              ^^^^^^^^^^
+[error]    |              Reference to statusCode is ambiguous.
+[error]    |              It is both imported by import sttp.tapir._
+[error]    |              and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:18:52 
+[error] 18 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |                                                    ^
+[error]    |No given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of method jsonBody in trait TapirJsonZio.
+[error]    |I found:
+[error]    |
+[error]    |    zio.json.JsonEncoder.unionOfStringEnumeration[api.TripEndpoints.ErrorResponse](
+[error]    |      <empty>)
+[error]    |
+[error]    |But given instance derived in object IsUnionOf does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:20:22 
+[error] 20 |  val loginEndpoint = endpoint
+[error]    |                      ^^^^^^^^
+[error]    |                 Reference to endpoint is ambiguous.
+[error]    |                 It is both imported by import sttp.tapir._
+[error]    |                 and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:25:14 
+[error] 25 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |              ^^^^^^^^^^
+[error]    |              Reference to statusCode is ambiguous.
+[error]    |              It is both imported by import sttp.tapir._
+[error]    |              and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:25:52 
+[error] 25 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |                                                    ^
+[error]    |No given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of method jsonBody in trait TapirJsonZio.
+[error]    |I found:
+[error]    |
+[error]    |    zio.json.JsonEncoder.unionOfStringEnumeration[api.TripEndpoints.ErrorResponse](
+[error]    |      <empty>)
+[error]    |
+[error]    |But given instance derived in object IsUnionOf does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:27:27 
+[error] 27 |  val createTripEndpoint = endpoint
+[error]    |                           ^^^^^^^^
+[error]    |                 Reference to endpoint is ambiguous.
+[error]    |                 It is both imported by import sttp.tapir._
+[error]    |                 and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:33:14 
+[error] 33 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |              ^^^^^^^^^^
+[error]    |              Reference to statusCode is ambiguous.
+[error]    |              It is both imported by import sttp.tapir._
+[error]    |              and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:33:52 
+[error] 33 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |                                                    ^
+[error]    |No given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of method jsonBody in trait TapirJsonZio.
+[error]    |I found:
+[error]    |
+[error]    |    zio.json.JsonEncoder.unionOfStringEnumeration[api.TripEndpoints.ErrorResponse](
+[error]    |      <empty>)
+[error]    |
+[error]    |But given instance derived in object IsUnionOf does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:35:29 
+[error] 35 |  val getUserTripsEndpoint = endpoint
+[error]    |                             ^^^^^^^^
+[error]    |                 Reference to endpoint is ambiguous.
+[error]    |                 It is both imported by import sttp.tapir._
+[error]    |                 and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:40:14 
+[error] 40 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |              ^^^^^^^^^^
+[error]    |              Reference to statusCode is ambiguous.
+[error]    |              It is both imported by import sttp.tapir._
+[error]    |              and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:40:52 
+[error] 40 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |                                                    ^
+[error]    |No given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of method jsonBody in trait TapirJsonZio.
+[error]    |I found:
+[error]    |
+[error]    |    zio.json.JsonEncoder.unionOfStringEnumeration[api.TripEndpoints.ErrorResponse](
+[error]    |      <empty>)
+[error]    |
+[error]    |But given instance derived in object IsUnionOf does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:42:30 
+[error] 42 |  val getTotalStatsEndpoint = endpoint
+[error]    |                              ^^^^^^^^
+[error]    |                 Reference to endpoint is ambiguous.
+[error]    |                 It is both imported by import sttp.tapir._
+[error]    |                 and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E049] Reference Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:46:14 
+[error] 46 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |              ^^^^^^^^^^
+[error]    |              Reference to statusCode is ambiguous.
+[error]    |              It is both imported by import sttp.tapir._
+[error]    |              and imported subsequently by import sttp.tapir.ztapir._
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E172] Type Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripEndpoints.scala:46:52 
+[error] 46 |    .errorOut(statusCode and jsonBody[ErrorResponse])
+[error]    |                                                    ^
+[error]    |No given instance of type zio.json.JsonEncoder[api.TripEndpoints.ErrorResponse] was found for an implicit parameter of method jsonBody in trait TapirJsonZio.
+[error]    |I found:
+[error]    |
+[error]    |    zio.json.JsonEncoder.unionOfStringEnumeration[api.TripEndpoints.ErrorResponse](
+[error]    |      <empty>)
+[error]    |
+[error]    |But given instance derived in object IsUnionOf does not match type zio.json.IsUnionOf[String, api.TripEndpoints.ErrorResponse].
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:11:16 
+[error] 11 |  val register: ZServerEndpoint[AuthService, Any] =
+[error]    |                ^^^^^^^^^^^^^^^
+[error]    |                Not found: type ZServerEndpoint
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:18:13 
+[error] 18 |  val login: ZServerEndpoint[AuthService, Any] =
+[error]    |             ^^^^^^^^^^^^^^^
+[error]    |             Not found: type ZServerEndpoint
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:25:18 
+[error] 25 |  val createTrip: ZServerEndpoint[AuthService with TripService, Any] =
+[error]    |                  ^^^^^^^^^^^^^^^
+[error]    |                  Not found: type ZServerEndpoint
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:38:20 
+[error] 38 |  val getUserTrips: ZServerEndpoint[AuthService with TripService, Any] =
+[error]    |                    ^^^^^^^^^^^^^^^
+[error]    |                    Not found: type ZServerEndpoint
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/api/TripRoutes.scala:51:21 
+[error] 51 |  val getTotalStats: ZServerEndpoint[TripService, Any] =
+[error]    |                     ^^^^^^^^^^^^^^^
+[error]    |                     Not found: type ZServerEndpoint
+[error]    |
+[error]    | longer explanation available when compiling with `-explain`
+[error] -- [E006] Not Found Error: /home/carlos/CascadeProjects/car-sharing-app/backend/src/main/scala/services/AuthService.scala:5:7 
+[error] 5 |import pdi.jwt.{JwtAlgorithm, JwtCirce, JwtClaim}
+[error]   |       ^^^
+[error]   |       Not found: pdi
+[error]   |
+[error]   | longer explanation available when compiling with `-explain`
+[error] 22 errors found

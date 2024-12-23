@@ -1,805 +1,635 @@
-[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/carlos/CascadeProjects/car-sharing-app/backend/target/scala-3.3.1/classes.bak[0m
-[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$59.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$57.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$61.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$67.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$33.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$74.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$68.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$70.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$81.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$43.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$47.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$31.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$77.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$79.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$42.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$75.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$94.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$90.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$95.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$89.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$73.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$84.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$45.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$40.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$85.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$66.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$50.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$80.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$36.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$91.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$30.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$49.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$52.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$82.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$41.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$38.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$71.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$44.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$88.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$58.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$55.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$78.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$29.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$51.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$93.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$39.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$37.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$69.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$72.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$76.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$34.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$87.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$54.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$56.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$60.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$86.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$46.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$53.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$62.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$92.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$35.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$65.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$64.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$48.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$63.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$83.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$32.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$59.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$57.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$24.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$6.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$61.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$67.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$33.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$74.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$10.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$68.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$70.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$81.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$22.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$43.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$9.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$12.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$47.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$10.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$11.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$31.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$77.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$11.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$14.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$79.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$42.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$75.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$94.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$26.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$90.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$95.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$8.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$8.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$28.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$89.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$14.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$73.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$84.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$24.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$26.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$45.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$13.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$15.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$19.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$40.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$13.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$85.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$23.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$66.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$7.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$50.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$80.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$36.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$91.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$23.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$30.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$9.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$49.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$52.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$82.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$41.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$38.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$71.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$44.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$16.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$18.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$88.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$58.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$55.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$78.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$29.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$51.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$6.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$25.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$93.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$15.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$39.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$37.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$28.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$16.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$21.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$69.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$72.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$76.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$34.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$87.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$7.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$54.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$27.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$56.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$60.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$19.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$86.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$17.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$12.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$20.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$18.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$21.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$46.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$20.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$53.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$17.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$62.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$92.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$25.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$35.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$27.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$65.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$22.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$64.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$48.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$63.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$83.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$32.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$59.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$57.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$61.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$67.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$33.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$74.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$68.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$70.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$81.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$43.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$47.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$31.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$77.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$79.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$42.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$75.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$94.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$90.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$95.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$89.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$73.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$84.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$45.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$40.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$85.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$66.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$50.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$80.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$36.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$91.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$30.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$49.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$52.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$82.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$41.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$38.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$71.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$44.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$88.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$58.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$55.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$78.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$29.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$51.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$93.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$39.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$37.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$69.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$72.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$76.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$34.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$87.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$54.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$56.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$60.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$86.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$46.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$53.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$62.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$92.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$35.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$65.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$64.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$48.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$63.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$83.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$32.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$59.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$57.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$24.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$6.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$61.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$67.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$33.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$74.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$10.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$68.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$70.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$81.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$22.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$43.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$9.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$12.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$47.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$10.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$11.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$31.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$77.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$11.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$14.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$79.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$42.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$75.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$94.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$26.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$90.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$95.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$8.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$8.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$28.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$89.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$14.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$73.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$84.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$24.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$26.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$45.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$13.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$15.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$19.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$40.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$13.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$85.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$23.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$66.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$7.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$50.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$80.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$36.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$91.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$23.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$2.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$30.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$9.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$49.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$52.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$82.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$41.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$1.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$38.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$71.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$44.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$16.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$18.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$88.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$58.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$55.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$78.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$29.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$51.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$6.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$25.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$93.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$15.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$39.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$37.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$28.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$16.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$4.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$21.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$69.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$72.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$76.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$34.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$87.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$7.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$54.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$5.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$27.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$56.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$60.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$19.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$86.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$17.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$3.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$12.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$20.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$18.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound$.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$21.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$46.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$20.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$53.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$17.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$62.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$92.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$25.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$35.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$27.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$65.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$22.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$64.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$48.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$63.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$83.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$32.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0mRolling back changes to class files.[0m
-[0m[[0m[0mdebug[0m] [0m[0mRemoving generated classes:[0m
-[0m[[0m[0mdebug[0m] [0m[0mRestoring class files: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$29.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$30.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$62.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$83.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$77.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$38.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$68.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$11.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	DefectHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$86.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$32.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$74.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$89.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$67.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$64.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$43.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$34.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$40.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$76.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$56.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$95.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$41.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$8.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$73.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$42.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$31.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$23.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$37.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$80.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$59.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$82.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$88.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$65.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$94.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$91.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$55.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$51.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$15.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$36.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$85.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$26.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$33.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$22.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$39.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$93.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$5.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$69.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$57.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$2.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$90.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$66.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$46.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$9.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$87.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$3.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$58.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$4.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$72.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$75.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$52.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$50.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$79.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$60.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$49.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$21.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$48.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Conflict.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$35.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$24.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$53.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$78.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$54.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$47.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$20.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	InternalServerError.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$28.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$12.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ValidationFailed.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarRoutes.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$10.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$84.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car$$anon$81.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$19.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$27.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$Car.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$63.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$16.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$18.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$13.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$17.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Unauthorized.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$ErrorResponse$$anon$92.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$45.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$6.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$71.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	Forbidden.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ServerBack.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	BadRequest.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$44.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$7.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$70.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo$$anon$14.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler$$anon$1.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CustomDecodeFailureHandler.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	NotFound$.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	ErrorInfo.tasty[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$61.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	CarEndpoints$$anon$25.class[0m
-[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/carlos/CascadeProjects/car-sharing-app/backend/target/scala-3.3.1/classes.bak[0m
+[debug] Created transactional ClassFileManager with tempDir = /home/carlos/CascadeProjects/car-sharing-app/backend/target/scala-3.3.1/classes.bak
+[debug] About to delete class files:
+[debug] 	CarEndpoints$$anon$59.class
+[debug] 	CarEndpoints$$anon$57.class
+[debug] 	CarEndpoints$$anon$24.class
+[debug] 	ErrorInfo$$anon$6.class
+[debug] 	CarEndpoints$Car$.class
+[debug] 	CarEndpoints$$anon$61.class
+[debug] 	CarEndpoints$$anon$67.class
+[debug] 	CarEndpoints$$anon$33.class
+[debug] 	CustomDecodeFailureHandler$.class
+[debug] 	ServerBack.class
+[debug] 	CarEndpoints$$anon$74.class
+[debug] 	CarEndpoints$$anon$10.class
+[debug] 	CarEndpoints$$anon$68.class
+[debug] 	CarEndpoints$$anon$70.class
+[debug] 	CarEndpoints$Car$$anon$81.class
+[debug] 	CarEndpoints$$anon$22.class
+[debug] 	CustomDecodeFailureHandler$$anon$5.class
+[debug] 	CarEndpoints$$anon$43.class
+[debug] 	CarEndpoints$$anon$9.class
+[debug] 	ErrorInfo$$anon$12.class
+[debug] 	CarEndpoints$$anon$47.class
+[debug] 	CarEndpoints$ErrorResponse$.class
+[debug] 	ErrorInfo$$anon$10.class
+[debug] 	CarEndpoints$$anon$11.class
+[debug] 	CarEndpoints$$anon$31.class
+[debug] 	CarEndpoints$$anon$77.class
+[debug] 	ErrorInfo$$anon$11.class
+[debug] 	CustomDecodeFailureHandler.class
+[debug] 	CarEndpoints$$anon$2.class
+[debug] 	ErrorInfo$$anon$14.class
+[debug] 	CarEndpoints$$anon$79.class
+[debug] 	CarEndpoints$$anon$42.class
+[debug] 	ErrorInfo$.class
+[debug] 	CarEndpoints$$anon$75.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$94.class
+[debug] 	CustomDecodeFailureHandler$$anon$3.class
+[debug] 	CarEndpoints$$anon$26.class
+[debug] 	CarEndpoints$Car$$anon$90.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$95.class
+[debug] 	CarEndpoints$$anon$8.class
+[debug] 	CustomDecodeFailureHandler$$anon$1.class
+[debug] 	ErrorInfo$$anon$8.class
+[debug] 	ServerBack$.class
+[debug] 	ErrorInfo$$anon$28.class
+[debug] 	CarEndpoints$Car$$anon$89.class
+[debug] 	Conflict.class
+[debug] 	CarEndpoints$$anon$14.class
+[debug] 	CarEndpoints$$anon$73.class
+[debug] 	CarEndpoints$Car$$anon$84.class
+[debug] 	ErrorInfo$$anon$24.class
+[debug] 	CustomDecodeFailureHandler$$anon$2.class
+[debug] 	Unauthorized.class
+[debug] 	Forbidden$.class
+[debug] 	ErrorInfo$$anon$26.class
+[debug] 	CarEndpoints$$anon$45.class
+[debug] 	ErrorInfo$$anon$3.class
+[debug] 	CarEndpoints$$anon$13.class
+[debug] 	CarEndpoints$$anon$1.class
+[debug] 	CarEndpoints$$anon$15.class
+[debug] 	ErrorInfo$$anon$19.class
+[debug] 	CarEndpoints$$anon$40.class
+[debug] 	ErrorInfo$$anon$13.class
+[debug] 	CarEndpoints$Car$$anon$85.class
+[debug] 	CarEndpoints$$anon$23.class
+[debug] 	BadRequest$.class
+[debug] 	CarEndpoints$$anon$66.class
+[debug] 	CarEndpoints$$anon$7.class
+[debug] 	CarEndpoints$ErrorResponse.class
+[debug] 	CarEndpoints$$anon$50.class
+[debug] 	CarEndpoints$Car$$anon$80.class
+[debug] 	CarEndpoints$$anon$36.class
+[debug] 	CarEndpoints$Car$$anon$91.class
+[debug] 	ErrorInfo$$anon$23.class
+[debug] 	ErrorInfo$$anon$2.class
+[debug] 	CarEndpoints$$anon$30.class
+[debug] 	Forbidden.class
+[debug] 	ErrorInfo$$anon$9.class
+[debug] 	CarEndpoints$$anon$49.class
+[debug] 	CarEndpoints$$anon$52.class
+[debug] 	CarEndpoints$Car$$anon$82.class
+[debug] 	CarEndpoints$$anon$41.class
+[debug] 	ErrorInfo$$anon$1.class
+[debug] 	CarEndpoints$$anon$38.class
+[debug] 	ErrorInfo$$anon$4.class
+[debug] 	InternalServerError.class
+[debug] 	CarEndpoints$Car.class
+[debug] 	ValidationFailed$.class
+[debug] 	CarEndpoints$$anon$71.class
+[debug] 	InternalServerError$.class
+[debug] 	CustomDecodeFailureHandler$$anon$4.class
+[debug] 	CarEndpoints$$anon$44.class
+[debug] 	CarEndpoints$$anon$16.class
+[debug] 	ErrorInfo$$anon$18.class
+[debug] 	CarEndpoints$Car$$anon$88.class
+[debug] 	CarEndpoints$$anon$58.class
+[debug] 	CarEndpoints$$anon$55.class
+[debug] 	CarEndpoints$$anon$5.class
+[debug] 	CarEndpoints$$anon$78.class
+[debug] 	CarEndpoints$$anon$29.class
+[debug] 	CarEndpoints$$anon$51.class
+[debug] 	CarEndpoints$$anon$6.class
+[debug] 	CarRoutes.class
+[debug] 	CarEndpoints$$anon$25.class
+[debug] 	ErrorInfo.class
+[debug] 	Unauthorized$.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$93.class
+[debug] 	ErrorInfo$$anon$15.class
+[debug] 	CarEndpoints$$anon$39.class
+[debug] 	CarEndpoints$$anon$37.class
+[debug] 	CarEndpoints$$anon$28.class
+[debug] 	ErrorInfo$$anon$16.class
+[debug] 	Conflict$.class
+[debug] 	CarEndpoints$$anon$4.class
+[debug] 	ErrorInfo$$anon$21.class
+[debug] 	CarEndpoints$$anon$69.class
+[debug] 	CarEndpoints$$anon$72.class
+[debug] 	CarEndpoints$$anon$76.class
+[debug] 	CarEndpoints$$anon$34.class
+[debug] 	CarEndpoints$Car$$anon$87.class
+[debug] 	ErrorInfo$$anon$7.class
+[debug] 	CarEndpoints$$anon$54.class
+[debug] 	ErrorInfo$$anon$5.class
+[debug] 	NotFound.class
+[debug] 	CarEndpoints$$anon$27.class
+[debug] 	CarEndpoints$$anon$56.class
+[debug] 	CarEndpoints$$anon$60.class
+[debug] 	CarEndpoints$$anon$19.class
+[debug] 	DefectHandler.class
+[debug] 	CarEndpoints$Car$$anon$86.class
+[debug] 	ErrorInfo$$anon$17.class
+[debug] 	CarRoutes$.class
+[debug] 	CarEndpoints$.class
+[debug] 	CarEndpoints$$anon$3.class
+[debug] 	CarEndpoints$$anon$12.class
+[debug] 	CarEndpoints$$anon$20.class
+[debug] 	CarEndpoints.class
+[debug] 	CarEndpoints$$anon$18.class
+[debug] 	NotFound$.class
+[debug] 	CarEndpoints$$anon$21.class
+[debug] 	CarEndpoints$$anon$46.class
+[debug] 	ErrorInfo$$anon$20.class
+[debug] 	CarEndpoints$$anon$53.class
+[debug] 	CarEndpoints$$anon$17.class
+[debug] 	CarEndpoints$$anon$62.class
+[debug] 	BadRequest.class
+[debug] 	ValidationFailed.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$92.class
+[debug] 	ErrorInfo$$anon$25.class
+[debug] 	CarEndpoints$$anon$35.class
+[debug] 	ErrorInfo$$anon$27.class
+[debug] 	CarEndpoints$$anon$65.class
+[debug] 	ErrorInfo$$anon$22.class
+[debug] 	CarEndpoints$$anon$64.class
+[debug] 	CarEndpoints$$anon$48.class
+[debug] 	CarEndpoints$$anon$63.class
+[debug] 	CarEndpoints$Car$$anon$83.class
+[debug] 	CarEndpoints$$anon$32.class
+[debug] 	CarEndpoints$$anon$59.tasty
+[debug] 	CarEndpoints$$anon$57.tasty
+[debug] 	CarEndpoints$$anon$24.tasty
+[debug] 	ErrorInfo$$anon$6.tasty
+[debug] 	CarEndpoints$Car$.tasty
+[debug] 	CarEndpoints$$anon$61.tasty
+[debug] 	CarEndpoints$$anon$67.tasty
+[debug] 	CarEndpoints$$anon$33.tasty
+[debug] 	CustomDecodeFailureHandler$.tasty
+[debug] 	ServerBack.tasty
+[debug] 	CarEndpoints$$anon$74.tasty
+[debug] 	CarEndpoints$$anon$10.tasty
+[debug] 	CarEndpoints$$anon$68.tasty
+[debug] 	CarEndpoints$$anon$70.tasty
+[debug] 	CarEndpoints$Car$$anon$81.tasty
+[debug] 	CarEndpoints$$anon$22.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$5.tasty
+[debug] 	CarEndpoints$$anon$43.tasty
+[debug] 	CarEndpoints$$anon$9.tasty
+[debug] 	ErrorInfo$$anon$12.tasty
+[debug] 	CarEndpoints$$anon$47.tasty
+[debug] 	CarEndpoints$ErrorResponse$.tasty
+[debug] 	ErrorInfo$$anon$10.tasty
+[debug] 	CarEndpoints$$anon$11.tasty
+[debug] 	CarEndpoints$$anon$31.tasty
+[debug] 	CarEndpoints$$anon$77.tasty
+[debug] 	ErrorInfo$$anon$11.tasty
+[debug] 	CustomDecodeFailureHandler.tasty
+[debug] 	CarEndpoints$$anon$2.tasty
+[debug] 	ErrorInfo$$anon$14.tasty
+[debug] 	CarEndpoints$$anon$79.tasty
+[debug] 	CarEndpoints$$anon$42.tasty
+[debug] 	ErrorInfo$.tasty
+[debug] 	CarEndpoints$$anon$75.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$94.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$26.tasty
+[debug] 	CarEndpoints$Car$$anon$90.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$95.tasty
+[debug] 	CarEndpoints$$anon$8.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$1.tasty
+[debug] 	ErrorInfo$$anon$8.tasty
+[debug] 	ServerBack$.tasty
+[debug] 	ErrorInfo$$anon$28.tasty
+[debug] 	CarEndpoints$Car$$anon$89.tasty
+[debug] 	Conflict.tasty
+[debug] 	CarEndpoints$$anon$14.tasty
+[debug] 	CarEndpoints$$anon$73.tasty
+[debug] 	CarEndpoints$Car$$anon$84.tasty
+[debug] 	ErrorInfo$$anon$24.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$2.tasty
+[debug] 	Unauthorized.tasty
+[debug] 	Forbidden$.tasty
+[debug] 	ErrorInfo$$anon$26.tasty
+[debug] 	CarEndpoints$$anon$45.tasty
+[debug] 	ErrorInfo$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$13.tasty
+[debug] 	CarEndpoints$$anon$1.tasty
+[debug] 	CarEndpoints$$anon$15.tasty
+[debug] 	ErrorInfo$$anon$19.tasty
+[debug] 	CarEndpoints$$anon$40.tasty
+[debug] 	ErrorInfo$$anon$13.tasty
+[debug] 	CarEndpoints$Car$$anon$85.tasty
+[debug] 	CarEndpoints$$anon$23.tasty
+[debug] 	BadRequest$.tasty
+[debug] 	CarEndpoints$$anon$66.tasty
+[debug] 	CarEndpoints$$anon$7.tasty
+[debug] 	CarEndpoints$ErrorResponse.tasty
+[debug] 	CarEndpoints$$anon$50.tasty
+[debug] 	CarEndpoints$Car$$anon$80.tasty
+[debug] 	CarEndpoints$$anon$36.tasty
+[debug] 	CarEndpoints$Car$$anon$91.tasty
+[debug] 	ErrorInfo$$anon$23.tasty
+[debug] 	ErrorInfo$$anon$2.tasty
+[debug] 	CarEndpoints$$anon$30.tasty
+[debug] 	Forbidden.tasty
+[debug] 	ErrorInfo$$anon$9.tasty
+[debug] 	CarEndpoints$$anon$49.tasty
+[debug] 	CarEndpoints$$anon$52.tasty
+[debug] 	CarEndpoints$Car$$anon$82.tasty
+[debug] 	CarEndpoints$$anon$41.tasty
+[debug] 	ErrorInfo$$anon$1.tasty
+[debug] 	CarEndpoints$$anon$38.tasty
+[debug] 	ErrorInfo$$anon$4.tasty
+[debug] 	InternalServerError.tasty
+[debug] 	CarEndpoints$Car.tasty
+[debug] 	ValidationFailed$.tasty
+[debug] 	CarEndpoints$$anon$71.tasty
+[debug] 	InternalServerError$.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$4.tasty
+[debug] 	CarEndpoints$$anon$44.tasty
+[debug] 	CarEndpoints$$anon$16.tasty
+[debug] 	ErrorInfo$$anon$18.tasty
+[debug] 	CarEndpoints$Car$$anon$88.tasty
+[debug] 	CarEndpoints$$anon$58.tasty
+[debug] 	CarEndpoints$$anon$55.tasty
+[debug] 	CarEndpoints$$anon$5.tasty
+[debug] 	CarEndpoints$$anon$78.tasty
+[debug] 	CarEndpoints$$anon$29.tasty
+[debug] 	CarEndpoints$$anon$51.tasty
+[debug] 	CarEndpoints$$anon$6.tasty
+[debug] 	CarRoutes.tasty
+[debug] 	CarEndpoints$$anon$25.tasty
+[debug] 	ErrorInfo.tasty
+[debug] 	Unauthorized$.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$93.tasty
+[debug] 	ErrorInfo$$anon$15.tasty
+[debug] 	CarEndpoints$$anon$39.tasty
+[debug] 	CarEndpoints$$anon$37.tasty
+[debug] 	CarEndpoints$$anon$28.tasty
+[debug] 	ErrorInfo$$anon$16.tasty
+[debug] 	Conflict$.tasty
+[debug] 	CarEndpoints$$anon$4.tasty
+[debug] 	ErrorInfo$$anon$21.tasty
+[debug] 	CarEndpoints$$anon$69.tasty
+[debug] 	CarEndpoints$$anon$72.tasty
+[debug] 	CarEndpoints$$anon$76.tasty
+[debug] 	CarEndpoints$$anon$34.tasty
+[debug] 	CarEndpoints$Car$$anon$87.tasty
+[debug] 	ErrorInfo$$anon$7.tasty
+[debug] 	CarEndpoints$$anon$54.tasty
+[debug] 	ErrorInfo$$anon$5.tasty
+[debug] 	NotFound.tasty
+[debug] 	CarEndpoints$$anon$27.tasty
+[debug] 	CarEndpoints$$anon$56.tasty
+[debug] 	CarEndpoints$$anon$60.tasty
+[debug] 	CarEndpoints$$anon$19.tasty
+[debug] 	DefectHandler.tasty
+[debug] 	CarEndpoints$Car$$anon$86.tasty
+[debug] 	ErrorInfo$$anon$17.tasty
+[debug] 	CarRoutes$.tasty
+[debug] 	CarEndpoints$.tasty
+[debug] 	CarEndpoints$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$12.tasty
+[debug] 	CarEndpoints$$anon$20.tasty
+[debug] 	CarEndpoints.tasty
+[debug] 	CarEndpoints$$anon$18.tasty
+[debug] 	NotFound$.tasty
+[debug] 	CarEndpoints$$anon$21.tasty
+[debug] 	CarEndpoints$$anon$46.tasty
+[debug] 	ErrorInfo$$anon$20.tasty
+[debug] 	CarEndpoints$$anon$53.tasty
+[debug] 	CarEndpoints$$anon$17.tasty
+[debug] 	CarEndpoints$$anon$62.tasty
+[debug] 	BadRequest.tasty
+[debug] 	ValidationFailed.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$92.tasty
+[debug] 	ErrorInfo$$anon$25.tasty
+[debug] 	CarEndpoints$$anon$35.tasty
+[debug] 	ErrorInfo$$anon$27.tasty
+[debug] 	CarEndpoints$$anon$65.tasty
+[debug] 	ErrorInfo$$anon$22.tasty
+[debug] 	CarEndpoints$$anon$64.tasty
+[debug] 	CarEndpoints$$anon$48.tasty
+[debug] 	CarEndpoints$$anon$63.tasty
+[debug] 	CarEndpoints$Car$$anon$83.tasty
+[debug] 	CarEndpoints$$anon$32.tasty
+[debug] We backup class files:
+[debug] 	CarEndpoints$$anon$59.class
+[debug] 	CarEndpoints$$anon$57.class
+[debug] 	CarEndpoints$$anon$24.class
+[debug] 	ErrorInfo$$anon$6.class
+[debug] 	CarEndpoints$Car$.class
+[debug] 	CarEndpoints$$anon$61.class
+[debug] 	CarEndpoints$$anon$67.class
+[debug] 	CarEndpoints$$anon$33.class
+[debug] 	CustomDecodeFailureHandler$.class
+[debug] 	ServerBack.class
+[debug] 	CarEndpoints$$anon$74.class
+[debug] 	CarEndpoints$$anon$10.class
+[debug] 	CarEndpoints$$anon$68.class
+[debug] 	CarEndpoints$$anon$70.class
+[debug] 	CarEndpoints$Car$$anon$81.class
+[debug] 	CarEndpoints$$anon$22.class
+[debug] 	CustomDecodeFailureHandler$$anon$5.class
+[debug] 	CarEndpoints$$anon$43.class
+[debug] 	CarEndpoints$$anon$9.class
+[debug] 	ErrorInfo$$anon$12.class
+[debug] 	CarEndpoints$$anon$47.class
+[debug] 	CarEndpoints$ErrorResponse$.class
+[debug] 	ErrorInfo$$anon$10.class
+[debug] 	CarEndpoints$$anon$11.class
+[debug] 	CarEndpoints$$anon$31.class
+[debug] 	CarEndpoints$$anon$77.class
+[debug] 	ErrorInfo$$anon$11.class
+[debug] 	CustomDecodeFailureHandler.class
+[debug] 	CarEndpoints$$anon$2.class
+[debug] 	ErrorInfo$$anon$14.class
+[debug] 	CarEndpoints$$anon$79.class
+[debug] 	CarEndpoints$$anon$42.class
+[debug] 	ErrorInfo$.class
+[debug] 	CarEndpoints$$anon$75.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$94.class
+[debug] 	CustomDecodeFailureHandler$$anon$3.class
+[debug] 	CarEndpoints$$anon$26.class
+[debug] 	CarEndpoints$Car$$anon$90.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$95.class
+[debug] 	CarEndpoints$$anon$8.class
+[debug] 	CustomDecodeFailureHandler$$anon$1.class
+[debug] 	ErrorInfo$$anon$8.class
+[debug] 	ServerBack$.class
+[debug] 	ErrorInfo$$anon$28.class
+[debug] 	CarEndpoints$Car$$anon$89.class
+[debug] 	Conflict.class
+[debug] 	CarEndpoints$$anon$14.class
+[debug] 	CarEndpoints$$anon$73.class
+[debug] 	CarEndpoints$Car$$anon$84.class
+[debug] 	ErrorInfo$$anon$24.class
+[debug] 	CustomDecodeFailureHandler$$anon$2.class
+[debug] 	Unauthorized.class
+[debug] 	Forbidden$.class
+[debug] 	ErrorInfo$$anon$26.class
+[debug] 	CarEndpoints$$anon$45.class
+[debug] 	ErrorInfo$$anon$3.class
+[debug] 	CarEndpoints$$anon$13.class
+[debug] 	CarEndpoints$$anon$1.class
+[debug] 	CarEndpoints$$anon$15.class
+[debug] 	ErrorInfo$$anon$19.class
+[debug] 	CarEndpoints$$anon$40.class
+[debug] 	ErrorInfo$$anon$13.class
+[debug] 	CarEndpoints$Car$$anon$85.class
+[debug] 	CarEndpoints$$anon$23.class
+[debug] 	BadRequest$.class
+[debug] 	CarEndpoints$$anon$66.class
+[debug] 	CarEndpoints$$anon$7.class
+[debug] 	CarEndpoints$ErrorResponse.class
+[debug] 	CarEndpoints$$anon$50.class
+[debug] 	CarEndpoints$Car$$anon$80.class
+[debug] 	CarEndpoints$$anon$36.class
+[debug] 	CarEndpoints$Car$$anon$91.class
+[debug] 	ErrorInfo$$anon$23.class
+[debug] 	ErrorInfo$$anon$2.class
+[debug] 	CarEndpoints$$anon$30.class
+[debug] 	Forbidden.class
+[debug] 	ErrorInfo$$anon$9.class
+[debug] 	CarEndpoints$$anon$49.class
+[debug] 	CarEndpoints$$anon$52.class
+[debug] 	CarEndpoints$Car$$anon$82.class
+[debug] 	CarEndpoints$$anon$41.class
+[debug] 	ErrorInfo$$anon$1.class
+[debug] 	CarEndpoints$$anon$38.class
+[debug] 	ErrorInfo$$anon$4.class
+[debug] 	InternalServerError.class
+[debug] 	CarEndpoints$Car.class
+[debug] 	ValidationFailed$.class
+[debug] 	CarEndpoints$$anon$71.class
+[debug] 	InternalServerError$.class
+[debug] 	CustomDecodeFailureHandler$$anon$4.class
+[debug] 	CarEndpoints$$anon$44.class
+[debug] 	CarEndpoints$$anon$16.class
+[debug] 	ErrorInfo$$anon$18.class
+[debug] 	CarEndpoints$Car$$anon$88.class
+[debug] 	CarEndpoints$$anon$58.class
+[debug] 	CarEndpoints$$anon$55.class
+[debug] 	CarEndpoints$$anon$5.class
+[debug] 	CarEndpoints$$anon$78.class
+[debug] 	CarEndpoints$$anon$29.class
+[debug] 	CarEndpoints$$anon$51.class
+[debug] 	CarEndpoints$$anon$6.class
+[debug] 	CarRoutes.class
+[debug] 	CarEndpoints$$anon$25.class
+[debug] 	ErrorInfo.class
+[debug] 	Unauthorized$.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$93.class
+[debug] 	ErrorInfo$$anon$15.class
+[debug] 	CarEndpoints$$anon$39.class
+[debug] 	CarEndpoints$$anon$37.class
+[debug] 	CarEndpoints$$anon$28.class
+[debug] 	ErrorInfo$$anon$16.class
+[debug] 	Conflict$.class
+[debug] 	CarEndpoints$$anon$4.class
+[debug] 	ErrorInfo$$anon$21.class
+[debug] 	CarEndpoints$$anon$69.class
+[debug] 	CarEndpoints$$anon$72.class
+[debug] 	CarEndpoints$$anon$76.class
+[debug] 	CarEndpoints$$anon$34.class
+[debug] 	CarEndpoints$Car$$anon$87.class
+[debug] 	ErrorInfo$$anon$7.class
+[debug] 	CarEndpoints$$anon$54.class
+[debug] 	ErrorInfo$$anon$5.class
+[debug] 	NotFound.class
+[debug] 	CarEndpoints$$anon$27.class
+[debug] 	CarEndpoints$$anon$56.class
+[debug] 	CarEndpoints$$anon$60.class
+[debug] 	CarEndpoints$$anon$19.class
+[debug] 	DefectHandler.class
+[debug] 	CarEndpoints$Car$$anon$86.class
+[debug] 	ErrorInfo$$anon$17.class
+[debug] 	CarRoutes$.class
+[debug] 	CarEndpoints$.class
+[debug] 	CarEndpoints$$anon$3.class
+[debug] 	CarEndpoints$$anon$12.class
+[debug] 	CarEndpoints$$anon$20.class
+[debug] 	CarEndpoints.class
+[debug] 	CarEndpoints$$anon$18.class
+[debug] 	NotFound$.class
+[debug] 	CarEndpoints$$anon$21.class
+[debug] 	CarEndpoints$$anon$46.class
+[debug] 	ErrorInfo$$anon$20.class
+[debug] 	CarEndpoints$$anon$53.class
+[debug] 	CarEndpoints$$anon$17.class
+[debug] 	CarEndpoints$$anon$62.class
+[debug] 	BadRequest.class
+[debug] 	ValidationFailed.class
+[debug] 	CarEndpoints$ErrorResponse$$anon$92.class
+[debug] 	ErrorInfo$$anon$25.class
+[debug] 	CarEndpoints$$anon$35.class
+[debug] 	ErrorInfo$$anon$27.class
+[debug] 	CarEndpoints$$anon$65.class
+[debug] 	ErrorInfo$$anon$22.class
+[debug] 	CarEndpoints$$anon$64.class
+[debug] 	CarEndpoints$$anon$48.class
+[debug] 	CarEndpoints$$anon$63.class
+[debug] 	CarEndpoints$Car$$anon$83.class
+[debug] 	CarEndpoints$$anon$32.class
+[debug] 	CarEndpoints$$anon$59.tasty
+[debug] 	CarEndpoints$$anon$57.tasty
+[debug] 	CarEndpoints$$anon$24.tasty
+[debug] 	ErrorInfo$$anon$6.tasty
+[debug] 	CarEndpoints$Car$.tasty
+[debug] 	CarEndpoints$$anon$61.tasty
+[debug] 	CarEndpoints$$anon$67.tasty
+[debug] 	CarEndpoints$$anon$33.tasty
+[debug] 	CustomDecodeFailureHandler$.tasty
+[debug] 	ServerBack.tasty
+[debug] 	CarEndpoints$$anon$74.tasty
+[debug] 	CarEndpoints$$anon$10.tasty
+[debug] 	CarEndpoints$$anon$68.tasty
+[debug] 	CarEndpoints$$anon$70.tasty
+[debug] 	CarEndpoints$Car$$anon$81.tasty
+[debug] 	CarEndpoints$$anon$22.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$5.tasty
+[debug] 	CarEndpoints$$anon$43.tasty
+[debug] 	CarEndpoints$$anon$9.tasty
+[debug] 	ErrorInfo$$anon$12.tasty
+[debug] 	CarEndpoints$$anon$47.tasty
+[debug] 	CarEndpoints$ErrorResponse$.tasty
+[debug] 	ErrorInfo$$anon$10.tasty
+[debug] 	CarEndpoints$$anon$11.tasty
+[debug] 	CarEndpoints$$anon$31.tasty
+[debug] 	CarEndpoints$$anon$77.tasty
+[debug] 	ErrorInfo$$anon$11.tasty
+[debug] 	CustomDecodeFailureHandler.tasty
+[debug] 	CarEndpoints$$anon$2.tasty
+[debug] 	ErrorInfo$$anon$14.tasty
+[debug] 	CarEndpoints$$anon$79.tasty
+[debug] 	CarEndpoints$$anon$42.tasty
+[debug] 	ErrorInfo$.tasty
+[debug] 	CarEndpoints$$anon$75.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$94.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$26.tasty
+[debug] 	CarEndpoints$Car$$anon$90.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$95.tasty
+[debug] 	CarEndpoints$$anon$8.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$1.tasty
+[debug] 	ErrorInfo$$anon$8.tasty
+[debug] 	ServerBack$.tasty
+[debug] 	ErrorInfo$$anon$28.tasty
+[debug] 	CarEndpoints$Car$$anon$89.tasty
+[debug] 	Conflict.tasty
+[debug] 	CarEndpoints$$anon$14.tasty
+[debug] 	CarEndpoints$$anon$73.tasty
+[debug] 	CarEndpoints$Car$$anon$84.tasty
+[debug] 	ErrorInfo$$anon$24.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$2.tasty
+[debug] 	Unauthorized.tasty
+[debug] 	Forbidden$.tasty
+[debug] 	ErrorInfo$$anon$26.tasty
+[debug] 	CarEndpoints$$anon$45.tasty
+[debug] 	ErrorInfo$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$13.tasty
+[debug] 	CarEndpoints$$anon$1.tasty
+[debug] 	CarEndpoints$$anon$15.tasty
+[debug] 	ErrorInfo$$anon$19.tasty
+[debug] 	CarEndpoints$$anon$40.tasty
+[debug] 	ErrorInfo$$anon$13.tasty
+[debug] 	CarEndpoints$Car$$anon$85.tasty
+[debug] 	CarEndpoints$$anon$23.tasty
+[debug] 	BadRequest$.tasty
+[debug] 	CarEndpoints$$anon$66.tasty
+[debug] 	CarEndpoints$$anon$7.tasty
+[debug] 	CarEndpoints$ErrorResponse.tasty
+[debug] 	CarEndpoints$$anon$50.tasty
+[debug] 	CarEndpoints$Car$$anon$80.tasty
+[debug] 	CarEndpoints$$anon$36.tasty
+[debug] 	CarEndpoints$Car$$anon$91.tasty
+[debug] 	ErrorInfo$$anon$23.tasty
+[debug] 	ErrorInfo$$anon$2.tasty
+[debug] 	CarEndpoints$$anon$30.tasty
+[debug] 	Forbidden.tasty
+[debug] 	ErrorInfo$$anon$9.tasty
+[debug] 	CarEndpoints$$anon$49.tasty
+[debug] 	CarEndpoints$$anon$52.tasty
+[debug] 	CarEndpoints$Car$$anon$82.tasty
+[debug] 	CarEndpoints$$anon$41.tasty
+[debug] 	ErrorInfo$$anon$1.tasty
+[debug] 	CarEndpoints$$anon$38.tasty
+[debug] 	ErrorInfo$$anon$4.tasty
+[debug] 	InternalServerError.tasty
+[debug] 	CarEndpoints$Car.tasty
+[debug] 	ValidationFailed$.tasty
+[debug] 	CarEndpoints$$anon$71.tasty
+[debug] 	InternalServerError$.tasty
+[debug] 	CustomDecodeFailureHandler$$anon$4.tasty
+[debug] 	CarEndpoints$$anon$44.tasty
+[debug] 	CarEndpoints$$anon$16.tasty
+[debug] 	ErrorInfo$$anon$18.tasty
+[debug] 	CarEndpoints$Car$$anon$88.tasty
+[debug] 	CarEndpoints$$anon$58.tasty
+[debug] 	CarEndpoints$$anon$55.tasty
+[debug] 	CarEndpoints$$anon$5.tasty
+[debug] 	CarEndpoints$$anon$78.tasty
+[debug] 	CarEndpoints$$anon$29.tasty
+[debug] 	CarEndpoints$$anon$51.tasty
+[debug] 	CarEndpoints$$anon$6.tasty
+[debug] 	CarRoutes.tasty
+[debug] 	CarEndpoints$$anon$25.tasty
+[debug] 	ErrorInfo.tasty
+[debug] 	Unauthorized$.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$93.tasty
+[debug] 	ErrorInfo$$anon$15.tasty
+[debug] 	CarEndpoints$$anon$39.tasty
+[debug] 	CarEndpoints$$anon$37.tasty
+[debug] 	CarEndpoints$$anon$28.tasty
+[debug] 	ErrorInfo$$anon$16.tasty
+[debug] 	Conflict$.tasty
+[debug] 	CarEndpoints$$anon$4.tasty
+[debug] 	ErrorInfo$$anon$21.tasty
+[debug] 	CarEndpoints$$anon$69.tasty
+[debug] 	CarEndpoints$$anon$72.tasty
+[debug] 	CarEndpoints$$anon$76.tasty
+[debug] 	CarEndpoints$$anon$34.tasty
+[debug] 	CarEndpoints$Car$$anon$87.tasty
+[debug] 	ErrorInfo$$anon$7.tasty
+[debug] 	CarEndpoints$$anon$54.tasty
+[debug] 	ErrorInfo$$anon$5.tasty
+[debug] 	NotFound.tasty
+[debug] 	CarEndpoints$$anon$27.tasty
+[debug] 	CarEndpoints$$anon$56.tasty
+[debug] 	CarEndpoints$$anon$60.tasty
+[debug] 	CarEndpoints$$anon$19.tasty
+[debug] 	DefectHandler.tasty
+[debug] 	CarEndpoints$Car$$anon$86.tasty
+[debug] 	ErrorInfo$$anon$17.tasty
+[debug] 	CarRoutes$.tasty
+[debug] 	CarEndpoints$.tasty
+[debug] 	CarEndpoints$$anon$3.tasty
+[debug] 	CarEndpoints$$anon$12.tasty
+[debug] 	CarEndpoints$$anon$20.tasty
+[debug] 	CarEndpoints.tasty
+[debug] 	CarEndpoints$$anon$18.tasty
+[debug] 	NotFound$.tasty
+[debug] 	CarEndpoints$$anon$21.tasty
+[debug] 	CarEndpoints$$anon$46.tasty
+[debug] 	ErrorInfo$$anon$20.tasty
+[debug] 	CarEndpoints$$anon$53.tasty
+[debug] 	CarEndpoints$$anon$17.tasty
+[debug] 	CarEndpoints$$anon$62.tasty
+[debug] 	BadRequest.tasty
+[debug] 	ValidationFailed.tasty
+[debug] 	CarEndpoints$ErrorResponse$$anon$92.tasty
+[debug] 	ErrorInfo$$anon$25.tasty
+[debug] 	CarEndpoints$$anon$35.tasty
+[debug] 	ErrorInfo$$anon$27.tasty
+[debug] 	CarEndpoints$$anon$65.tasty
+[debug] 	ErrorInfo$$anon$22.tasty
+[debug] 	CarEndpoints$$anon$64.tasty
+[debug] 	CarEndpoints$$anon$48.tasty
+[debug] 	CarEndpoints$$anon$63.tasty
+[debug] 	CarEndpoints$Car$$anon$83.tasty
+[debug] 	CarEndpoints$$anon$32.tasty
+[debug] Rolling back changes to class files.
+[debug] Removing generated classes:
+[debug] Restoring class files: 
+[debug] Removing the temporary directory used for backing up class files: /home/carlos/CascadeProjects/car-sharing-app/backend/target/scala-3.3.1/classes.bak
