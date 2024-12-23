@@ -8,39 +8,34 @@ import sttp.model.StatusCode
 import zio.json._
 
 object TripEndpoints:
-  case class ErrorResponse(message: String) derives JsonEncoder, JsonDecoder
+  case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder
 
-  val registerEndpoint = endpoint
-    .post
+  val registerEndpoint = endpoint.post
     .in("api" / "register")
     .in(jsonBody[UserCreate])
     .out(jsonBody[User])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val loginEndpoint = endpoint
-    .post
+  val loginEndpoint = endpoint.post
     .in("api" / "login")
     .in(jsonBody[UserLogin])
     .out(jsonBody[String])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val createTripEndpoint = endpoint
-    .post
+  val createTripEndpoint = endpoint.post
     .in("api" / "trips")
     .in(auth.bearer[String]())
     .in(jsonBody[TripCreate])
     .out(jsonBody[Trip])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val getUserTripsEndpoint = endpoint
-    .get
+  val getUserTripsEndpoint = endpoint.get
     .in("api" / "trips" / "user")
     .in(auth.bearer[String]())
     .out(jsonBody[TripStats])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val getTotalStatsEndpoint = endpoint
-    .get
+  val getTotalStatsEndpoint = endpoint.get
     .in("api" / "trips" / "total")
     .out(jsonBody[TripStats])
     .errorOut(statusCode and jsonBody[ErrorResponse])

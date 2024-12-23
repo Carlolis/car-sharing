@@ -7,59 +7,94 @@ import sttp.model.StatusCode
 import services._
 import models._
 import sttp.tapir.ztapir.*
+import sttp.tapir.swagger.bundle.SwaggerInterpreter
 
-object TripRoutes:
-  val register: ZServerEndpoint[AuthService with TripService, Any] = 
+class TripRoutes(authService: AuthService, tripService: TripService):
+  val register: ZServerEndpoint[Any, Any] =
     TripEndpoints.registerEndpoint.serverLogic { userCreate =>
-      ZIO.serviceWithZIO[AuthService](_.register(userCreate))
+      authService
+        .register(userCreate)
         .map(Right(_))
-        .catchAll(err => ZIO.succeed(Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))))
+        .catchAll(err =>
+          ZIO.succeed(
+            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+          )
+        )
     }
 
-  val login: ZServerEndpoint[AuthService with TripService, Any] =
+  val login: ZServerEndpoint[Any, Any] =
     TripEndpoints.loginEndpoint.serverLogic { credentials =>
-      ZIO.serviceWithZIO[AuthService](_.login(credentials))
+      authService
+        .login(credentials)
         .map(Right(_))
-        .catchAll(err => ZIO.succeed(Left((StatusCode.Unauthorized, ErrorResponse(err.getMessage)))))
+        .catchAll(err =>
+          ZIO.succeed(
+            Left((StatusCode.Unauthorized, ErrorResponse(err.getMessage)))
+          )
+        )
     }
 
-  val createTrip: ZServerEndpoint[AuthService with TripService, Any] =
+  val createTrip: ZServerEndpoint[Any, Any] =
     TripEndpoints.createTripEndpoint.serverLogic { case (token, tripCreate) =>
       (for {
-        auth <- ZIO.service[AuthService]
-        trip <- ZIO.service[TripService]
-        userOpt <- auth.authenticate(token)
-        user <- ZIO.fromOption(userOpt).orElseFail(new Exception("Unauthorized"))
-        result <- trip.createTrip(tripCreate, user.id.get)
+        userOpt <- authService.authenticate(token)
+        user <- ZIO
+          .fromOption(userOpt)
+          .orElseFail(new Exception("Unauthorized"))
+        result <- tripService.createTrip(tripCreate, user.id.get)
       } yield result)
         .map(Right(_))
-        .catchAll(err => ZIO.succeed(Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))))
+        .catchAll(err =>
+          ZIO.succeed(
+            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+          )
+        )
     }
 
-  val getUserTrips: ZServerEndpoint[AuthService with TripService, Any] =
+  val getUserTrips: ZServerEndpoint[Any, Any] =
     TripEndpoints.getUserTripsEndpoint.serverLogic { token =>
       (for {
-        auth <- ZIO.service[AuthService]
-        trip <- ZIO.service[TripService]
-        userOpt <- auth.authenticate(token)
-        user <- ZIO.fromOption(userOpt).orElseFail(new Exception("Unauthorized"))
-        result <- trip.getUserTrips(user.id.get)
+        userOpt <- authService.authenticate(token)
+        user <- ZIO
+          .fromOption(userOpt)
+          .orElseFail(new Exception("Unauthorized"))
+        result <- tripService.getUserTrips(user.id.get)
       } yield result)
         .map(Right(_))
-        .catchAll(err => ZIO.succeed(Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))))
+        .catchAll(err =>
+          ZIO.succeed(
+            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+          )
+        )
     }
 
-  val getTotalStats: ZServerEndpoint[AuthService with TripService, Any] =
+  val getTotalStats: ZServerEndpoint[Any, Any] =
     TripEndpoints.getTotalStatsEndpoint.serverLogic { _ =>
-      ZIO.serviceWithZIO[TripService](_.getTotalStats)
+      tripService.getTotalStats
         .map(Right(_))
-        .catchAll(err => ZIO.succeed(Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))))
+        .catchAll(err =>
+          ZIO.succeed(
+            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+          )
+        )
     }
 
-  val all: List[ZServerEndpoint[AuthService with TripService, Any]] = List(
-    register,
-    login,
-    createTrip,
-    getUserTrips,
-    getTotalStats
-  )
+  def docsEndpoints(
+      apiEndpoints: List[ZServerEndpoint[Any, Any]]
+  ): List[ZServerEndpoint[Any, Any]] = SwaggerInterpreter()
+    .fromServerEndpoints[Task](apiEndpoints, "realworld-tapir-zio", "0.1.0")
+
+  val endpoints: List[ZServerEndpoint[Any, Any]] = {
+    val all = List(
+      getTotalStats,
+      getUserTrips,
+      createTrip,
+      login,
+      register
+    )
+    all ++ docsEndpoints(all)
+  }
+
+object TripRoutes:
+  val live: ZLayer[AuthService & TripService, Nothing, TripRoutes] =
+    ZLayer.fromFunction(new TripRoutes(_, _))

@@ -6,6 +6,7 @@ lazy val root = project
     name := "back",
     version := "0.1.1",
     scalaVersion := scala3Version,
+    Revolver.enableDebugging(port = 5005, suspend = false),
     libraryDependencies ++= Seq(
       "org.scalameta" %% "munit" % "1.0.3" % Test,
       "dev.zio" %% "zio" % "2.1.14",
