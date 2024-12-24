@@ -1,16 +1,17 @@
 import { json, redirect } from "@remix-run/node";
 import type { ActionFunctionArgs } from "@remix-run/node";
 import { Form, useActionData } from "@remix-run/react";
-import { useAuth } from "~/contexts/AuthContext";
-import { api } from "~/services/api";
+import { useAuth } from "../contexts/AuthContext";
+import { api } from "../services/api";
 
 export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
-
+  
   try {
     const token = await api.login({ email, password });
+    console.log("toto",token)
     // In a real app, you'd want to store the token in a cookie
     return redirect("/dashboard", {
       headers: {
@@ -31,7 +32,7 @@ export default function Login() {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Connexion
+            Conffnexion
           </h2>
         </div>
         <Form method="post" className="mt-8 space-y-6">

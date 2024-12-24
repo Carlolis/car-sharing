@@ -11,6 +11,9 @@ declare module "@remix-run/node" {
 export default defineConfig({
   server: {
     port: 3000,
+    hmr: {
+      timeout: 1000
+    }
   },
   plugins: [
     remix({
@@ -20,8 +23,16 @@ export default defineConfig({
         v3_throwAbortReason: true,
         v3_singleFetch: true,
         v3_lazyRouteDiscovery: true,
-      },
+      }
     }),
-    tsconfigPaths(),
+    tsconfigPaths()
   ],
+  build: {
+    sourcemap: true
+  },
+  css: {
+    modules: {
+      localsConvention: "camelCase"
+    }
+  }
 });

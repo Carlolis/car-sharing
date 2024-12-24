@@ -1,7 +1,7 @@
 import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { api } from "~/services/api";
-import type { TripStats } from "~/types/api";
+import { api } from "../services/api";
+import type { TripStats } from "../types/api";
 
 function StatsCard({ title, value }: { title: string; value: string | number }) {
   return (

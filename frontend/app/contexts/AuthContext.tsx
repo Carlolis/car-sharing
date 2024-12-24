@@ -10,24 +10,40 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const isClient = typeof window !== 'undefined';
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
-  const [user, setUser] = useState<User | null>(
-    JSON.parse(localStorage.getItem('user') || 'null')
-  );
+  const [token, setToken] = useState<string | null>(() => {
+    if (isClient) {
+      return localStorage.getItem('token');
+    }
+    return null;
+  });
+  
+  const [user, setUser] = useState<User | null>(() => {
+    if (isClient) {
+      const storedUser = localStorage.getItem('user');
+      return storedUser ? JSON.parse(storedUser) : null;
+    }
+    return null;
+  });
 
   const setAuth = (newToken: string, newUser: User) => {
     setToken(newToken);
     setUser(newUser);
-    localStorage.setItem('token', newToken);
-    localStorage.setItem('user', JSON.stringify(newUser));
+    if (isClient) {
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('user', JSON.stringify(newUser));
+    }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    if (isClient) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
   };
 
   return (

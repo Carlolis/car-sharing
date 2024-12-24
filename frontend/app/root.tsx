@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import { AuthProvider } from "./contexts/AuthContext";
 
 import "./tailwind.css";
 
@@ -100,5 +101,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <AuthProvider>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </AuthProvider>
+  );
 }
