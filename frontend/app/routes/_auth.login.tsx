@@ -5,12 +5,13 @@ import { useAuth } from "../contexts/AuthContext";
 import { api } from "../services/api";
 
 export async function action({ request }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
   
+  const formData = await request.formData();
+  const username = formData.get("username") as string;
+  const password = formData.get("password") as string;
+
   try {
-    const token = await api.login({ email, password });
+    const token = await api.login({ username, password });
     console.log("toto",token)
     // In a real app, you'd want to store the token in a cookie
     return redirect("/dashboard", {
@@ -44,11 +45,11 @@ export default function Login() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <input
-                type="email"
-                name="email"
+                type="username"
+                name="username"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Adresse email"
+                placeholder="Login"
               />
             </div>
             <div>

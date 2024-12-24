@@ -11,7 +11,7 @@ export interface UserCreate {
 }
 
 export interface UserLogin {
-  email: string;
+  username: string;
   password: string;
 }
 

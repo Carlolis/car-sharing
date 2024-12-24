@@ -5,10 +5,9 @@ import {
   Scripts,
   ScrollRestoration,
   Link,
-  useLocation,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import { AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 import stylesheet from "./tailwind.css?url";
 
@@ -27,8 +26,7 @@ export const links: LinksFunction = () => [
 ];
 
 function Navigation() {
-  const location = useLocation();
-  const isLoggedIn = location.pathname !== "/login";
+  const { isAuthenticated } = useAuth();
 
   return (
     <nav className="bg-gray-800">
@@ -37,10 +35,10 @@ function Navigation() {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <Link to="/" className="text-white font-bold text-xl">
-                CarShare
+                Car Share
               </Link>
             </div>
-            {isLoggedIn && (
+            {isAuthenticated && (
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
                   to="/dashboard"
@@ -58,7 +56,7 @@ function Navigation() {
             )}
           </div>
           <div className="flex items-center">
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <form action="/logout" method="post">
                 <button
                   type="submit"
@@ -67,14 +65,8 @@ function Navigation() {
                   Déconnexion
                 </button>
               </form>
-            ) : (
-              <Link
-                to="/login"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-              >
-                Connexion
-              </Link>
-            )}
+            ) : null
+            }
           </div>
         </div>
       </div>
@@ -92,7 +84,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="min-h-screen bg-gray-100">
-        <Navigation />
+       
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -103,10 +95,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Layout>
+    <Layout>
+      <AuthProvider>
+        <Navigation />
         <Outlet />
-      </Layout>
-    </AuthProvider>
+      </AuthProvider>
+    </Layout>
   );
 }

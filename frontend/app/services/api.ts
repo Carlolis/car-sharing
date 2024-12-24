@@ -27,12 +27,15 @@ export const api = {
   },
 
   async login(credentials: UserLogin): Promise<string> {
+    
     const response = await fetch(`${API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
     });
-    return handleResponse<string>(response);
+    const responseData =await response.clone().json()
+    
+    return handleResponse<string>(responseData);
   },
 
   async createTrip(trip: TripCreate, token: string): Promise<Trip> {
