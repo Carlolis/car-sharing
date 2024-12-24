@@ -10,10 +10,11 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 import { AuthProvider } from "./contexts/AuthContext";
 
-import "./tailwind.css";
+import stylesheet from "./tailwind.css?url";
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "stylesheet", href: stylesheet },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",
