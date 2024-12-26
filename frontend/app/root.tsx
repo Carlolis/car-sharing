@@ -74,7 +74,7 @@ function Navigation() {
   );
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+export default function App() {
   return (
     <html lang="fr">
       <head>
@@ -83,23 +83,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen bg-gray-100">
-       
-        {children}
+      <body >
+      <div className="min-h-screen bg-gray-100">
+        <AuthProvider>
+          <Navigation />
+          <Outlet />
+        </AuthProvider></div>
         <ScrollRestoration />
         <Scripts />
+        
       </body>
     </html>
-  );
-}
-
-export default function App() {
-  return (
-    <Layout>
-      <AuthProvider>
-        <Navigation />
-        <Outlet />
-      </AuthProvider>
-    </Layout>
   );
 }

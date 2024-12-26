@@ -27,9 +27,6 @@ export default defineConfig({
     }),
     tsconfigPaths()
   ],
-  build: {
-    sourcemap: true
-  },
   css: {
     modules: {
       localsConvention: "camelCase"
