@@ -62,7 +62,7 @@ export default function Dashboard() {
           />
           <StatsCard
             title="Moyenne de passagers"
-            value={userStats.averagePassengers.toFixed(1)}
+            value={userStats.averagePassengers ?? 0}
           />
         </div>
 

@@ -20,6 +20,7 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     });
   } catch (error) {
+    console.error(error);
     return json({ error: error instanceof Error ? error.message : "Une erreur est survenue" });
   }
 }

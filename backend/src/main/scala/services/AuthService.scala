@@ -42,6 +42,7 @@ class AuthServiceLive(users: Ref[Map[String, User]]) extends AuthService {
         .fail(new Exception("Invalid password"))
         .when(user.password != credentials.password)
       token <- ZIO.attempt(createToken(credentials.username))
+      _ <- ZIO.logInfo("Login success !")
     } yield token).tapError(error => ZIO.logError(error.getMessage))
   }
 
@@ -68,7 +69,12 @@ object AuthService {
   def layer: ZLayer[Any, Nothing, AuthService] =
     ZLayer {
       for {
-        ref <- Ref.make(Map.empty[String, User])
+
+        ref <- Ref.make(
+          Map(
+            "a" -> User(Some(1L), username = "a", email = "a", password = "a")
+          )
+        )
       } yield AuthServiceLive(ref)
     }
 }

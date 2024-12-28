@@ -10,10 +10,10 @@ export class ApiError extends Error {
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
-    const error = await response.json();
+    const error = await response.clone().json();
     throw new ApiError(response.status, error.message);
   }
-  return response.json();
+  return response.clone().json();
 }
 
 export const api = {
@@ -34,8 +34,8 @@ export const api = {
       body: JSON.stringify(credentials),
     });
     const responseData =await response.clone().json()
-    
-    return handleResponse<string>(responseData);
+   
+    return responseData;
   },
 
   async createTrip(trip: TripCreate, token: string): Promise<Trip> {
