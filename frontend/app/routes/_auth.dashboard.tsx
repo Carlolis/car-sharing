@@ -1,5 +1,5 @@
-import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { json, LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 import { api } from "../services/api";
 import type { TripStats } from "../types/api";
 

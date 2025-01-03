@@ -1,12 +1,5 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-  Link,
-} from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, Link } from "react-router";
+import type { LinksFunction } from "react-router";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 import stylesheet from "./tailwind.css?url";

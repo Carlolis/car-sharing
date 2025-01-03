@@ -1,4 +1,4 @@
-import { redirect, ActionFunctionArgs } from "@remix-run/node";
+import { redirect, ActionFunctionArgs } from "react-router";
 
 export async function action({ request }: ActionFunctionArgs) {
   return redirect("/login", {

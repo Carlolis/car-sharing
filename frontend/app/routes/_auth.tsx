@@ -1,4 +1,4 @@
-import { Outlet } from "@remix-run/react";
+import { Outlet } from "react-router";
 import { AuthProvider } from "~/contexts/AuthContext";
 
 export default function AuthLayout() {
