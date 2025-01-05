@@ -14,14 +14,20 @@ case class TripServiceLive() extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
 
+  private var persons = List(
+    Person(Some(1L), "John", "Doe", "john.doe@example.com"),
+    Person(Some(2L), "Jane", "Doe", "jane.doe@example.com")
+  )
+
   override def createTrip(tripCreate: TripCreate, userId: Long): Task[Trip] = {
     ZIO.succeed {
       val newTrip = Trip(
         id = Some(trips.length + 1L),
-        kilometers = tripCreate.kilometers,
+        distance = tripCreate.distance,
         date = tripCreate.date,
-        tripType = tripCreate.tripType,
-        userId = userId
+        name = tripCreate.name,
+        persons =
+          persons.filter(person => tripCreate.personIds.contains(person.id.get))
       )
       trips = trips :+ newTrip
       newTrip
@@ -30,15 +36,18 @@ case class TripServiceLive() extends TripService {
 
   override def getUserTrips(userId: Long): Task[TripStats] = {
     ZIO.succeed {
-      val userTrips = trips.filter(_.userId == userId)
-      val totalKm = userTrips.map(_.kilometers).sum
+      val userTrips =
+        trips.filter(trip =>
+          trip.persons.flatMap(person => person.id).contains(userId)
+        )
+      val totalKm = userTrips.map(_.distance).sum
       TripStats(userTrips, totalKm)
     }
   }
 
   override def getTotalStats: Task[TripStats] = {
     ZIO.succeed {
-      val totalKm = trips.map(_.kilometers).sum
+      val totalKm = trips.map(_.distance).sum
       TripStats(trips, totalKm)
     }
   }

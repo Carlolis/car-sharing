@@ -9,39 +9,39 @@ import models._
 import sttp.tapir.ztapir.*
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 
-class TripRoutes(authService: AuthService, tripService: TripService):
-  val register: ZServerEndpoint[Any, Any] =
-    TripEndpoints.registerEndpoint.serverLogic { userCreate =>
-      authService
-        .register(userCreate)
-        .map(Right(_))
-        .catchAll(err =>
-          ZIO.succeed(
-            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          )
-        )
-    }
+class TripRoutes(tripService: TripService):
+  // val register: ZServerEndpoint[Any, Any] =
+  //   TripEndpoints.registerEndpoint.serverLogic { userCreate =>
+  //     authService
+  //       .register(userCreate)
+  //       .map(Right(_))
+  //       .catchAll(err =>
+  //         ZIO.succeed(
+  //           Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+  //         )
+  //       )
+  //   }
 
-  val login: ZServerEndpoint[Any, Any] =
-    TripEndpoints.loginEndpoint.serverLogic { credentials =>
-      authService
-        .login(credentials)
-        .map(Right(_))
-        .catchAll(err =>
-          ZIO.succeed(
-            Left((StatusCode.Unauthorized, ErrorResponse(err.getMessage)))
-          )
-        )
-    }
+  // val login: ZServerEndpoint[Any, Any] =
+  //   TripEndpoints.loginEndpoint.serverLogic { credentials =>
+  //     authService
+  //       .login(credentials)
+  //       .map(Right(_))
+  //       .catchAll(err =>
+  //         ZIO.succeed(
+  //           Left((StatusCode.Unauthorized, ErrorResponse(err.getMessage)))
+  //         )
+  //       )
+  //   }
 
   val createTrip: ZServerEndpoint[Any, Any] =
     TripEndpoints.createTripEndpoint.serverLogic { case (token, tripCreate) =>
       (for {
-        userOpt <- authService.authenticate(token)
-        user <- ZIO
-          .fromOption(userOpt)
-          .orElseFail(new Exception("Unauthorized"))
-        result <- tripService.createTrip(tripCreate, user.id.get)
+        // userOpt <- authService.authenticate(token)
+        // user <- ZIO
+        //   .fromOption(userOpt)
+        //   .orElseFail(new Exception("Unauthorized"))
+        result <- tripService.createTrip(tripCreate, 1L)
       } yield result)
         .map(Right(_))
         .catchAll(err =>
@@ -54,11 +54,11 @@ class TripRoutes(authService: AuthService, tripService: TripService):
   val getUserTrips: ZServerEndpoint[Any, Any] =
     TripEndpoints.getUserTripsEndpoint.serverLogic { token =>
       (for {
-        userOpt <- authService.authenticate(token)
-        user <- ZIO
-          .fromOption(userOpt)
-          .orElseFail(new Exception("Unauthorized"))
-        result <- tripService.getUserTrips(user.id.get)
+        // userOpt <- authService.authenticate(token)
+        // user <- ZIO
+        //   .fromOption(userOpt)
+        //   .orElseFail(new Exception("Unauthorized"))
+        result <- tripService.getUserTrips(1L)
       } yield result)
         .map(Right(_))
         .catchAll(err =>
@@ -88,13 +88,13 @@ class TripRoutes(authService: AuthService, tripService: TripService):
     val all = List(
       getTotalStats,
       getUserTrips,
-      createTrip,
-      login,
-      register
+      createTrip
+      // login,
+      // register
     )
     all ++ docsEndpoints(all)
   }
 
 object TripRoutes:
-  val live: ZLayer[AuthService & TripService, Nothing, TripRoutes] =
-    ZLayer.fromFunction(new TripRoutes(_, _))
+  val live: ZLayer[TripService, Nothing, TripRoutes] =
+    ZLayer.fromFunction(new TripRoutes(_))

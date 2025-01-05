@@ -10,17 +10,17 @@ import zio.json._
 object TripEndpoints:
   case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder
 
-  val registerEndpoint = endpoint.post
-    .in("api" / "register")
-    .in(jsonBody[UserCreate])
-    .out(jsonBody[User])
-    .errorOut(statusCode and jsonBody[ErrorResponse])
+  // val registerEndpoint = endpoint.post
+  //   .in("api" / "register")
+  //   .in(jsonBody[UserCreate])
+  //   .out(jsonBody[Person])
+  //   .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val loginEndpoint = endpoint.post
-    .in("api" / "login")
-    .in(jsonBody[UserLogin])
-    .out(jsonBody[String])
-    .errorOut(statusCode and jsonBody[ErrorResponse])
+  // val loginEndpoint = endpoint.post
+  //   .in("api" / "login")
+  //   .in(jsonBody[UserLogin])
+  //   .out(jsonBody[String])
+  //   .errorOut(statusCode and jsonBody[ErrorResponse])
 
   val createTripEndpoint = endpoint.post
     .in("api" / "trips")

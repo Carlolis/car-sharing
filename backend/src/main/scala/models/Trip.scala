@@ -4,11 +4,11 @@ import zio.json._
 import java.time.LocalDate
 
 case class Trip(
-  id: Option[Long],
-  kilometers: Double,
-  date: LocalDate,
-  tripType: String,
-  userId: Long
+    id: Option[Long],
+    distance: Double,
+    date: LocalDate,
+    name: String,
+    persons: List[Person]
 )
 
 object Trip {
@@ -17,22 +17,27 @@ object Trip {
 }
 
 case class TripCreate(
-  kilometers: Double,
-  date: LocalDate,
-  tripType: String
+    distance: Double,
+    date: LocalDate,
+    name: String,
+    personIds: List[Long]
 )
 
 object TripCreate {
-  implicit val encoder: JsonEncoder[TripCreate] = DeriveJsonEncoder.gen[TripCreate]
-  implicit val decoder: JsonDecoder[TripCreate] = DeriveJsonDecoder.gen[TripCreate]
+  implicit val encoder: JsonEncoder[TripCreate] =
+    DeriveJsonEncoder.gen[TripCreate]
+  implicit val decoder: JsonDecoder[TripCreate] =
+    DeriveJsonDecoder.gen[TripCreate]
 }
 
 case class TripStats(
-  trips: List[Trip],
-  totalKilometers: Double
+    trips: List[Trip],
+    totalKilometers: Double
 )
 
 object TripStats {
-  implicit val encoder: JsonEncoder[TripStats] = DeriveJsonEncoder.gen[TripStats]
-  implicit val decoder: JsonDecoder[TripStats] = DeriveJsonDecoder.gen[TripStats]
+  implicit val encoder: JsonEncoder[TripStats] =
+    DeriveJsonEncoder.gen[TripStats]
+  implicit val decoder: JsonDecoder[TripStats] =
+    DeriveJsonDecoder.gen[TripStats]
 }

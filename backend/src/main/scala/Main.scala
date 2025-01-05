@@ -2,7 +2,7 @@ import zio.*
 import zio.http.*
 import sttp.tapir.server.ziohttp.{ZioHttpInterpreter, ZioHttpServerOptions}
 import api.TripRoutes
-import services.{AuthService, TripService}
+import services.{TripService}
 import sttp.tapir.server.interceptor.cors.CORSConfig.AllowedOrigin
 import sttp.tapir.server.interceptor.cors.{CORSConfig, CORSInterceptor}
 import sttp.tapir.ztapir.RIOMonadError
@@ -38,7 +38,7 @@ object Main extends ZIOAppDefault:
       _ <- ZIO.never
     yield ()).provide(
       Server.defaultWithPort(port),
-      AuthService.layer,
+      // AuthService.layer,
       TripRoutes.live,
       TripService.layer
     )
