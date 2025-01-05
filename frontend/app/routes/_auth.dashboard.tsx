@@ -1,7 +1,5 @@
-import { json, LoaderFunctionArgs } from "react-router";
-import { useLoaderData } from "react-router";
+import { LoaderFunctionArgs, useLoaderData } from "react-router";
 import { api } from "../services/api";
-import type { TripStats } from "../types/api";
 
 function StatsCard({ title, value }: { title: string; value: string | number }) {
   return (
@@ -27,7 +25,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       api.getTotalStats(),
     ]);
 
-    return json({ userStats, totalStats });
+    return ({ userStats, totalStats });
   } catch (error) {
     throw new Response("Error fetching stats", { status: 500 });
   }

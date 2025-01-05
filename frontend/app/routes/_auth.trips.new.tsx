@@ -1,5 +1,4 @@
-import { json, redirect, ActionFunctionArgs } from "react-router";
-import { Form, useActionData } from "react-router";
+import {  redirect, ActionFunctionArgs , Form, useActionData } from "react-router";
 import { api } from "~/services/api";
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -22,7 +21,7 @@ export async function action({ request }: ActionFunctionArgs) {
     await api.createTrip(tripData, token);
     return redirect("/dashboard");
   } catch (error) {
-    return json({ error: error instanceof Error ? error.message : "Une erreur est survenue" });
+    return ({ error: error instanceof Error ? error.message : "Une erreur est survenue" });
   }
 }
 
@@ -54,7 +53,7 @@ export default function CreateTrip() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Lieu d'arrivée
+            Lieu d&apos;arrivée
           </label>
           <input
             type="text"

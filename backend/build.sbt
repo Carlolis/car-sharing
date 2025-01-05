@@ -17,7 +17,13 @@ lazy val root = project
       "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % "1.11.10",
       "com.softwaremill.sttp.tapir" %% "tapir-json-zio" % "1.11.10",
       "dev.zio" %% "zio-json" % "0.7.3",
-      "com.auth0" % "java-jwt" % "4.4.0"
+      "com.auth0" % "java-jwt" % "4.4.0",
+      "io.scalaland" %% "chimney" % "1.6.0",
+      "dev.zio" %% "zio-test" % "2.1.14" % Test,
+      "dev.zio" %% "zio-test-sbt" % "2.1.14" % Test,
+      "dev.zio" %% "zio-test-magnolia" % "2.1.14" % Test,
+      "com.github.sbt" % "junit-interface" % "0.13.3" % Test,
+      "dev.zio" %% "zio-test-junit" % "2.1.14" % "test"
     ),
     Compile / mainClass := Some("Main")
   )

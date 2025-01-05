@@ -1,6 +1,5 @@
-import { json, redirect } from "react-router";
+import {  redirect , Form, useActionData } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
-import { Form, useActionData } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 import { api } from "../services/api";
 
@@ -21,7 +20,7 @@ export async function action({ request }: ActionFunctionArgs) {
     });
   } catch (error) {
     console.error(error);
-    return json({ error: error instanceof Error ? error.message : "Une erreur est survenue" });
+    return ({ error: error instanceof Error ? error.message : "Une erreur est survenue" });
   }
 }
 
