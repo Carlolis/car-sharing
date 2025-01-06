@@ -8,4 +8,4 @@ import com.edgedb.driver.annotations.{
 import java.util.UUID
 
 @EdgeDBType
-class PersonEdge @EdgeDBDeserializer() (var id: UUID, var name: String)
+case class PersonEdge @EdgeDBDeserializer() (id: UUID, name: String)
