@@ -1,6 +1,6 @@
 package services
 
-import models._
+import models.{PersonEdge, Trip, TripCreate, TripStats}
 import zio._
 import java.time.LocalDate
 
@@ -11,11 +11,13 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   override def createTrip(tripCreate: TripCreate, userId: Long): Task[Trip] = {
     edgeDb
       .querySingle(
-        classOf[PersonJava],
-        s"select Person {id,name}filter .name = 'Charles'"
+        classOf[PersonEdge],
+        """
+          | select PersonEdge { name, id }
+          |"""
       )
       .flatMap(person =>
-        println(s"Person inserted ${person.name}")
+        println(s"Person inserted ${person.get(1).name}")
         ZIO.succeed {
           val newTrip = Trip(
             id = Some(trips.length + 1L),

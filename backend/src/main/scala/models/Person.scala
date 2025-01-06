@@ -1,12 +1,18 @@
 package models
 
+import com.edgedb.driver.annotations.{
+  EdgeDBDeserializer,
+  EdgeDBName,
+  EdgeDBType
+}
 import zio.json._
+import java.util.UUID
 
 case class Person(
     id: Option[Long],
-    username: String,
-    email: String,
-    password: String // Note: password sera hashé avant stockage
+    name: String,
+    lastName: String,
+    email: String
 )
 
 object Person {
@@ -16,6 +22,7 @@ object Person {
 
 case class PersonCreate(
     name: String,
+    lastName: String,
     email: String
 )
 

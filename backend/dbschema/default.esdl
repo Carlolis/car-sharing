@@ -3,11 +3,11 @@ module default {
     required name: str;
     required date: cal::local_date;
     required distance: int16;
-    required multi drivers: Person;
+    required multi drivers: PersonEdge;
 
   }
 
-  type Person {
+  type PersonEdge {
     required name: str;
     multi drive_in := .<drivers[is Trip];
   }
