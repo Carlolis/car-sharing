@@ -5,10 +5,10 @@ import java.time.LocalDate
 
 case class Trip(
     id: Option[Long],
-    distance: Double,
+    distance: Int,
     date: LocalDate,
     name: String,
-    persons: List[Person]
+    drivers: Iterable[Person]
 )
 
 object Trip {
@@ -17,10 +17,10 @@ object Trip {
 }
 
 case class TripCreate(
-    distance: Double,
+    distance: Int,
     date: LocalDate,
     name: String,
-    personIds: List[Long]
+    drivers: Set[Person]
 )
 
 object TripCreate {

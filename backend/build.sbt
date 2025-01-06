@@ -19,6 +19,7 @@ lazy val root = project
       "dev.zio" %% "zio-json" % "0.7.3",
       "com.auth0" % "java-jwt" % "4.4.0",
       "io.scalaland" %% "chimney" % "1.6.0",
+      "io.scalaland" %% "chimney-java-collections" % "1.6.0",
       "com.edgedb" % "driver" % "0.3.0",
       "dev.zio" %% "zio-test" % "2.1.14" % Test,
       "dev.zio" %% "zio-test-sbt" % "2.1.14" % Test,

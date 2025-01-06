@@ -6,6 +6,7 @@ import sttp.tapir.json.zio._
 import models._
 import sttp.model.StatusCode
 import zio.json._
+import java.util.UUID
 
 object TripEndpoints:
   case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder
@@ -26,7 +27,7 @@ object TripEndpoints:
     .in("api" / "trips")
     .in(auth.bearer[String]())
     .in(jsonBody[TripCreate])
-    .out(jsonBody[Trip])
+    .out(jsonBody[UUID])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
   val getUserTripsEndpoint = endpoint.get

@@ -1,5 +1,5 @@
 module default {
-  type Trip {
+  type TripEdge {
     required name: str;
     required date: cal::local_date;
     required distance: int16;
@@ -9,7 +9,10 @@ module default {
 
   type PersonEdge {
     required name: str;
-    multi drive_in := .<drivers[is Trip];
+    multi drive_in := .<drivers[is TripEdge];
   }
 
+
+
 }
+using extension ai;

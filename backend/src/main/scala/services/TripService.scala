@@ -3,10 +3,11 @@ package services
 import models._
 import zio._
 import java.time.LocalDate
+import java.util.UUID
 
 trait TripService {
-  def createTrip(tripCreate: TripCreate, userId: Long): Task[Trip]
-  def getUserTrips(userId: Long): Task[TripStats]
+  def createTrip(tripCreate: TripCreate, persons: Set[Person]): Task[UUID]
+  def getUserTrips(personName: String): Task[TripStats]
   def getTotalStats: Task[TripStats]
 }
 
@@ -14,31 +15,36 @@ case class TripServiceLive() extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
 
-  private var persons = List(
-    Person(Some(1L), "John", "Doe", "john.doe@example.com"),
-    Person(Some(2L), "Jane", "Doe", "jane.doe@example.com")
-  )
+  private var knownPersons =
+    Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
 
-  override def createTrip(tripCreate: TripCreate, userId: Long): Task[Trip] = {
-    ZIO.succeed {
-      val newTrip = Trip(
-        id = Some(trips.length + 1L),
-        distance = tripCreate.distance,
-        date = tripCreate.date,
-        name = tripCreate.name,
-        persons =
-          persons.filter(person => tripCreate.personIds.contains(person.id.get))
-      )
-      trips = trips :+ newTrip
-      newTrip
-    }
+  override def createTrip(
+      tripCreate: TripCreate,
+      persons: Set[Person]
+  ): Task[UUID] = {
+    if (!persons.subsetOf(knownPersons)) {
+      ZIO.fail(new Exception("Unknown person"))
+    } else
+      ZIO
+        .succeed {
+          val newTrip = Trip(
+            id = Some(trips.length + 1L),
+            distance = tripCreate.distance,
+            date = tripCreate.date,
+            name = tripCreate.name,
+            persons
+          )
+          trips = trips :+ newTrip
+          newTrip
+        }
+        .zipRight(ZIO.succeed(UUID.randomUUID()))
   }
 
-  override def getUserTrips(userId: Long): Task[TripStats] = {
+  override def getUserTrips(name: String): Task[TripStats] = {
     ZIO.succeed {
       val userTrips =
-        trips.filter(trip =>
-          trip.persons.flatMap(person => person.id).contains(userId)
+        trips.filter(trip => true
+        // trip.drivers.flatMap(person => person.name).contains(name)
         )
       val totalKm = userTrips.map(_.distance).sum
       TripStats(userTrips, totalKm)

@@ -41,8 +41,8 @@ class TripRoutes(tripService: TripService):
         // user <- ZIO
         //   .fromOption(userOpt)
         //   .orElseFail(new Exception("Unauthorized"))
-        result <- tripService.createTrip(tripCreate, 1L)
-      } yield result)
+        uuid <- tripService.createTrip(tripCreate, Set(Person("Maé")))
+      } yield uuid)
         .map(Right(_))
         .catchAll(err =>
           ZIO.succeed(
@@ -58,7 +58,7 @@ class TripRoutes(tripService: TripService):
         // user <- ZIO
         //   .fromOption(userOpt)
         //   .orElseFail(new Exception("Unauthorized"))
-        result <- tripService.getUserTrips(1L)
+        result <- tripService.getUserTrips("Maé")
       } yield result)
         .map(Right(_))
         .catchAll(err =>

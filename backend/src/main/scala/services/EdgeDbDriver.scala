@@ -3,37 +3,35 @@ package services
 import zio._
 import com.edgedb.driver.EdgeDBClient;
 import models.Trip
-import scala.jdk.CollectionConverters._
+
 import java.util.concurrent.CompletionStage
 import scala.jdk.FutureConverters.*
+import java.util.List
+
 case class EdgeDbDriverLive() {
   private var client = new EdgeDBClient();
 
   def querySingle[A](
       cls: Class[A],
       query: String
-  ): Task[java.util.List[A]] = {
-    // var toto = client
-    //   .querySingle(cls, query)
+  ): Task[A] =
+    ZIO
+      .fromCompletionStage(
+        client
+          .querySingle(cls, query.stripMargin)
+      )
+      .tapError(e => ZIO.logError(s"Query failed: $query" + e.getMessage()))
 
-    var toto2 = client
-      .query(cls, query.stripMargin)
-      .asScala
-    var toto3 = ZIO.fromFuture(_ => toto2)
-    toto3
-
-  }
-
-  // def query[A](cls: Class[A], query: String): Task[List[A]] = {
-
-  //   ZIO
-  //     .fromCompletionStage(
-  //       client
-  //         .query(cls, query)
-  //     )
-  //     .map(_.asScala.toList)
-
-  // }
+  def query[A](
+      cls: Class[A],
+      query: String
+  ): Task[List[A]] =
+    ZIO
+      .fromCompletionStage(
+        client
+          .query(cls, query.stripMargin)
+      )
+    // .map(_.toList)
 }
 
 object EdgeDbDriver {
