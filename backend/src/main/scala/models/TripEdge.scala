@@ -19,7 +19,13 @@ class TripEdge @EdgeDBDeserializer() (
     name: String,
     @EdgeDBLinkType(classOf[PersonEdge])
     drivers: util.Collection[PersonEdge]
-)
+) {
+  def getId: UUID = id
+  def getDistance: Int = distance
+  def getDate: LocalDate = date
+  def getName: String = name
+  def getDrivers: util.Collection[PersonEdge] = drivers
+}
 
 case class TripEdgeCreate(
     distance: Double,

@@ -5,6 +5,7 @@ import zio._
 import java.time.LocalDate
 import java.util.UUID
 import io.scalaland.chimney.dsl._
+import io.scalaland.chimney.javacollections._
 
 case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
@@ -38,9 +39,10 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
           |"""
       )
       .map(tripEdge => {
-        println(tripEdge)
-        // val totalKm = tripEdge.map(_.distance).sum
-        // val trips = tripEdge.map(_.transformInto[Trip])
+        println(tripEdge.map(_.getName))
+        val trips = tripEdge.map(Trip.fromTripEdge)
+        val totalKm = trips.map(_.distance).sum
+
         TripStats(List.empty, 1000)
       })
   }

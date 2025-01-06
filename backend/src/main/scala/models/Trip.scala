@@ -2,18 +2,29 @@ package models
 
 import zio.json._
 import java.time.LocalDate
+import scala.collection.JavaConverters._
+import java.util.UUID
 
 case class Trip(
-    id: Option[Long],
+    id: UUID,
     distance: Int,
     date: LocalDate,
     name: String,
-    drivers: Iterable[Person]
+    drivers: Set[Person]
 )
 
 object Trip {
   implicit val encoder: JsonEncoder[Trip] = DeriveJsonEncoder.gen[Trip]
   implicit val decoder: JsonDecoder[Trip] = DeriveJsonDecoder.gen[Trip]
+  def fromTripEdge(tripEdge: TripEdge): Trip = {
+    Trip(
+      tripEdge.getId,
+      tripEdge.getDistance,
+      tripEdge.getDate,
+      tripEdge.getName,
+      tripEdge.getDrivers.asScala.map(p => Person(p.name)).toSet
+    )
+  }
 }
 
 case class TripCreate(

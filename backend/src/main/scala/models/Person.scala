@@ -5,7 +5,11 @@ import java.util.UUID
 
 case class Person(
     name: String
-)
+) {
+  def toPersonEdge: PersonEdge = {
+    PersonEdge(name)
+  }
+}
 
 object Person {
   implicit val encoder: JsonEncoder[Person] = DeriveJsonEncoder.gen[Person]

@@ -28,7 +28,7 @@ case class TripServiceLive() extends TripService {
       ZIO
         .succeed {
           val newTrip = Trip(
-            id = Some(trips.length + 1L),
+            id = UUID.randomUUID(),
             distance = tripCreate.distance,
             date = tripCreate.date,
             name = tripCreate.name,

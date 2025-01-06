@@ -6,7 +6,7 @@ import models.Trip
 
 import java.util.concurrent.CompletionStage
 import scala.jdk.FutureConverters.*
-import java.util.List
+import scala.jdk.CollectionConverters.*
 
 case class EdgeDbDriverLive() {
   private var client = new EdgeDBClient();
@@ -30,8 +30,9 @@ case class EdgeDbDriverLive() {
       .fromCompletionStage(
         client
           .query(cls, query.stripMargin)
+          .thenApply(javaList => javaList.asScala.toList)
       )
-    // .map(_.toList)
+
 }
 
 object EdgeDbDriver {
