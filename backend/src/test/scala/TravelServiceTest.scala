@@ -10,22 +10,36 @@ import zio.ZLayer
 object TripServiceTest extends ZIOSpecDefault {
   val tripService = ZIO.service[TripService]
 
-  def spec = suite("TripServiceTest in EdgeDb")(
+  def spec = suiteAll("TripServiceTest in EdgeDb") {
+    val personName = "Maé"
+    val maé = Person(personName)
+    val tripCreate =
+      TripCreate(100, LocalDate.now(), "Business", Set(maé))
+
     test("createTrip should create a trip successfully with Maé") {
 
-      val personName = "Maé"
-      val maé = Person(personName)
-      val tripCreate =
-        TripCreate(100, LocalDate.now(), "Business", Set(maé))
       for {
         tripService <- tripService
 
-        uuid <- tripService.createTrip(tripCreate, Set(maé))
+        UUID <- tripService.createTrip(tripCreate, Set(maé))
         tripByUser <- tripService.getUserTrips(personName)
 
-      } yield assertTrue(uuid != null) && assertTrue(
-        tripByUser.trips.length == 1
+      } yield assertTrue(UUID != null) && assertTrue(
+        tripByUser.trips.length > 1
       )
     }
-  ).provide(TripServiceEdgeDb.layer, EdgeDbDriver.layer)
+    test("deleteTrip should delete a trip successfully with Maé") {
+
+      for {
+        tripService <- tripService
+
+        UUID <- tripService.createTrip(tripCreate, Set(maé))
+        _ <- tripService.deleteTrip(UUID)
+        tripByUser <- tripService.getUserTrips(personName)
+
+      } yield assertTrue(UUID != null) && assertTrue(
+        tripByUser.trips.length == 0
+      )
+    }
+  }.provide(TripServiceEdgeDb.layer, EdgeDbDriver.layer)
 }

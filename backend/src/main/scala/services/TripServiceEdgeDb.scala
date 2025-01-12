@@ -6,6 +6,7 @@ import java.time.LocalDate
 import java.util.UUID
 import io.scalaland.chimney.dsl._
 import io.scalaland.chimney.javacollections._
+import models.Trip.fromTripEdge
 
 case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
@@ -17,16 +18,15 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       tripCreate: TripCreate,
       persons: Set[Person]
   ): Task[UUID] = {
-    println(
-      s"Creating trip ${tripCreate.name} with ${persons}  and ${tripCreate}"
-    )
+
     edgeDb
       .querySingle(
         classOf[UUID],
         s"""
-          | with new_trip := (insert TripEdge { name := "tot", distance := 123, date := cal::to_local_date(2024, 10, 10), drivers := (select detached default::PersonEdge filter .name = <str>'Maé') }) select new_trip.id;
+          | with new_trip := (insert TripEdge { name := "tot", distance := 123, date := cal::to_local_date(2024, 10, 10), edgeDrivers := (select detached default::PersonEdge filter .name = <str>'Maé') }) select new_trip.id;
           |"""
       )
+      .tap(UUID => ZIO.logInfo(s"Created trip with id: $UUID"))
 
   }
 
@@ -35,23 +35,31 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       .query(
         classOf[TripEdge],
         s"""
-          | select TripEdge { id, distance, date, name, drivers: { name } } filter .drivers.name = <str>'$personName'  ;
+          | select TripEdge { id, distance, date, name, edgeDrivers: { name } } filter .edgeDrivers.name = <str>'$personName'  ;
           |"""
       )
       .map(tripEdge => {
-        println(tripEdge.map(_.getName))
-        val trips = tripEdge.map(Trip.fromTripEdge)
+
+        val trips = tripEdge.map(fromTripEdge(_))
         val totalKm = trips.map(_.distance).sum
 
-        TripStats(List.empty, 1000)
+        TripStats(trips, totalKm)
       })
   }
 
-  override def getTotalStats: Task[TripStats] = {
-    ZIO.succeed {
-      val totalKm = trips.map(_.distance).sum
-      TripStats(trips, totalKm)
-    }
+  override def getTotalStats: Task[TripStats] = ???
+
+  override def deleteTrip(id: UUID): Task[UUID] = {
+    edgeDb
+      .querySingle(
+        classOf[String],
+        s"""
+          | delete TripEdge filter .id = <uuid>'$id';
+          | select '${id}';
+          |"""
+      )
+      .map(id => UUID.fromString(id))
+      .tap(_ => ZIO.logInfo(s"Deleted trip with id: $id"))
   }
 }
 

@@ -17,6 +17,7 @@ object Trip {
   implicit val encoder: JsonEncoder[Trip] = DeriveJsonEncoder.gen[Trip]
   implicit val decoder: JsonDecoder[Trip] = DeriveJsonDecoder.gen[Trip]
   def fromTripEdge(tripEdge: TripEdge): Trip = {
+
     Trip(
       tripEdge.getId,
       tripEdge.getDistance,

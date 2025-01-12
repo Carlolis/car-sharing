@@ -9,6 +9,7 @@ trait TripService {
   def createTrip(tripCreate: TripCreate, persons: Set[Person]): Task[UUID]
   def getUserTrips(personName: String): Task[TripStats]
   def getTotalStats: Task[TripStats]
+  def deleteTrip(id: UUID): Task[UUID]
 }
 
 case class TripServiceLive() extends TripService {
@@ -57,6 +58,8 @@ case class TripServiceLive() extends TripService {
       TripStats(trips, totalKm)
     }
   }
+
+  override def deleteTrip(id: UUID): Task[UUID] = ???
 }
 
 object TripService {

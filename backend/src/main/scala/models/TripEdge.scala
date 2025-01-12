@@ -9,8 +9,7 @@ import com.edgedb.driver.annotations.EdgeDBLinkType
 import java.util.UUID
 
 @EdgeDBType
-case class PersonEdge @EdgeDBDeserializer() (name: String)
-
+case class PersonEdge @EdgeDBDeserializer() (var name: String)
 @EdgeDBType
 class TripEdge @EdgeDBDeserializer() (
     id: UUID,
@@ -18,13 +17,14 @@ class TripEdge @EdgeDBDeserializer() (
     date: LocalDate,
     name: String,
     @EdgeDBLinkType(classOf[PersonEdge])
-    drivers: util.Collection[PersonEdge]
+    edgeDrivers: util.Collection[PersonEdge]
 ) {
+
   def getId: UUID = id
   def getDistance: Int = distance
   def getDate: LocalDate = date
   def getName: String = name
-  def getDrivers: util.Collection[PersonEdge] = drivers
+  def getDrivers: util.Collection[PersonEdge] = edgeDrivers
 }
 
 case class TripEdgeCreate(
