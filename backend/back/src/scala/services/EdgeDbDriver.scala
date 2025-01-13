@@ -20,12 +20,11 @@ case class EdgeDbDriverLive() {
   //   .withPort(10700)
   //   .withTlsSecurity(TLSSecurityMode.INSECURE)
   //   .build()
-
   private var client = new EdgeDBClient()
 
   def querySingle[A](
-      cls: Class[A],
-      query: String
+    cls: Class[A],
+    query: String
   ): Task[A] =
     ZIO
       .fromCompletionStage(
@@ -35,8 +34,8 @@ case class EdgeDbDriverLive() {
       .tapError(e => ZIO.logError(s"Query failed: $query" + e.getMessage()))
 
   def query[A](
-      cls: Class[A],
-      query: String
+    cls: Class[A],
+    query: String
   ): Task[List[A]] =
     ZIO
       .fromCompletionStage(
@@ -44,7 +43,6 @@ case class EdgeDbDriverLive() {
           .query(cls, query.stripMargin)
           .thenApply(javaList => javaList.asScala.toList)
       )
-
 }
 
 object EdgeDbDriver {

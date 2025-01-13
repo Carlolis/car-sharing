@@ -11,14 +11,13 @@ import models.Trip.fromTripEdge
 case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
-  private var knownPersons =
+  private var knownPersons      =
     Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
 
   override def createTrip(
-      tripCreate: TripCreate,
-      persons: Set[Person]
-  ): Task[UUID] = {
-
+    tripCreate: TripCreate,
+    persons: Set[Person]
+  ): Task[UUID] =
     edgeDb
       .querySingle(
         classOf[UUID],
@@ -28,9 +27,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       )
       .tap(UUID => ZIO.logInfo(s"Created trip with id: $UUID"))
 
-  }
-
-  override def getUserTrips(personName: String): Task[TripStats] = {
+  override def getUserTrips(personName: String): Task[TripStats] =
     edgeDb
       .query(
         classOf[TripEdge],
@@ -38,18 +35,17 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
           | select TripEdge { id, distance, date, name, edgeDrivers: { name } } filter .edgeDrivers.name = <str>'$personName'  ;
           |"""
       )
-      .map(tripEdge => {
+      .map { tripEdge =>
 
-        val trips = tripEdge.map(fromTripEdge(_))
+        val trips   = tripEdge.map(fromTripEdge(_))
         val totalKm = trips.map(_.distance).sum
 
         TripStats(trips, totalKm)
-      })
-  }
+      }
 
   override def getTotalStats: Task[TripStats] = ???
 
-  override def deleteTrip(id: UUID): Task[UUID] = {
+  override def deleteTrip(id: UUID): Task[UUID] =
     edgeDb
       .querySingle(
         classOf[String],
@@ -60,7 +56,6 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       )
       .map(id => UUID.fromString(id))
       .tap(_ => ZIO.logInfo(s"Deleted trip with id: $id"))
-  }
 }
 
 object TripServiceEdgeDb:

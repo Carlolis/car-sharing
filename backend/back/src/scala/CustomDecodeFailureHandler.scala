@@ -13,19 +13,17 @@ import sttp.tapir.{EndpointIO, EndpointInput, headers, statusCode}
 // Tapir gives us only a message, thus custom handler.
 // Problem mentioned in https://github.com/softwaremill/tapir/issues/2729
 class CustomDecodeFailureHandler[F[_]](
-    defaultHandler: DecodeFailureHandler[F],
-    failureMessage: DecodeFailureContext => String,
-    defaultRespond: DecodeFailureContext => Option[(StatusCode, List[Header])]
+  defaultHandler: DecodeFailureHandler[F],
+  failureMessage: DecodeFailureContext => String,
+  defaultRespond: DecodeFailureContext => Option[(StatusCode, List[Header])]
 ) extends DecodeFailureHandler[F]:
-
-  override def apply(ctx: DecodeFailureContext)(using MonadError[F]): F[Option[ValuedEndpointOutput[_]]] = {
+  override def apply(ctx: DecodeFailureContext)(using MonadError[F]): F[Option[ValuedEndpointOutput[_]]] =
     ctx.failingInput match
       case EndpointInput.Query(name, _, _, _)    => getErrorResponseForField(name, ctx)
       case EndpointInput.PathCapture(name, _, _) => getErrorResponseForField(name.getOrElse("?"), ctx)
       case _: EndpointIO.Body[_, _]              => getErrorResponseForField("body", ctx)
       case _: EndpointIO.StreamBodyWrapper[_, _] => getErrorResponseForField("body", ctx)
       case _                                     => defaultHandler(ctx)
-  }
 
   private def getErrorResponseForField(name: String, ctx: DecodeFailureContext)(using MonadError[F]): F[Option[ValuedEndpointOutput[_]]] = {
     val output = defaultRespond(ctx) match
@@ -37,12 +35,10 @@ class CustomDecodeFailureHandler[F[_]](
             (StatusCode.UnprocessableEntity, hs, ValidationFailed(Map(name -> List(failureMsg))))
           )
         )
-      case None => None
+      case None          => None
     output.unit
   }
-
 object CustomDecodeFailureHandler:
-
   def create[F[_]: MonadError](): DecodeFailureHandler[F] =
     new CustomDecodeFailureHandler[F](
       DefaultDecodeFailureHandler[F],

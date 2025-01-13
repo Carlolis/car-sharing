@@ -6,18 +6,17 @@ import scala.collection.JavaConverters._
 import java.util.UUID
 
 case class Trip(
-    id: UUID,
-    distance: Int,
-    date: LocalDate,
-    name: String,
-    drivers: Set[Person]
+  id: UUID,
+  distance: Int,
+  date: LocalDate,
+  name: String,
+  drivers: Set[Person]
 )
 
 object Trip {
-  implicit val encoder: JsonEncoder[Trip] = DeriveJsonEncoder.gen[Trip]
-  implicit val decoder: JsonDecoder[Trip] = DeriveJsonDecoder.gen[Trip]
-  def fromTripEdge(tripEdge: TripEdge): Trip = {
-
+  implicit val encoder: JsonEncoder[Trip]    = DeriveJsonEncoder.gen[Trip]
+  implicit val decoder: JsonDecoder[Trip]    = DeriveJsonDecoder.gen[Trip]
+  def fromTripEdge(tripEdge: TripEdge): Trip =
     Trip(
       tripEdge.getId,
       tripEdge.getDistance,
@@ -25,14 +24,13 @@ object Trip {
       tripEdge.getName,
       tripEdge.getDrivers.asScala.map(p => Person(p.name)).toSet
     )
-  }
 }
 
 case class TripCreate(
-    distance: Int,
-    date: LocalDate,
-    name: String,
-    drivers: Set[Person]
+  distance: Int,
+  date: LocalDate,
+  name: String,
+  drivers: Set[Person]
 )
 
 object TripCreate {
@@ -43,8 +41,8 @@ object TripCreate {
 }
 
 case class TripStats(
-    trips: List[Trip],
-    totalKilometers: Double
+  trips: List[Trip],
+  totalKilometers: Double
 )
 
 object TripStats {

@@ -23,20 +23,23 @@ object TripEndpoints:
   //   .out(jsonBody[String])
   //   .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val createTripEndpoint = endpoint.post
+  val createTripEndpoint = endpoint
+    .post
     .in("api" / "trips")
     .in(auth.bearer[String]())
     .in(jsonBody[TripCreate])
     .out(jsonBody[UUID])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val getUserTripsEndpoint = endpoint.get
+  val getUserTripsEndpoint = endpoint
+    .get
     .in("api" / "trips" / "user")
     .in(auth.bearer[String]())
     .out(jsonBody[TripStats])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val getTotalStatsEndpoint = endpoint.get
+  val getTotalStatsEndpoint = endpoint
+    .get
     .in("api" / "trips" / "total")
     .out(jsonBody[TripStats])
     .errorOut(statusCode and jsonBody[ErrorResponse])

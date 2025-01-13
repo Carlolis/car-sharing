@@ -33,22 +33,21 @@ class TripRoutes(tripService: TripService):
   //         )
   //       )
   //   }
-
   val createTrip: ZServerEndpoint[Any, Any] =
-    TripEndpoints.createTripEndpoint.serverLogic { case (token, tripCreate) =>
-      (for {
-        // userOpt <- authService.authenticate(token)
-        // user <- ZIO
-        //   .fromOption(userOpt)
-        //   .orElseFail(new Exception("Unauthorized"))
-        uuid <- tripService.createTrip(tripCreate, Set(Person("Maé")))
-      } yield uuid)
-        .map(Right(_))
-        .catchAll(err =>
-          ZIO.succeed(
-            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          )
-        )
+    TripEndpoints.createTripEndpoint.serverLogic {
+      case (token, tripCreate) =>
+        (for {
+          // userOpt <- authService.authenticate(token)
+          // user <- ZIO
+          //   .fromOption(userOpt)
+          //   .orElseFail(new Exception("Unauthorized"))
+          uuid <- tripService.createTrip(tripCreate, Set(Person("Maé")))
+        } yield uuid)
+          .map(Right(_))
+          .catchAll(err =>
+            ZIO.succeed(
+              Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+            ))
     }
 
   val getUserTrips: ZServerEndpoint[Any, Any] =
@@ -64,23 +63,22 @@ class TripRoutes(tripService: TripService):
         .catchAll(err =>
           ZIO.succeed(
             Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          )
-        )
+          ))
     }
 
   val getTotalStats: ZServerEndpoint[Any, Any] =
     TripEndpoints.getTotalStatsEndpoint.serverLogic { _ =>
-      tripService.getTotalStats
+      tripService
+        .getTotalStats
         .map(Right(_))
         .catchAll(err =>
           ZIO.succeed(
             Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          )
-        )
+          ))
     }
 
   def docsEndpoints(
-      apiEndpoints: List[ZServerEndpoint[Any, Any]]
+    apiEndpoints: List[ZServerEndpoint[Any, Any]]
   ): List[ZServerEndpoint[Any, Any]] = SwaggerInterpreter()
     .fromServerEndpoints[Task](apiEndpoints, "realworld-tapir-zio", "0.1.0")
 
@@ -94,7 +92,6 @@ class TripRoutes(tripService: TripService):
     )
     all ++ docsEndpoints(all)
   }
-
 object TripRoutes:
   val live: ZLayer[TripService, Nothing, TripRoutes] =
     ZLayer.fromFunction(new TripRoutes(_))

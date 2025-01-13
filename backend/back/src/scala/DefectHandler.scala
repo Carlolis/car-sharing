@@ -6,6 +6,5 @@ import sttp.tapir.{statusCode, stringBody}
 import zio.Task
 
 class DefectHandler extends ExceptionHandler[Task]:
-
   override def apply(ctx: ExceptionContext)(implicit monad: MonadError[Task]): Task[Option[ValuedEndpointOutput[_]]] =
     monad.unit(Some(ValuedEndpointOutput(statusCode.and(stringBody), (StatusCode.InternalServerError, "Internal server error"))))

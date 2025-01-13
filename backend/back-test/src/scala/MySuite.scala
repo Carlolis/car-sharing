@@ -16,7 +16,7 @@ object HelloWorldSpec extends ZIOSpecDefault {
     test("sayHello correctly displays output") {
 
       for {
-        _ <- sayHello
+        _      <- sayHello
         output <- TestConsole.output
       } yield assertTrue(output == Vector("Hello, World!\n"))
     },

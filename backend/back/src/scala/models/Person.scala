@@ -4,11 +4,10 @@ import zio.json._
 import java.util.UUID
 
 case class Person(
-    name: String
+  name: String
 ) {
-  def toPersonEdge: PersonEdge = {
+  def toPersonEdge: PersonEdge =
     PersonEdge(name)
-  }
 }
 
 object Person {

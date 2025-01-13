@@ -20,12 +20,12 @@ case class TripServiceLive() extends TripService {
     Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
 
   override def createTrip(
-      tripCreate: TripCreate,
-      persons: Set[Person]
-  ): Task[UUID] = {
-    if (!persons.subsetOf(knownPersons)) {
+    tripCreate: TripCreate,
+    persons: Set[Person]
+  ): Task[UUID] =
+    if (!persons.subsetOf(knownPersons))
       ZIO.fail(new Exception("Unknown person"))
-    } else
+    else
       ZIO
         .succeed {
           val newTrip = Trip(
@@ -39,25 +39,22 @@ case class TripServiceLive() extends TripService {
           newTrip
         }
         .zipRight(ZIO.succeed(UUID.randomUUID()))
-  }
 
-  override def getUserTrips(name: String): Task[TripStats] = {
+  override def getUserTrips(name: String): Task[TripStats] =
     ZIO.succeed {
       val userTrips =
         trips.filter(trip => true
         // trip.drivers.flatMap(person => person.name).contains(name)
         )
-      val totalKm = userTrips.map(_.distance).sum
+      val totalKm   = userTrips.map(_.distance).sum
       TripStats(userTrips, totalKm)
     }
-  }
 
-  override def getTotalStats: Task[TripStats] = {
+  override def getTotalStats: Task[TripStats] =
     ZIO.succeed {
       val totalKm = trips.map(_.distance).sum
       TripStats(trips, totalKm)
     }
-  }
 
   override def deleteTrip(id: UUID): Task[UUID] = ???
 }

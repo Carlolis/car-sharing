@@ -9,18 +9,18 @@ import zio.ZLayer
 
 object TripServiceTest extends ZIOSpecDefault {
   var tripService = ZIO.service[TripService]
-  var personName = "Maé"
-  var maé = Person(personName)
-  var tripCreate =
+  var personName  = "Maé"
+  var maé         = Person(personName)
+  var tripCreate  =
     TripCreate(100, LocalDate.now(), "Business", Set(maé))
-  def spec =
+  def spec        =
     (suite("TripServiceTest in EdgeDb")(
       test("createTrip should create a trip successfully with Maé") {
 
         for {
           tripService <- tripService
 
-          UUID <- tripService.createTrip(tripCreate, Set(maé))
+          UUID       <- tripService.createTrip(tripCreate, Set(maé))
           tripByUser <- tripService.getUserTrips(personName)
 
         } yield assertTrue(UUID != null) && assertTrue(
@@ -32,8 +32,8 @@ object TripServiceTest extends ZIOSpecDefault {
         for {
           tripService <- tripService
 
-          UUID <- tripService.createTrip(tripCreate, Set(maé))
-          _ <- tripService.deleteTrip(UUID)
+          UUID       <- tripService.createTrip(tripCreate, Set(maé))
+          _          <- tripService.deleteTrip(UUID)
           tripByUser <- tripService.getUserTrips(personName)
 
         } yield assertTrue(UUID != null) && assertTrue(
@@ -46,11 +46,9 @@ object TripServiceTest extends ZIOSpecDefault {
 
           var toto = for {
             tripService <- tripService
-            trips <- tripService.getUserTrips("Maé")
-            _ <- ZIO
-              .foreachDiscard(trips.trips)(trip =>
-                tripService.deleteTrip(trip.id)
-              )
+            trips       <- tripService.getUserTrips("Maé")
+            _           <- ZIO
+                             .foreachDiscard(trips.trips)(trip => tripService.deleteTrip(trip.id))
 
           } yield ()
           toto
@@ -60,5 +58,4 @@ object TripServiceTest extends ZIOSpecDefault {
       TripServiceEdgeDb.layer,
       EdgeDbDriver.layer
     )
-
 }
