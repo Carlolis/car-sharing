@@ -1,11 +1,12 @@
 package api
 
-import sttp.tapir.ztapir._
-import sttp.tapir.generic.auto._
-import sttp.tapir.json.zio._
-import models._
+import models.*
 import sttp.model.StatusCode
-import zio.json._
+import sttp.tapir.generic.auto.*
+import sttp.tapir.json.zio.*
+import sttp.tapir.ztapir.*
+import zio.json.*
+
 import java.util.UUID
 
 object TripEndpoints:

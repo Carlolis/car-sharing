@@ -1,7 +1,8 @@
 package services
 
-import models._
-import zio._
+import models.*
+import zio.*
+
 import java.time.LocalDate
 import java.util.UUID
 
@@ -37,8 +38,7 @@ case class TripServiceLive() extends TripService {
           )
           trips = trips :+ newTrip
           newTrip
-        }
-        .zipRight(ZIO.succeed(UUID.randomUUID()))
+        }.as(UUID.randomUUID())
 
   override def getUserTrips(name: String): Task[TripStats] =
     ZIO.succeed {

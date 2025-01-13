@@ -1,11 +1,10 @@
 package models
 
-import zio.json._
+import com.edgedb.driver.annotations.{EdgeDBDeserializer, EdgeDBLinkType, EdgeDBType}
+import zio.json.*
+
 import java.time.LocalDate
-import com.edgedb.driver.annotations.EdgeDBType
-import com.edgedb.driver.annotations.EdgeDBDeserializer
 import java.util
-import com.edgedb.driver.annotations.EdgeDBLinkType
 import java.util.UUID
 
 @EdgeDBType

@@ -1,12 +1,12 @@
 package services
 
-import models._
-import zio._
-import java.time.LocalDate
-import java.util.UUID
-import io.scalaland.chimney.dsl._
-import io.scalaland.chimney.javacollections._
+import io.scalaland.chimney.dsl.*
+import io.scalaland.chimney.javacollections.*
+import models.*
 import models.Trip.fromTripEdge
+import zio.*
+
+import java.util.UUID
 
 case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
@@ -37,7 +37,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       )
       .map { tripEdge =>
 
-        val trips   = tripEdge.map(fromTripEdge(_))
+        val trips   = tripEdge.map(fromTripEdge)
         val totalKm = trips.map(_.distance).sum
 
         TripStats(trips, totalKm)
@@ -50,12 +50,11 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       .querySingle(
         classOf[String],
         s"""
-          | delete TripEdge filter .id = <uuid>'$id';
-          | select '${id}';
-          |"""
+           | delete TripEdge filter .id = <uuid>'$id';
+           | select '${id}';
+           |"""
       )
-      .map(id => UUID.fromString(id))
-      .tap(_ => ZIO.logInfo(s"Deleted trip with id: $id"))
+      .map(id => UUID.fromString(id)).zipLeft(ZIO.logInfo(s"Deleted trip with id: $id"))
 }
 
 object TripServiceEdgeDb:

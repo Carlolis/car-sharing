@@ -1,13 +1,13 @@
 package api
 
-import sttp.tapir.server.ServerEndpoint
-import zio._
-import api.TripEndpoints._
+import api.TripEndpoints.*
+import models.*
+import services.*
 import sttp.model.StatusCode
-import services._
-import models._
-import sttp.tapir.ztapir.*
+import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
+import sttp.tapir.ztapir.*
+import zio.*
 
 class TripRoutes(tripService: TripService):
   // val register: ZServerEndpoint[Any, Any] =
@@ -45,9 +45,7 @@ class TripRoutes(tripService: TripService):
         } yield uuid)
           .map(Right(_))
           .catchAll(err =>
-            ZIO.succeed(
-              Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-            ))
+            ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   val getUserTrips: ZServerEndpoint[Any, Any] =
@@ -61,9 +59,7 @@ class TripRoutes(tripService: TripService):
       } yield result)
         .map(Right(_))
         .catchAll(err =>
-          ZIO.succeed(
-            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          ))
+          ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   val getTotalStats: ZServerEndpoint[Any, Any] =
@@ -72,9 +68,7 @@ class TripRoutes(tripService: TripService):
         .getTotalStats
         .map(Right(_))
         .catchAll(err =>
-          ZIO.succeed(
-            Left((StatusCode.BadRequest, ErrorResponse(err.getMessage)))
-          ))
+          ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   def docsEndpoints(

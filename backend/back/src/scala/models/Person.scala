@@ -1,6 +1,7 @@
 package models
 
-import zio.json._
+import zio.json.*
+
 import java.util.UUID
 
 case class Person(

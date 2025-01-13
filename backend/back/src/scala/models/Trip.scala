@@ -1,9 +1,10 @@
 package models
 
-import zio.json._
+import zio.json.*
+
 import java.time.LocalDate
-import scala.collection.JavaConverters._
 import java.util.UUID
+import scala.collection.JavaConverters.*
 
 case class Trip(
   id: UUID,
