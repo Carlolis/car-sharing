@@ -7,9 +7,21 @@ import models.Trip
 import java.util.concurrent.CompletionStage
 import scala.jdk.FutureConverters.*
 import scala.jdk.CollectionConverters.*
+import com.edgedb.driver.EdgeDBConnection
+import com.edgedb.driver.TLSSecurityMode
 
 case class EdgeDbDriverLive() {
-  private var client = new EdgeDBClient();
+  // val connection = EdgeDBConnection
+  //   .builder()
+  //   .withDatabase(
+  //     "backend"
+  //   )
+  //   .withHostname("localhost")
+  //   .withPort(10700)
+  //   .withTlsSecurity(TLSSecurityMode.INSECURE)
+  //   .build()
+
+  private var client = new EdgeDBClient()
 
   def querySingle[A](
       cls: Class[A],

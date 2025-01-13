@@ -8,38 +8,57 @@ import java.time.LocalDate
 import zio.ZLayer
 
 object TripServiceTest extends ZIOSpecDefault {
-  val tripService = ZIO.service[TripService]
+  var tripService = ZIO.service[TripService]
+  var personName = "Maé"
+  var maé = Person(personName)
+  var tripCreate =
+    TripCreate(100, LocalDate.now(), "Business", Set(maé))
+  def spec =
+    (suite("TripServiceTest in EdgeDb")(
+      test("createTrip should create a trip successfully with Maé") {
 
-  def spec = suiteAll("TripServiceTest in EdgeDb") {
-    val personName = "Maé"
-    val maé = Person(personName)
-    val tripCreate =
-      TripCreate(100, LocalDate.now(), "Business", Set(maé))
+        for {
+          tripService <- tripService
 
-    test("createTrip should create a trip successfully with Maé") {
+          UUID <- tripService.createTrip(tripCreate, Set(maé))
+          tripByUser <- tripService.getUserTrips(personName)
 
-      for {
-        tripService <- tripService
+        } yield assertTrue(UUID != null) && assertTrue(
+          tripByUser.trips.length == 1
+        )
+      },
+      test("deleteTrip should delete a trip successfully with Maé") {
 
-        UUID <- tripService.createTrip(tripCreate, Set(maé))
-        tripByUser <- tripService.getUserTrips(personName)
+        for {
+          tripService <- tripService
 
-      } yield assertTrue(UUID != null) && assertTrue(
-        tripByUser.trips.length > 1
-      )
-    }
-    test("deleteTrip should delete a trip successfully with Maé") {
+          UUID <- tripService.createTrip(tripCreate, Set(maé))
+          _ <- tripService.deleteTrip(UUID)
+          tripByUser <- tripService.getUserTrips(personName)
 
-      for {
-        tripService <- tripService
+        } yield assertTrue(UUID != null) && assertTrue(
+          tripByUser.trips.length == 0
+        )
+      }
+    )
+      @@ TestAspect
+        .before {
 
-        UUID <- tripService.createTrip(tripCreate, Set(maé))
-        _ <- tripService.deleteTrip(UUID)
-        tripByUser <- tripService.getUserTrips(personName)
+          var toto = for {
+            tripService <- tripService
+            trips <- tripService.getUserTrips("Maé")
+            _ <- ZIO
+              .foreachDiscard(trips.trips)(trip =>
+                tripService.deleteTrip(trip.id)
+              )
 
-      } yield assertTrue(UUID != null) && assertTrue(
-        tripByUser.trips.length == 0
-      )
-    }
-  }.provide(TripServiceEdgeDb.layer, EdgeDbDriver.layer)
+          } yield ()
+          toto
+            .catchAll(e => ZIO.logError(e.getMessage))
+
+        } @@ TestAspect.sequential).provideShared(
+      TripServiceEdgeDb.layer,
+      EdgeDbDriver.layer
+    )
+
 }
