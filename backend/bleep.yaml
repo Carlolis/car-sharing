@@ -18,7 +18,6 @@ projects:
     extends: template-common
     platform:
       jvmRuntimeOptions: -Duser.dir=${BUILD_DIR}
-    sbt-scope: main
   back-test:
     dependencies:
     - com.github.sbt:junit-interface:0.13.3
@@ -30,7 +29,6 @@ projects:
     dependsOn: back
     extends: template-common
     isTestProject: true
-    sbt-scope: test
     testFrameworks:
     - hedgehog.sbt.Framework
     - weaver.framework.CatsEffect
@@ -43,7 +41,6 @@ projects:
       version: 3.3.1
 templates:
   template-common:
-    folder: .
     platform:
       name: jvm
     scala:
