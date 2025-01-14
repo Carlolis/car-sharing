@@ -1,7 +1,6 @@
-package services
+package services.trip
 
-import io.scalaland.chimney.dsl.*
-import io.scalaland.chimney.javacollections.*
+import adapters.EdgeDbDriverLive
 import models.*
 import models.Trip.fromTripEdge
 import zio.*
@@ -15,17 +14,19 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
     Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
 
   override def createTrip(
-    tripCreate: TripCreate,
-    persons: Set[Person]
+    tripCreate: TripCreate
   ): Task[UUID] =
     edgeDb
       .querySingle(
         classOf[UUID],
         s"""
-          | with new_trip := (insert TripEdge { name := "tot", distance := 123, date := cal::to_local_date(2024, 10, 10), edgeDrivers := (select detached default::PersonEdge filter .name = <str>'Maé') }) select new_trip.id;
+          |  with new_trip := (insert TripEdge { name := '${tripCreate.name}', distance := ${tripCreate.distance}, date := cal::to_local_date(${tripCreate
+            .date.getYear}, ${tripCreate
+            .date.getMonthValue}, ${tripCreate
+            .date.getDayOfMonth}), edgeDrivers := (select detached default::PersonEdge filter .name in ${tripCreate
+            .drivers.map(_.name).mkString("{'", "','", "'}")}) }) select new_trip.id;
           |"""
-      )
-      .tap(UUID => ZIO.logInfo(s"Created trip with id: $UUID"))
+      ).tapBoth(error => ZIO.logError(s"Created trip with id: $error"), UUID => ZIO.logInfo(s"Created trip with id: $UUID"))
 
   override def getUserTrips(personName: String): Task[TripStats] =
     edgeDb
@@ -51,10 +52,12 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
         classOf[String],
         s"""
            | delete TripEdge filter .id = <uuid>'$id';
-           | select '${id}';
+           | select '$id';
            |"""
       )
       .map(id => UUID.fromString(id)).zipLeft(ZIO.logInfo(s"Deleted trip with id: $id"))
+
+  override def updateTrip(tripUpdate: Trip): Task[UUID] = ???
 }
 
 object TripServiceEdgeDb:

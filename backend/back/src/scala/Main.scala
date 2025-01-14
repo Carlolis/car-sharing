@@ -1,5 +1,6 @@
+import adapters.EdgeDbDriver
 import api.TripRoutes
-import services.TripService
+import services.trip.{TripService, TripServiceEdgeDb}
 import sttp.tapir.server.interceptor.cors.CORSConfig.AllowedOrigin
 import sttp.tapir.server.interceptor.cors.{CORSConfig, CORSInterceptor}
 import sttp.tapir.server.ziohttp.{ZioHttpInterpreter, ZioHttpServerOptions}
@@ -41,5 +42,6 @@ object Main extends ZIOAppDefault:
       Server.defaultWithPort(port),
       // AuthService.layer,
       TripRoutes.live,
-      TripService.layer
+      TripServiceEdgeDb.layer,
+      EdgeDbDriver.layer
     )

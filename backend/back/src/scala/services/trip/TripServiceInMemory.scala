@@ -1,19 +1,11 @@
-package services
+package services.trip
 
-import models.*
-import zio.*
+import models.{Person, Trip, TripCreate, TripStats}
+import zio.{Task, ULayer, ZIO, ZLayer}
 
-import java.time.LocalDate
 import java.util.UUID
 
-trait TripService {
-  def createTrip(tripCreate: TripCreate, persons: Set[Person]): Task[UUID]
-  def getUserTrips(personName: String): Task[TripStats]
-  def getTotalStats: Task[TripStats]
-  def deleteTrip(id: UUID): Task[UUID]
-}
-
-case class TripServiceLive() extends TripService {
+case class TripServiceInMemory() extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
 
@@ -21,10 +13,10 @@ case class TripServiceLive() extends TripService {
     Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
 
   override def createTrip(
-    tripCreate: TripCreate,
-    persons: Set[Person]
-  ): Task[UUID] =
-    if (!persons.subsetOf(knownPersons))
+                           tripCreate: TripCreate
+                           
+                         ): Task[UUID] =
+    if (!tripCreate.drivers.subsetOf(knownPersons))
       ZIO.fail(new Exception("Unknown person"))
     else
       ZIO
@@ -34,7 +26,7 @@ case class TripServiceLive() extends TripService {
             distance = tripCreate.distance,
             date = tripCreate.date,
             name = tripCreate.name,
-            persons
+            drivers= tripCreate.drivers
           )
           trips = trips :+ newTrip
           newTrip
@@ -44,7 +36,7 @@ case class TripServiceLive() extends TripService {
     ZIO.succeed {
       val userTrips =
         trips.filter(trip => true
-        // trip.drivers.flatMap(person => person.name).contains(name)
+          // trip.drivers.flatMap(person => person.name).contains(name)
         )
       val totalKm   = userTrips.map(_.distance).sum
       TripStats(userTrips, totalKm)
@@ -57,8 +49,10 @@ case class TripServiceLive() extends TripService {
     }
 
   override def deleteTrip(id: UUID): Task[UUID] = ???
+
+  override def updateTrip(tripUpdate: Trip): Task[UUID] = ???
 }
 
-object TripService {
-  val layer: ULayer[TripService] = ZLayer.succeed(TripServiceLive())
+object TripServiceInMemory {
+  val layer: ULayer[TripService] = ZLayer.succeed(TripServiceInMemory())
 }

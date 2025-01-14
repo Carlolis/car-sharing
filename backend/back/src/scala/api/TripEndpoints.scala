@@ -8,6 +8,7 @@ import sttp.tapir.ztapir.*
 import zio.json.*
 
 import java.util.UUID
+import java.util.Locale
 
 object TripEndpoints:
   case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder

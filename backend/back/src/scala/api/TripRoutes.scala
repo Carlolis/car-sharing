@@ -2,7 +2,7 @@ package api
 
 import api.TripEndpoints.*
 import models.*
-import services.*
+import services.trip.*
 import sttp.model.StatusCode
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
@@ -41,7 +41,7 @@ class TripRoutes(tripService: TripService):
           // user <- ZIO
           //   .fromOption(userOpt)
           //   .orElseFail(new Exception("Unauthorized"))
-          uuid <- tripService.createTrip(tripCreate, Set(Person("Maé")))
+          uuid <- tripService.createTrip(tripCreate)
         } yield uuid)
           .map(Right(_))
           .catchAll(err =>

@@ -1,10 +1,8 @@
-package services
+package adapters
 
-import com.edgedb.driver.{EdgeDBClient, EdgeDBConnection, TLSSecurityMode}
-import models.Trip
+import com.edgedb.driver.EdgeDBClient
 import zio.*
 
-import java.util.concurrent.CompletionStage
 import scala.jdk.CollectionConverters.*
 import scala.jdk.FutureConverters.*
 
@@ -28,8 +26,7 @@ case class EdgeDbDriverLive() {
       .fromCompletionStage(
         client
           .querySingle(cls, query.stripMargin)
-      )
-      .tapError(e => ZIO.logError(s"Query failed: $query" + e.getMessage))
+      ).tapBoth(e => ZIO.logError(s"Query failed: $query" + e.getMessage), _ => ZIO.logInfo(s"Query succeeded: $query"))
 
   def query[A](
     cls: Class[A],
