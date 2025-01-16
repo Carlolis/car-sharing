@@ -11,21 +11,25 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@effect/platform": "^0.73.1",
+    "@effect/platform-node": "^0.69.1",
+    "@effect/schema": "^0.75.5",
+    "@react-router/fs-routes": "^7.1.1",
     "@react-router/node": "^7.1.1",
     "@react-router/serve": "^7.1.1",
-    "@react-router/fs-routes": "^7.1.1",
+    "effect": "^3.12.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^7.1.1"
   },
   "devDependencies": {
-    "dprint": "0.47.2",
     "@react-router/dev": "^7.1.1",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "autoprefixer": "^10.4.19",
+    "dprint": "0.47.2",
     "eslint": "^8.38.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.28.1",

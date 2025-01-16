@@ -1,5 +1,6 @@
+import { HttpClient, HttpClientRequest } from '@effect/platform'
+import * as T from 'effect/Effect'
 import { Trip, TripCreate, TripStats, User, UserCreate, UserLogin } from '../types/api'
-
 const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
@@ -58,8 +59,16 @@ export const api = {
     return handleResponse<TripStats>(response)
   },
 
-  async getTotalStats(): Promise<TripStats> {
-    const response = await fetch(`${API_URL}/trips/total`)
-    return handleResponse<TripStats>(response)
+  getTotalStats() {
+    return T.gen(function* () {
+      const defaultClient = yield* HttpClient.HttpClient
+      const toto = HttpClientRequest.get(`${API_URL}/trips/total`)
+
+      const response = yield* defaultClient.execute(toto)
+      const responseJson = yield* response.json
+      return responseJson as TripStats
+    }).pipe(
+      T.scoped
+    )
   }
 }
