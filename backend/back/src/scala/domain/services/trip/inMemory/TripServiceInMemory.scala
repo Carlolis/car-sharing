@@ -10,7 +10,7 @@ case class TripServiceInMemory() extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
 
-  private var knownPersons =
+  private val knownPersons =
     Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
 
   override def createTrip(

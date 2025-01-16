@@ -6,8 +6,8 @@ import zio.ZIO
 import zio.test.*
 
 object PersonServiceTest extends ZIOSpecDefault {
-  var personName        = "Maé"
-  var maé: PersonCreate = PersonCreate(personName)
+  val personName        = "Maé"
+  val maé: PersonCreate = PersonCreate(personName)
 
   def spec =
     (suiteAll("TripServiceTest in EdgeDb") {
@@ -33,8 +33,8 @@ object PersonServiceTest extends ZIOSpecDefault {
         } yield assertTrue(notFound.isLeft)
       }
       test("Get all persons") {
-        var personName            = "charles"
-        var charles: PersonCreate = PersonCreate(personName)
+        val personName            = "charles"
+        val charles: PersonCreate = PersonCreate(personName)
         for {
           _          <- PersonService.createPerson(maé)
           _          <- PersonService.createPerson(charles)

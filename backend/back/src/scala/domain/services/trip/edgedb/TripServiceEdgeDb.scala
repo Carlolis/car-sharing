@@ -10,8 +10,8 @@ import java.util.UUID
 
 case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
-  private var trips: List[Trip] = List.empty
-  private var knownPersons      =
+  private val trips: List[Trip] = List.empty
+  private val knownPersons      =
     Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
 
   override def createTrip(

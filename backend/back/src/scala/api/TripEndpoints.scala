@@ -1,13 +1,12 @@
 package api
 
-import domain.models.{TripCreate, TripStats}
-import sttp.model.StatusCode
+import domain.models.{PersonCreate, TripCreate, TripStats}
 import sttp.tapir.generic.auto.*
 import sttp.tapir.json.zio.*
 import sttp.tapir.ztapir.*
 import zio.json.*
 
-import java.util.{Locale, UUID}
+import java.util.UUID
 
 object TripEndpoints:
   case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder
@@ -43,4 +42,12 @@ object TripEndpoints:
     .get
     .in("api" / "trips" / "total")
     .out(jsonBody[TripStats])
+    .errorOut(statusCode and jsonBody[ErrorResponse])
+
+  val createPersonEndpoint = endpoint
+    .post
+    .in("api" / "user")
+    .in(auth.bearer[String]())
+    .in(jsonBody[PersonCreate])
+    .out(jsonBody[UUID])
     .errorOut(statusCode and jsonBody[ErrorResponse])

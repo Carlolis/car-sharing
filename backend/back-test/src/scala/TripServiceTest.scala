@@ -11,9 +11,9 @@ import zio.{ZIO, ZLayer}
 import java.time.LocalDate
 
 object TripServiceTest extends ZIOSpecDefault {
-  var personName = "Maé"
-  var maé        = PersonCreate(personName)
-  var tripCreate =
+  val personName = "Maé"
+  val maé        = PersonCreate(personName)
+  val tripCreate =
     TripCreate(100, LocalDate.now(), "Business", Set(maé))
 
   def spec =
@@ -29,8 +29,8 @@ object TripServiceTest extends ZIOSpecDefault {
         } yield assertTrue(UUID != null, tripByUser.trips.length == 1)
       }
       test("Charles createTrip should create a trip successfully with Charles") {
-        var personName = "Charles"
-        var charles    = PersonCreate(personName)
+        val personName = "Charles"
+        val charles    = PersonCreate(personName)
         for {
 
           UUID       <- TripService.createTrip(tripCreate.copy(drivers = Set(charles)))
@@ -51,7 +51,7 @@ object TripServiceTest extends ZIOSpecDefault {
     }
       @@ TestAspect
         .after {
-          var allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
+          val allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
           (for {
 
             allTrips <- ZIO.foreachPar(allPersons)(person => TripService.getUserTrips(person.name).map(_.trips)).map(_.flatten)
@@ -63,7 +63,7 @@ object TripServiceTest extends ZIOSpecDefault {
         }
       @@ TestAspect
         .before {
-          var allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
+          val allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
           ZIO.foreachPar(allPersons)(person => PersonService.createPerson(person)).catchAll(e => ZIO.logError(e.getMessage))
 
         }

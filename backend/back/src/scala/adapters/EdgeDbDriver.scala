@@ -7,8 +7,8 @@ import scala.io.Source.fromFile
 import scala.jdk.CollectionConverters.*
 
 case class EdgeDbDriverLive() {
-  var tlsCAFromFile = fromFile("/home/carlos/.local/share/edgedb/data/backend/edbtlscert.pem").mkString
-  var connection    = EdgeDBConnection
+  val tlsCAFromFile = fromFile("/home/carlos/.local/share/edgedb/data/backend/edbtlscert.pem").mkString
+  val connection    = EdgeDBConnection
     .builder()
     .withDatabase(
       "test"
@@ -24,7 +24,7 @@ case class EdgeDbDriverLive() {
   // Config and passwords can be found here :
   // val configPath    = Paths.get(ConfigUtils.getCredentialsDir, "backend" + ".json")
 
-  private var client = new EdgeDBClient(connection)
+  private val client = new EdgeDBClient(connection)
 
   def querySingle[A](
     cls: Class[A],
