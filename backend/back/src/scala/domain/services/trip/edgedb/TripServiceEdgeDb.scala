@@ -45,7 +45,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
         TripStats(trips, totalKm)
       }
 
-  override def getTotalStats: Task[TripStats] = ???
+  override def getTotalStats: Task[TripStats] = ZIO.succeed(TripStats(List.empty, 0))
 
   override def deleteTrip(id: UUID): Task[UUID] =
     edgeDb

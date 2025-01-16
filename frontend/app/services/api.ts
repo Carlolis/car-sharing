@@ -1,19 +1,19 @@
-import { User, UserCreate, UserLogin, Trip, TripCreate, TripStats } from '../types/api';
+import { Trip, TripCreate, TripStats, User, UserCreate, UserLogin } from '../types/api'
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
   constructor(public statusCode: number, message: string) {
-    super(message);
+    super(message)
   }
 }
 
-async function handleResponse<T>(response: Response): Promise<T> {
+async function handleResponse<T,>(response: Response): Promise<T> {
   if (!response.ok) {
-    const error = await response.clone().json();
-    throw new ApiError(response.status, error.message);
+    const error = await response.clone().json()
+    throw new ApiError(response.status, error.message)
   }
-  return response.clone().json();
+  return response.clone().json()
 }
 
 export const api = {
@@ -21,21 +21,20 @@ export const api = {
     const response = await fetch(`${API_URL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user),
-    });
-    return handleResponse<User>(response);
+      body: JSON.stringify(user)
+    })
+    return handleResponse<User>(response)
   },
 
   async login(credentials: UserLogin): Promise<string> {
-    
     const response = await fetch(`${API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
-    });
-    const responseData =await response.clone().json()
-   
-    return responseData;
+      body: JSON.stringify(credentials)
+    })
+    const responseData = await response.clone().json()
+
+    return responseData
   },
 
   async createTrip(trip: TripCreate, token: string): Promise<Trip> {
@@ -43,24 +42,24 @@ export const api = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify(trip),
-    });
-    return handleResponse<Trip>(response);
+      body: JSON.stringify(trip)
+    })
+    return handleResponse<Trip>(response)
   },
 
   async getUserStats(token: string): Promise<TripStats> {
     const response = await fetch(`${API_URL}/trips/user`, {
       headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    return handleResponse<TripStats>(response);
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    return handleResponse<TripStats>(response)
   },
 
   async getTotalStats(): Promise<TripStats> {
-    const response = await fetch(`${API_URL}/trips/total`);
-    return handleResponse<TripStats>(response);
-  },
-};
+    const response = await fetch(`${API_URL}/trips/total`)
+    return handleResponse<TripStats>(response)
+  }
+}

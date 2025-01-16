@@ -1,46 +1,51 @@
 export interface User {
-  id: string;
-  email: string;
-  name: string;
+  id: string
+  email: string
+  name: string
 }
 
 export interface UserCreate {
-  email: string;
-  password: string;
-  name: string;
+  email: string
+  password: string
+  name: string
 }
 
 export interface UserLogin {
-  username: string;
-  password: string;
+  username: string
+  password: string
 }
 
 export interface Trip {
-  id: string;
-  userId: string;
-  startLocation: string;
-  endLocation: string;
-  date: string;
-  distance: number;
-  passengers: number;
+  id: string
+  userId: string
+  startLocation: string
+  endLocation: string
+  date: string
+  distance: number
+  passengers: number
 }
 
 export interface TripCreate {
-  startLocation: string;
-  endLocation: string;
-  date: string;
-  distance: number;
-  passengers: number;
+  startLocation: string
+  endLocation: string
+  date: string
+  distance: number
+  passengers: number
 }
 
 export interface TripStats {
-  totalTrips: number;
-  totalDistance: number;
-  totalPassengers: number;
-  averageDistance: number;
-  averagePassengers: number;
+  trips: {
+    id: string
+    distance: number
+    date: string
+    name: string
+    drivers: {
+      name: string
+    }[]
+  }[]
+  totalKilometers: number
 }
 
 export interface ErrorResponse {
-  message: string;
+  message: string
 }
