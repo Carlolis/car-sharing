@@ -1,6 +1,7 @@
 import adapters.EdgeDbDriver
 import api.TripRoutes
-import services.trip.{TripService, TripServiceEdgeDb}
+import domain.services.trip.TripService
+import domain.services.trip.edgedb.TripServiceEdgeDb
 import sttp.tapir.server.interceptor.cors.CORSConfig.AllowedOrigin
 import sttp.tapir.server.interceptor.cors.{CORSConfig, CORSInterceptor}
 import sttp.tapir.server.ziohttp.{ZioHttpInterpreter, ZioHttpServerOptions}

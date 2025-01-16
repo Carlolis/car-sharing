@@ -1,14 +1,13 @@
 package api
 
-import models.*
+import domain.models.{TripCreate, TripStats}
 import sttp.model.StatusCode
 import sttp.tapir.generic.auto.*
 import sttp.tapir.json.zio.*
 import sttp.tapir.ztapir.*
 import zio.json.*
 
-import java.util.UUID
-import java.util.Locale
+import java.util.{Locale, UUID}
 
 object TripEndpoints:
   case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder

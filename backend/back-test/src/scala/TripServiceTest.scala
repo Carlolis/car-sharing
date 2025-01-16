@@ -1,20 +1,22 @@
 import adapters.EdgeDbDriver
-import models.*
-import services.*
-import services.trip.{TripService, *}
+import domain.models.{PersonCreate, TripCreate}
+import domain.services.trip.TripService
+import domain.services.trip.edgedb.TripServiceEdgeDb
 import zio.test.*
 import zio.test.Assertion.*
-import zio.{Task, ZIO, ZLayer}
+import zio.{ZIO, ZLayer}
 
 import java.time.LocalDate
 
 object TripServiceTest extends ZIOSpecDefault {
   var personName = "Maé"
-  var maé        = Person(personName)
+  var maé        = PersonCreate(personName)
   var tripCreate =
     TripCreate(100, LocalDate.now(), "Business", Set(maé))
-  def spec       =
+
+  def spec =
     (suiteAll("TripServiceTest in EdgeDb") {
+
       test("Maé createTrip should create a trip successfully with Maé") {
 
         for {
@@ -26,7 +28,7 @@ object TripServiceTest extends ZIOSpecDefault {
       }
       test("Charles createTrip should create a trip successfully with Charles") {
         var personName = "Charles"
-        var charles    = Person(personName)
+        var charles    = PersonCreate(personName)
         for {
 
           UUID       <- TripService.createTrip(tripCreate.copy(drivers = Set(charles)))
@@ -46,8 +48,8 @@ object TripServiceTest extends ZIOSpecDefault {
       }
     }
       @@ TestAspect
-        .before {
-          var allPersons = Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
+        .after {
+          var allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
           (for {
 
             allTrips <- ZIO.foreachPar(allPersons)(person => TripService.getUserTrips(person.name).map(_.trips)).map(_.flatten)
@@ -56,7 +58,18 @@ object TripServiceTest extends ZIOSpecDefault {
 
           } yield ()).catchAll(e => ZIO.logError(e.getMessage))
 
-        } @@ TestAspect.sequential).provideShared(
+        }
+      /*      @@ TestAspect
+        .before {
+          var allPersons = Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
+          (for {
+
+            _ <- TripService.deleteTrip(trip.id)
+
+          } yield ()).catchAll(e => ZIO.logError(e.getMessage))
+
+        } */
+      @@ TestAspect.sequential).provideShared(
       TripServiceEdgeDb.layer,
       EdgeDbDriver.layer
     )

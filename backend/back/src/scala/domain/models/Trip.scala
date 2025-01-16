@@ -1,5 +1,6 @@
-package models
+package domain.models
 
+import domain.services.trip.edgedb.models.TripEdge
 import zio.json.*
 
 import java.time.LocalDate
@@ -11,7 +12,7 @@ case class Trip(
   distance: Int,
   date: LocalDate,
   name: String,
-  drivers: Set[Person]
+  drivers: Set[PersonCreate]
 )
 
 object Trip {
@@ -23,7 +24,7 @@ object Trip {
       tripEdge.getDistance,
       tripEdge.getDate,
       tripEdge.getName,
-      tripEdge.getDrivers.asScala.map(p => Person(p.name)).toSet
+      tripEdge.getDrivers.asScala.map(p => PersonCreate(p.name)).toSet
     )
 }
 
@@ -31,7 +32,7 @@ case class TripCreate(
   distance: Int,
   date: LocalDate,
   name: String,
-  drivers: Set[Person]
+  drivers: Set[PersonCreate]
 )
 
 object TripCreate {

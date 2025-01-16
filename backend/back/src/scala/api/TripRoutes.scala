@@ -1,8 +1,7 @@
 package api
 
 import api.TripEndpoints.*
-import models.*
-import services.trip.*
+import domain.services.trip.TripService
 import sttp.model.StatusCode
 import sttp.tapir.server.ServerEndpoint
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
@@ -44,8 +43,7 @@ class TripRoutes(tripService: TripService):
           uuid <- tripService.createTrip(tripCreate)
         } yield uuid)
           .map(Right(_))
-          .catchAll(err =>
-            ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+          .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   val getUserTrips: ZServerEndpoint[Any, Any] =
@@ -58,8 +56,7 @@ class TripRoutes(tripService: TripService):
         result <- tripService.getUserTrips("Maé")
       } yield result)
         .map(Right(_))
-        .catchAll(err =>
-          ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+        .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   val getTotalStats: ZServerEndpoint[Any, Any] =
@@ -67,8 +64,7 @@ class TripRoutes(tripService: TripService):
       tripService
         .getTotalStats
         .map(Right(_))
-        .catchAll(err =>
-          ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
+        .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 
   def docsEndpoints(

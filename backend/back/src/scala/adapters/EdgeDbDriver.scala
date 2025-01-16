@@ -1,22 +1,30 @@
 package adapters
 
-import com.edgedb.driver.EdgeDBClient
+import com.edgedb.driver.{EdgeDBClient, EdgeDBConnection, TLSSecurityMode}
 import zio.*
 
+import scala.io.Source.fromFile
 import scala.jdk.CollectionConverters.*
-import scala.jdk.FutureConverters.*
 
 case class EdgeDbDriverLive() {
-  // val connection = EdgeDBConnection
-  //   .builder()
-  //   .withDatabase(
-  //     "backend"
-  //   )
-  //   .withHostname("localhost")
-  //   .withPort(10700)
-  //   .withTlsSecurity(TLSSecurityMode.INSECURE)
-  //   .build()
-  private var client = new EdgeDBClient()
+  var tlsCAFromFile = fromFile("/home/carlos/.local/share/edgedb/data/backend/edbtlscert.pem").mkString
+  var connection    = EdgeDBConnection
+    .builder()
+    .withDatabase(
+      "test"
+    )
+    .withHostname("localhost")
+    .withPort(10700)
+    .withTlsSecurity(TLSSecurityMode.DEFAULT)
+    .withTlsca(tlsCAFromFile)
+    .withUser("edgedb")
+    .withPassword("S4jPNBEu7Nkueb4Cwad2VA5h")
+    .build()
+
+  // Config and passwords can be found here :
+  // val configPath    = Paths.get(ConfigUtils.getCredentialsDir, "backend" + ".json")
+
+  private var client = new EdgeDBClient(connection)
 
   def querySingle[A](
     cls: Class[A],
@@ -26,7 +34,10 @@ case class EdgeDbDriverLive() {
       .fromCompletionStage(
         client
           .querySingle(cls, query.stripMargin)
-      ).tapBoth(e => ZIO.logError(s"Query failed: $query" + e.getMessage), _ => ZIO.logInfo(s"Query succeeded: $query"))
+      ).flatMap {
+        case null   => ZIO.fail(new NoSuchElementException(s"Query returned null: $query"))
+        case result => ZIO.succeed(result)
+      }.tapBoth(e => ZIO.logError(s"Query failed: $query" + e.getMessage), _ => ZIO.logInfo(s"Query succeeded: $query"))
 
   def query[A](
     cls: Class[A],

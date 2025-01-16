@@ -1,6 +1,7 @@
-package services.trip
+package domain.services.trip.inMemory
 
-import models.{Person, Trip, TripCreate, TripStats}
+import domain.models.{PersonCreate, Trip, TripCreate, TripStats}
+import domain.services.trip.TripService
 import zio.{Task, ULayer, ZIO, ZLayer}
 
 import java.util.UUID
@@ -10,12 +11,11 @@ case class TripServiceInMemory() extends TripService {
   private var trips: List[Trip] = List.empty
 
   private var knownPersons =
-    Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
+    Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
 
   override def createTrip(
-                           tripCreate: TripCreate
-                           
-                         ): Task[UUID] =
+    tripCreate: TripCreate
+  ): Task[UUID] =
     if (!tripCreate.drivers.subsetOf(knownPersons))
       ZIO.fail(new Exception("Unknown person"))
     else
@@ -26,7 +26,7 @@ case class TripServiceInMemory() extends TripService {
             distance = tripCreate.distance,
             date = tripCreate.date,
             name = tripCreate.name,
-            drivers= tripCreate.drivers
+            drivers = tripCreate.drivers
           )
           trips = trips :+ newTrip
           newTrip
@@ -36,7 +36,7 @@ case class TripServiceInMemory() extends TripService {
     ZIO.succeed {
       val userTrips =
         trips.filter(trip => true
-          // trip.drivers.flatMap(person => person.name).contains(name)
+        // trip.drivers.flatMap(person => person.name).contains(name)
         )
       val totalKm   = userTrips.map(_.distance).sum
       TripStats(userTrips, totalKm)

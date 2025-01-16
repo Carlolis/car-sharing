@@ -1,8 +1,9 @@
-package services.trip
+package domain.services.trip.edgedb
 
 import adapters.EdgeDbDriverLive
-import models.*
-import models.Trip.fromTripEdge
+import domain.models.*
+import domain.services.trip.TripService
+import domain.services.trip.edgedb.models.TripEdge
 import zio.*
 
 import java.util.UUID
@@ -11,7 +12,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
   // TODO: Implement actual database storage
   private var trips: List[Trip] = List.empty
   private var knownPersons      =
-    Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
+    Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
 
   override def createTrip(
     tripCreate: TripCreate
@@ -38,7 +39,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
       )
       .map { tripEdge =>
 
-        val trips   = tripEdge.map(fromTripEdge)
+        val trips   = tripEdge.map(Trip.fromTripEdge)
         val totalKm = trips.map(_.distance).sum
 
         TripStats(trips, totalKm)
