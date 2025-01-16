@@ -1,5 +1,7 @@
 import adapters.EdgeDbDriver
 import domain.models.{PersonCreate, TripCreate}
+import domain.services.person.PersonService
+import domain.services.person.edgedb.PersonServiceEdgeDb
 import domain.services.trip.TripService
 import domain.services.trip.edgedb.TripServiceEdgeDb
 import zio.test.*
@@ -59,18 +61,15 @@ object TripServiceTest extends ZIOSpecDefault {
           } yield ()).catchAll(e => ZIO.logError(e.getMessage))
 
         }
-      /*      @@ TestAspect
+      @@ TestAspect
         .before {
-          var allPersons = Set(Person("Maé"), Person("Brigitte"), Person("Charles"))
-          (for {
+          var allPersons = Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
+          ZIO.foreachPar(allPersons)(person => PersonService.createPerson(person)).catchAll(e => ZIO.logError(e.getMessage))
 
-            _ <- TripService.deleteTrip(trip.id)
-
-          } yield ()).catchAll(e => ZIO.logError(e.getMessage))
-
-        } */
+        }
       @@ TestAspect.sequential).provideShared(
       TripServiceEdgeDb.layer,
+      PersonServiceEdgeDb.layer,
       EdgeDbDriver.layer
     )
 }
