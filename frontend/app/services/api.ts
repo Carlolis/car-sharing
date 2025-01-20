@@ -1,6 +1,8 @@
-import { HttpClient, HttpClientRequest } from '@effect/platform'
+import { HttpBody, HttpClient, HttpClientRequest, HttpClientResponse } from '@effect/platform'
+import { Match, pipe } from 'effect'
 import * as T from 'effect/Effect'
-import { Trip, TripCreate, TripStats, User, UserCreate, UserLogin } from '../types/api'
+import { stringify } from 'effect/FastCheck'
+import { Trip, TripCreate, TripStats, User, UserCreate } from '../types/api'
 const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
@@ -26,16 +28,32 @@ export const api = {
     })
     return handleResponse<User>(response)
   },
+  login(login: string) {
+    return T.gen(function* () {
+      const defaultClient = yield* HttpClient.HttpClient
+      const toto = HttpClientRequest.get(`${API_URL}/login`)
 
-  async login(credentials: UserLogin): Promise<string> {
-    const response = await fetch(`${API_URL}/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials)
-    })
-    const responseData = await response.clone().json()
+      const body = yield* HttpBody.json({ name: login })
+      const titi = pipe(
+        toto,
+        HttpClientRequest.setHeader('Content-Type', 'application/json'),
+        HttpClientRequest.setBody(body),
+        HttpClientRequest.setMethod('POST')
+      )
 
-    return responseData
+      const response = yield* defaultClient.execute(titi)
+      yield* T.logInfo(response)
+      const responseJson = yield* response.json
+
+      if (response.status === 401) {
+        yield* T.logInfo(response.status === 401)
+        yield* T.fail(stringify(responseJson))
+      }
+
+      return responseJson as { token: string }
+    }).pipe(
+      T.scoped
+    )
   },
 
   async createTrip(trip: TripCreate, token: string): Promise<Trip> {

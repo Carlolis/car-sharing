@@ -2,6 +2,8 @@ import * as T from 'effect/Effect'
 
 import { Remix } from '~/runtime/Remix'
 import { api } from '../services/api'
+
+import { useAuth } from '~/contexts/AuthContext'
 // eslint-disable-next-line import/no-unresolved
 import { Route } from './+types/dashboard'
 
@@ -27,6 +29,7 @@ export const loader = Remix.unwrapLoader(
 
 export default function Dashboard({ loaderData: { totalStats } }: Route.ComponentProps) {
   // const { totalStats } = useLoaderData<typeof loader>()
+  const auth = useAuth()
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +37,17 @@ export default function Dashboard({ loaderData: { totalStats } }: Route.Componen
         <h2 className="text-2xl font-semibold text-gray-900 mb-8">
           Statistiques Globales
         </h2>
-
+        {auth.isAuthenticated && (
+          <div
+            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Connecté!</strong>
+            <span className="block sm:inline">
+              Vous êtes connecté en tant que {auth.user?.name}
+            </span>
+          </div>
+        )}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           <StatsCard
             title="Nombre total de trajets"

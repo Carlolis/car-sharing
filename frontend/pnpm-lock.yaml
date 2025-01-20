@@ -14,9 +14,6 @@ importers:
       '@effect/platform-node':
         specifier: ^0.69.1
         version: 0.69.1(@effect/platform@0.73.1(effect@3.12.4))(effect@3.12.4)
-      '@effect/schema':
-        specifier: ^0.75.5
-        version: 0.75.5(effect@3.12.4)
       '@react-router/fs-routes':
         specifier: ^7.1.1
         version: 7.1.1(@react-router/dev@7.1.1(@react-router/serve@7.1.1(react-router@7.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.7.2))(@types/node@22.10.2)(jiti@1.21.7)(react-router@7.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.7.2)(vite@6.0.7(@types/node@22.10.2)(jiti@1.21.7)(yaml@2.6.1))(yaml@2.6.1))(typescript@5.7.2)
@@ -291,11 +288,6 @@ packages:
     resolution: {integrity: sha512-aFwHLtTDdWnK0UUGs6Z8QbjVA6XBKp8xzEt4G9lm5c0JALiUrhoWe8e9fpkUMuejF3W0+VeDM3AC+1eglnGQww==}
     peerDependencies:
       effect: ^3.12.4
-
-  '@effect/schema@0.75.5':
-    resolution: {integrity: sha512-TQInulTVCuF+9EIbJpyLP6dvxbQJMphrnRqgexm/Ze39rSjfhJuufF7XvU3SxTgg3HnL7B/kpORTJbHhlE6thw==}
-    peerDependencies:
-      effect: ^3.9.2
 
   '@esbuild/aix-ppc64@0.24.2':
     resolution: {integrity: sha512-thpVCb/rhxE/BnMLQ7GReQLLN8q9qbHmI55F4489/ByVg2aQaQ6kbcLb6FHkocZzQhxc4gx0sCk0tJkKBFzDhA==}
@@ -2997,11 +2989,6 @@ snapshots:
       effect: 3.12.4
       find-my-way-ts: 0.1.5
       multipasta: 0.2.5
-
-  '@effect/schema@0.75.5(effect@3.12.4)':
-    dependencies:
-      effect: 3.12.4
-      fast-check: 3.23.2
 
   '@esbuild/aix-ppc64@0.24.2':
     optional: true

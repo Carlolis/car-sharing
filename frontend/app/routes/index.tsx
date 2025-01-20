@@ -1,28 +1,40 @@
-import { Link } from "react-router";
-import type { MetaFunction } from "react-router";
+import { Link } from 'react-router'
+import type { MetaFunction } from 'react-router'
+import { useAuth } from '~/contexts/AuthContext'
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "CarShare - Partagez vos trajets" },
-    { name: "description", content: "Application de partage de trajets" },
-  ];
-};
+    { title: 'CarShare - Partagez vos trajets' },
+    { name: 'description', content: 'Application de partage de trajets' }
+  ]
+}
 
 export default function Index() {
+  const auth = useAuth()
   return (
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
           <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
         </div>
-        
+        {auth.isAuthenticated && (
+          <div
+            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <strong className="font-bold">Connecté!</strong>
+            <span className="block sm:inline">
+              Vous êtes connecté en tant que {auth.user?.name}
+            </span>
+          </div>
+        )}
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Partagez vos trajets simplement
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Réduisez votre empreinte carbone et vos coûts en partageant vos trajets quotidiens. 
+              Réduisez votre empreinte carbone et vos coûts en partageant vos trajets quotidiens.
               Suivez vos statistiques et contribuez à une mobilité plus durable.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -60,7 +72,8 @@ export default function Index() {
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p className="flex-auto">
-                    Enregistrez vos trajets en quelques clics et suivez vos statistiques en temps réel.
+                    Enregistrez vos trajets en quelques clics et suivez vos statistiques en temps
+                    réel.
                   </p>
                 </dd>
               </div>
@@ -80,7 +93,8 @@ export default function Index() {
                 </dt>
                 <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
                   <p className="flex-auto">
-                    Réduisez vos coûts de transport en partageant vos trajets avec d'autres utilisateurs.
+                    Réduisez vos coûts de transport en partageant vos trajets avec d&apos;autres
+                    utilisateurs.
                   </p>
                 </dd>
               </div>
@@ -89,5 +103,5 @@ export default function Index() {
         </div>
       </div>
     </div>
-  );
+  )
 }

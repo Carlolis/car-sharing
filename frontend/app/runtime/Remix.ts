@@ -46,7 +46,7 @@ type RequestEnv =
   | ResponseHeaders
 // | CookieSessionStorage
 
-type ActionError = Redirect | Unexpected | FormError | ParseError
+type ActionError = Redirect | Unexpected | FormError | ParseError | NotFound
 
 type RemixActionHandler<A, R,> = T.Effect<
   A,
@@ -147,7 +147,10 @@ export const action = <A extends Serializable, R extends AppEnv | RequestEnv,>(
             response.headers.append('Set-Cookie', e.headers?.['Set-Cookie'] ?? '')
             return response
           },
-          ParseError: () => Response.json({ status: 400 })
+          ParseError: () => Response.json({ status: 400 }),
+          NotFound: () => {
+            return Response.json({ status: 404 })
+          }
         })(e)
       )
     ),
@@ -160,7 +163,7 @@ export const action = <A extends Serializable, R extends AppEnv | RequestEnv,>(
   )
 
   return runtime.runPromise(runnable).then(Exit.getOrElse(handleFailedResponse)) as Promise<
-    FormError
+    A
   >
 })
 
@@ -189,7 +192,7 @@ export const unwrapAction = <
 ) => {
   const awaitedHandler = runtime.runPromise(effect).then(action)
 
-  return (args: ActionArgs): Promise<FormError> => awaitedHandler.then(handler => handler(args))
+  return (args: ActionArgs): Promise<A1> => awaitedHandler.then(handler => handler(args))
 }
 
 export const Remix = { action, loader, unwrapLoader, unwrapAction }

@@ -1,6 +1,4 @@
 export interface User {
-  id: string
-  email: string
   name: string
 }
 
@@ -8,11 +6,6 @@ export interface UserCreate {
   email: string
   password: string
   name: string
-}
-
-export interface UserLogin {
-  username: string
-  password: string
 }
 
 export interface Trip {

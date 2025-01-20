@@ -13,7 +13,6 @@
   "dependencies": {
     "@effect/platform": "^0.73.1",
     "@effect/platform-node": "^0.69.1",
-    "@effect/schema": "^0.75.5",
     "@react-router/fs-routes": "^7.1.1",
     "@react-router/node": "^7.1.1",
     "@react-router/serve": "^7.1.1",
