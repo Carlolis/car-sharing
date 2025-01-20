@@ -1,6 +1,7 @@
 import adapters.EdgeDbDriver
 import api.TripRoutes
 import domain.services.person.edgedb.PersonServiceEdgeDb
+import domain.services.services.AuthServiceLive
 import domain.services.trip.TripService
 import domain.services.trip.edgedb.TripServiceEdgeDb
 import sttp.tapir.server.interceptor.cors.CORSConfig.AllowedOrigin
@@ -46,5 +47,6 @@ object Main extends ZIOAppDefault:
       TripRoutes.live,
       TripServiceEdgeDb.layer,
       PersonServiceEdgeDb.layer,
-      EdgeDbDriver.layer
+      EdgeDbDriver.layer,
+      AuthServiceLive.layer
     )

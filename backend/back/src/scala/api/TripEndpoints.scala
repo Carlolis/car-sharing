@@ -1,6 +1,8 @@
 package api
 
 import domain.models.{PersonCreate, TripCreate, TripStats}
+import sttp.model.StatusCode
+import sttp.tapir.Endpoint
 import sttp.tapir.generic.auto.*
 import sttp.tapir.json.zio.*
 import sttp.tapir.ztapir.*
@@ -9,7 +11,7 @@ import zio.json.*
 import java.util.UUID
 
 object TripEndpoints:
-  case class ErrorResponse(messge: String) derives JsonEncoder, JsonDecoder
+  case class ErrorResponse(message: String) derives JsonEncoder, JsonDecoder
 
   // val registerEndpoint = endpoint.post
   //   .in("api" / "register")
@@ -23,7 +25,7 @@ object TripEndpoints:
   //   .out(jsonBody[String])
   //   .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val createTripEndpoint = endpoint
+  val createTripEndpoint: Endpoint[Unit, (String, TripCreate), (StatusCode, ErrorResponse), UUID, Any] = endpoint
     .post
     .in("api" / "trips")
     .in(auth.bearer[String]())
@@ -31,7 +33,7 @@ object TripEndpoints:
     .out(jsonBody[UUID])
     .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  val getUserTripsEndpoint = endpoint
+  val getUserTripsEndpoint: Endpoint[Unit, String, (StatusCode, ErrorResponse), TripStats, Any] = endpoint
     .get
     .in("api" / "trips" / "user")
     .in(auth.bearer[String]())

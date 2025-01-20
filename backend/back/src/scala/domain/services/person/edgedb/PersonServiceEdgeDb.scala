@@ -44,6 +44,15 @@ case class PersonServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends PersonService {
           |"""
     ).tap(person => ZIO.logInfo(s"Got person with id: $id"))
     .map(Person.fromPersonEdge)
+
+  override def getPersonByName(name: String): Task[Person] = edgeDb
+    .querySingle(
+      classOf[PersonEdge],
+      s"""
+          | select PersonEdge { id, name } filter .name = '$name';
+          |"""
+    ).tap(person => ZIO.logInfo(s"Got person with name: $name"))
+    .map(Person.fromPersonEdge)
 }
 
 object PersonServiceEdgeDb:

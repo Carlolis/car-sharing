@@ -2,13 +2,14 @@ package api
 
 import api.TripEndpoints.*
 import domain.services.person.PersonService
+import domain.services.services.AuthService
 import domain.services.trip.TripService
 import sttp.model.StatusCode
 import sttp.tapir.swagger.bundle.SwaggerInterpreter
 import sttp.tapir.ztapir.*
 import zio.*
 
-class TripRoutes(tripService: TripService, personService: PersonService):
+class TripRoutes(tripService: TripService, personService: PersonService, authService: AuthService):
   // val register: ZServerEndpoint[Any, Any] =
   //   TripEndpoints.registerEndpoint.serverLogic { userCreate =>
   //     authService
@@ -36,11 +37,11 @@ class TripRoutes(tripService: TripService, personService: PersonService):
     TripEndpoints.createTripEndpoint.serverLogic {
       case (token, tripCreate) =>
         (for {
-          // userOpt <- authService.authenticate(token)
+          userOpt <- authService.authenticate(token)
           // user <- ZIO
           //   .fromOption(userOpt)
           //   .orElseFail(new Exception("Unauthorized"))
-          uuid <- tripService.createTrip(tripCreate)
+          uuid    <- tripService.createTrip(tripCreate)
         } yield uuid)
           .map(Right(_))
           .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
@@ -96,5 +97,5 @@ class TripRoutes(tripService: TripService, personService: PersonService):
     all ++ docsEndpoints(all)
   }
 object TripRoutes:
-  val live: ZLayer[TripService & PersonService, Nothing, TripRoutes] =
-    ZLayer.fromFunction(new TripRoutes(_, _))
+  val live: ZLayer[TripService & PersonService & AuthService, Nothing, TripRoutes] =
+    ZLayer.fromFunction(new TripRoutes(_, _, _))

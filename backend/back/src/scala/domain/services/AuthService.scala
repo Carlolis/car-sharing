@@ -1,82 +1,62 @@
 package domain.services
 
-// package services
+package services
 
-// import zio._
-// import models._
-// import com.auth0.jwt.JWT
-// import com.auth0.jwt.algorithms.Algorithm
-// import java.time.Instant
+import com.auth0.jwt.JWT
+import com.auth0.jwt.algorithms.Algorithm
+import domain.models.Person
+import domain.services.person.PersonService
+import zio.*
 
-// trait AuthService {
-//   def register(user: UserCreate): Task[Person]
-//   def login(credentials: UserLogin): Task[String]
-//   def authenticate(token: String): Task[Option[Person]]
-// }
+import java.time.Instant
 
-// class AuthServiceLive(users: Ref[Map[String, Person]]) extends AuthService {
-//   private val secretKey = "your-secret-key-here"
-//   private val algorithm = Algorithm.HMAC256(secretKey)
+trait AuthService {
+  /*   def register(user: UserCreate): Task[Person]*/
+  def login(login: String): Task[String]
+  def authenticate(token: String): Task[Person]
+}
 
-//   override def register(userCreate: UserCreate): Task[Person] = {
-//     for {
-//       userMap <- users.get
-//       _ <- ZIO
-//         .fail(new Exception("Username already taken"))
-//         .when(userMap.contains(userCreate.username))
-//       newUser = Person(
-//         Some(userMap.size + 1L),
-//         userCreate.username,
-//         userCreate.email,
-//         userCreate.password
-//       )
-//       _ <- users.update(_ + (userCreate.username -> newUser))
-//     } yield newUser
-//   }
+class AuthServiceLive(personService: PersonService) extends AuthService:
+  private val secretKey = "your-secret-key-here"
+  private val algorithm = Algorithm.HMAC256(secretKey)
 
-//   override def login(credentials: UserLogin): Task[String] = {
-//     (for {
-//       userMap <- users.get
-//       user <- ZIO
-//         .fromOption(userMap.get(credentials.username))
-//         .orElseFail(new Exception("User not found"))
-//       _ <- ZIO
-//         .fail(new Exception("Invalid password"))
-//         .when(user.password != credentials.password)
-//       token <- ZIO.attempt(createToken(credentials.username))
-//       _ <- ZIO.logInfo("Login success !")
-//     } yield token).tapError(error => ZIO.logError(error.getMessage))
-//   }
+  /*   override def register(userCreate: UserCreate): Task[Person] = {
+     for {
+       userMap <- users.get
+       _ <- ZIO
+         .fail(new Exception("Username already taken"))
+         .when(userMap.contains(userCreate.username))
+       newUser = Person(
+         Some(userMap.size + 1L),
+         userCreate.username,
+         userCreate.email,
+         userCreate.password
+       )
+       _ <- users.update(_ + (userCreate.username -> newUser))
+     } yield newUser
+   }*/
 
-//   override def authenticate(token: String): Task[Option[Person]] = {
-//     ZIO.attempt {
-//       val verifier = JWT.require(algorithm).build()
-//       val decoded = verifier.verify(token)
-//       val username = decoded.getSubject
-//       users.get.map(_.get(username))
-//     }.flatten
-//   }
+  override def login(login: String): Task[String] =
+    (for {
+      user  <- personService.getPersonByName(login).orElseFail(new Exception("User not found"))
+      token <- ZIO.attempt(createToken(user.name))
+      _     <- ZIO.logInfo("Login success !")
+    } yield token).tapError(error => ZIO.logError(error.getMessage))
 
-//   private def createToken(username: String): String = {
-//     JWT
-//       .create()
-//       .withSubject(username)
-//       .withIssuedAt(Instant.now())
-//       .withExpiresAt(Instant.now().plusSeconds(3600)) // Token expires in 1 hour
-//       .sign(algorithm)
-//   }
-// }
+  override def authenticate(token: String): Task[Person] = {
+    val verifier = JWT.require(algorithm).build()
+    val decoded  = verifier.verify(token)
+    val username = decoded.getSubject
+    personService.getPersonByName(username)
+  }.tapError(error => ZIO.logError(error.getMessage))
 
-// object AuthService {
-//   def layer: ZLayer[Any, Nothing, AuthService] =
-//     ZLayer {
-//       for {
-
-//         ref <- Ref.make(
-//           Map(
-//             "a" -> Person(Some(1L), username = "a", email = "a", password = "a")
-//           )
-//         )
-//       } yield AuthServiceLive(ref)
-//     }
-// }
+  private def createToken(username: String): String =
+    JWT
+      .create()
+      .withSubject(username)
+      .withIssuedAt(Instant.now())
+      .withExpiresAt(Instant.now().plusSeconds(360000))
+      .sign(algorithm)
+object AuthServiceLive:
+  val layer: ZLayer[PersonService, Nothing, AuthServiceLive] =
+    ZLayer.fromFunction(AuthServiceLive(_))
