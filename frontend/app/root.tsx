@@ -1,12 +1,12 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, Link } from "react-router";
-import type { LinksFunction } from "react-router";
-import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import { Link, Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from 'react-router'
+import type { LinksFunction } from 'react-router'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
 
-import stylesheet from "./tailwind.css?url";
+import stylesheet from './tailwind.css?url'
 
 export const links: LinksFunction = () => [
-//  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  { rel: "stylesheet", href: stylesheet },
+  //  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: 'stylesheet', href: stylesheet }
   // {
   //   rel: "preconnect",
   //   href: "https://fonts.gstatic.com",
@@ -16,13 +16,12 @@ export const links: LinksFunction = () => [
   //   rel: "stylesheet",
   //   href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   // },
-];
+]
 
 function Navigation() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth()
 
   return (
-    
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -50,22 +49,23 @@ function Navigation() {
             )}
           </div>
           <div className="flex items-center">
-            {isAuthenticated ? (
-              <form action="/logout" method="post">
-                <button
-                  type="submit"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Déconnexion
-                </button>
-              </form>
-            ) : null
-            }
+            {isAuthenticated ?
+              (
+                <form action="/logout" method="post">
+                  <button
+                    type="submit"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    Déconnexion
+                  </button>
+                </form>
+              ) :
+              null}
           </div>
         </div>
       </div>
     </nav>
-  );
+  )
 }
 
 export default function App() {
@@ -77,16 +77,34 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body >
-      <div className="min-h-screen bg-gray-100">
-        <AuthProvider>
-          <Navigation />
-          <Outlet />
-        </AuthProvider></div>
+      <body>
+        <div className="min-h-screen bg-gray-100">
+          <AuthProvider>
+            <Navigation />
+            <Outlet />
+          </AuthProvider>
+        </div>
         <ScrollRestoration />
         <Scripts />
-        
       </body>
     </html>
-  );
+  )
+}
+
+export function ErrorBoundary() {
+  const error = useRouteError()
+  console.error(error)
+  return (
+    <html lang="fr">
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <Scripts />
+      </body>
+    </html>
+  )
 }
