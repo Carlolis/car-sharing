@@ -2,6 +2,7 @@ package domain.services
 
 package services
 
+import api.Token
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import domain.models.Person
@@ -12,7 +13,7 @@ import java.time.Instant
 
 trait AuthService {
   /*   def register(user: UserCreate): Task[Person]*/
-  def login(login: String): Task[String]
+  def login(login: String): Task[Token]
   def authenticate(token: String): Task[Person]
 }
 
@@ -36,11 +37,12 @@ class AuthServiceLive(personService: PersonService) extends AuthService:
      } yield newUser
    }*/
 
-  override def login(login: String): Task[String] =
+  override def login(login: String): Task[Token] =
     (for {
       user  <- personService.getPersonByName(login).orElseFail(new Exception("User not found"))
-      token <- ZIO.attempt(createToken(user.name))
-      _     <- ZIO.logInfo("Login success !")
+      token <- ZIO.attempt(createToken(user.name)).map(Token.apply(_))
+
+      _ <- ZIO.logInfo("Login success !")
     } yield token).tapError(error => ZIO.logError(error.getMessage))
 
   override def authenticate(token: String): Task[Person] = {

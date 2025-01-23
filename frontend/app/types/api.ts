@@ -1,7 +1,3 @@
-export interface User {
-  name: string
-}
-
 export interface UserCreate {
   email: string
   password: string

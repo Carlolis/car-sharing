@@ -19,11 +19,12 @@ object TripEndpoints:
   //   .out(jsonBody[Person])
   //   .errorOut(statusCode and jsonBody[ErrorResponse])
 
-  // val loginEndpoint = endpoint.post
-  //   .in("api" / "login")
-  //   .in(jsonBody[UserLogin])
-  //   .out(jsonBody[String])
-  //   .errorOut(statusCode and jsonBody[ErrorResponse])
+  val loginEndpoint: Endpoint[Unit, PersonCreate, (StatusCode, ErrorResponse), Token, Any] = endpoint
+    .post
+    .in("api" / "login")
+    .in(jsonBody[PersonCreate])
+    .out(jsonBody[Token])
+    .errorOut(statusCode and jsonBody[ErrorResponse])
 
   val createTripEndpoint: Endpoint[Unit, (String, TripCreate), (StatusCode, ErrorResponse), UUID, Any] = endpoint
     .post

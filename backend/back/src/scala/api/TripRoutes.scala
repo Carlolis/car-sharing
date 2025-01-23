@@ -80,6 +80,13 @@ class TripRoutes(tripService: TripService, personService: PersonService, authSer
           .map(Right(_))
           .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
+  val loginEndpoint: ZServerEndpoint[Any, Any]        = TripEndpoints.loginEndpoint.serverLogic { credentials =>
+    authService
+      .login(credentials.name)
+      .tap(token => ZIO.logInfo(s"Login success ! $token"))
+      .map(Right(_))
+      .catchAll(err => ZIO.left(StatusCode.Unauthorized, ErrorResponse(err.getMessage)))
+  }
 
   def docsEndpoints(
     apiEndpoints: List[ZServerEndpoint[Any, Any]]
@@ -90,7 +97,8 @@ class TripRoutes(tripService: TripService, personService: PersonService, authSer
     val all = List(
       getTotalStats,
       getUserTrips,
-      createTrip
+      createTrip,
+      loginEndpoint
       // login,
       // register
     )

@@ -1,22 +1,14 @@
 package api
 
-import domain.services.person.edgedb.models.PersonEdge
 import zio.json.*
 
 import java.util.UUID
 
-case class Person(
-  name: String,
-  id: UUID
+case class Token(
+  token: String
 )
 
-object Person {
-  implicit val encoder: JsonEncoder[Person] = DeriveJsonEncoder.gen[Person]
-  implicit val decoder: JsonDecoder[Person] = DeriveJsonDecoder.gen[Person]
-
-  def toPersonEdge(person: Person): PersonEdge =
-    PersonEdge(person.name, person.id)
-
-  def fromPersonEdge(personEdge: PersonEdge): Person =
-    Person(personEdge.name, personEdge.id)
+object Token {
+  implicit val encoder: JsonEncoder[Token] = DeriveJsonEncoder.gen[Token]
+  implicit val decoder: JsonDecoder[Token] = DeriveJsonDecoder.gen[Token]
 }
