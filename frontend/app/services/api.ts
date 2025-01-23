@@ -1,9 +1,9 @@
-import { HttpBody, HttpClient, HttpClientError, HttpClientRequest } from '@effect/platform'
+import { HttpBody, HttpClient, HttpClientRequest } from '@effect/platform'
 import { Context, pipe } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import * as L from 'effect/Layer'
-import { Trip, TripCreate, TripStats, User, UserCreate } from '../types/api'
+import { Trip, TripCreate, TripStats } from '../types/api'
 const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
@@ -20,38 +20,22 @@ async function handleResponse<T,>(response: Response): Promise<T> {
   return response.clone().json()
 }
 
-export class Api extends Context.Tag('Api')<
-  Api,
-  {
-    readonly login: (login: string) => T.Effect<
-      {
-        token: string
-      },
-      string | HttpClientError.HttpClientError | HttpBody.HttpBodyError,
-      HttpClient.HttpClient
-    >
-  }
->() {
-}
-
-type ApiService = Context.Tag.Service<Api>
-
 export const makeApiHttp = () => {
-  const login: ApiService['login'] = (login: string) => {
+  const login = (login: string) => {
     return T.gen(function* () {
       const defaultClient = yield* HttpClient.HttpClient
-      const toto = HttpClientRequest.get(`${API_URL}/login`)
+      const loginUrl = HttpClientRequest.get(`${API_URL}/login`)
 
       const body = yield* HttpBody.json({ name: login })
       const titi = pipe(
-        toto,
+        loginUrl,
         HttpClientRequest.setHeader('Content-Type', 'application/json'),
         HttpClientRequest.setBody(body),
         HttpClientRequest.setMethod('POST')
       )
 
       const response = yield* defaultClient.execute(titi)
-      yield* T.logInfo(response)
+      yield* T.logInfo('login http response :', response)
       const responseJson = yield* response.json
 
       if (response.status === 401) {
@@ -65,22 +49,20 @@ export const makeApiHttp = () => {
     )
   }
 
-  return Api.of({
+  return ({
     login
   })
+}
+
+export class Api extends Context.Tag('Api')<
+  Api,
+  ReturnType<typeof makeApiHttp>
+>() {
 }
 
 export const ApiLayer = L.succeed(Api, makeApiHttp())
 
 export const api = {
-  async register(user: UserCreate): Promise<User> {
-    const response = await fetch(`${API_URL}/register`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user)
-    })
-    return handleResponse<User>(response)
-  },
   login(login: string) {
     return T.gen(function* () {
       const defaultClient = yield* HttpClient.HttpClient

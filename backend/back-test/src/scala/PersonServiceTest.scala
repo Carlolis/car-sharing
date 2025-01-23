@@ -56,6 +56,6 @@ object PersonServiceTest extends ZIOSpecDefault {
         }
       @@ TestAspect.sequential).provideShared(
       PersonServiceEdgeDb.layer,
-      EdgeDbDriver.layer
+      EdgeDbDriver.testLayer
     )
 }

@@ -6,12 +6,12 @@ import zio.*
 import scala.io.Source.fromFile
 import scala.jdk.CollectionConverters.*
 
-case class EdgeDbDriverLive() {
+case class EdgeDbDriverLive(database: String = "main") {
   val tlsCAFromFile = fromFile("/home/carlos/.local/share/edgedb/data/backend/edbtlscert.pem").mkString
   val connection    = EdgeDBConnection
     .builder()
     .withDatabase(
-      "test"
+      database
     )
     .withHostname("localhost")
     .withPort(10700)
@@ -53,4 +53,5 @@ case class EdgeDbDriverLive() {
 
 object EdgeDbDriver {
   val layer: ULayer[EdgeDbDriverLive] = ZLayer.succeed(EdgeDbDriverLive())
+  val testLayer: ULayer[EdgeDbDriverLive] = ZLayer.succeed(EdgeDbDriverLive("test"))
 }

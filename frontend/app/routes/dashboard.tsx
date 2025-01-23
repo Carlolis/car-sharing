@@ -39,12 +39,13 @@ export default function Dashboard({ loaderData: { totalStats } }: Route.Componen
         </h2>
         {auth.isAuthenticated && (
           <div
-            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
             role="alert"
           >
-            <strong className="font-bold">Connecté!</strong>
+            <strong className="font-bold">Connecté !</strong>
+            <span>{' '}</span>
             <span className="block sm:inline">
-              Vous êtes connecté en tant que {auth.user?.name}
+              Vous êtes connecté en tant que {auth.user}
             </span>
           </div>
         )}

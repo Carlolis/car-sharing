@@ -70,6 +70,6 @@ object TripServiceTest extends ZIOSpecDefault {
       @@ TestAspect.sequential).provideShared(
       TripServiceEdgeDb.layer,
       PersonServiceEdgeDb.layer,
-      EdgeDbDriver.layer
+      EdgeDbDriver.testLayer
     )
 }

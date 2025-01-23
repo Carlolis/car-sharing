@@ -4,7 +4,7 @@ import { Match, Schema as Sc } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import { useEffect, useState } from 'react'
-import { Form, useActionData } from 'react-router'
+import { Form, useActionData, useNavigate } from 'react-router'
 import { Remix } from '~/runtime/Remix'
 
 import { useAuth } from '../contexts/AuthContext'
@@ -38,7 +38,7 @@ export default function Login() {
   const { setAuth } = useAuth()
   const [isNotFound, setIsNotFound] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-
+  const navigate = useNavigate()
   const actionData = useActionData<typeof action>()
 
   const match = Match.type<typeof actionData>().pipe(
@@ -47,7 +47,10 @@ export default function Login() {
       setIsNotFound(true)
       setErrorMessage(message)
     }),
-    Match.when({ token: Match.string }, ({ token, username }) => setAuth({ token, username })),
+    Match.when({ token: Match.string }, ({ token, username }) => {
+      setAuth({ token, username })
+      navigate('/dashboard')
+    }),
     Match.exhaustive
   )
   useEffect(() => {

@@ -1,9 +1,3 @@
-export interface UserCreate {
-  email: string
-  password: string
-  name: string
-}
-
 export interface Trip {
   id: string
   userId: string
