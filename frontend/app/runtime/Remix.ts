@@ -1,4 +1,5 @@
 import { HttpServerRequest, Path } from '@effect/platform'
+import { Response } from '@effect/platform-node/Undici'
 import type * as FileSystem from '@effect/platform/FileSystem'
 import { fromWeb } from '@effect/platform/HttpServerRequest'
 import { Cause, Context, Exit, Layer, ManagedRuntime, Match, Scope } from 'effect'
@@ -6,6 +7,8 @@ import { NoSuchElementException } from 'effect/Cause'
 import * as T from 'effect/Effect'
 import { ParseError, Unexpected } from 'effect/ParseResult'
 import type { ActionFunctionArgs, LoaderFunctionArgs, Params as RemixParams } from 'react-router'
+import { data, redirect } from 'react-router'
+import { CookieSessionStorage, CookieSessionStorageLayer } from './CookieSessionStorage'
 import { ResponseHeaders } from './ResponseHeaders'
 import { AppLayer } from './Runtime'
 import { FormError, NotFound, Redirect } from './ServerResponse'
@@ -44,7 +47,7 @@ type RequestEnv =
   | Scope.Scope
   | Path.Path
   | ResponseHeaders
-// | CookieSessionStorage
+  | CookieSessionStorage
 
 type ActionError = Redirect | Unexpected | FormError | ParseError | NotFound
 
@@ -103,7 +106,7 @@ export const loader = <A extends Serializable, R extends AppEnv | RequestEnv,>(
       )
     ),
     T.scoped,
-    // T.provide(CookieSessionStorage.layer),
+    T.provide(CookieSessionStorageLayer),
     T.provide(makeRequestContext(args)),
     T.exit
   )
@@ -123,6 +126,7 @@ export const loader = <A extends Serializable, R extends AppEnv | RequestEnv,>(
 })
 
 const handleFailedResponse = <E extends Serializable,>(cause: Cause.Cause<E>) => {
+  console.log('handleFailedResponse', cause)
   if (Cause.isFailType(cause)) {
     throw cause.error
   }
@@ -134,31 +138,26 @@ export const action = <A extends Serializable, R extends AppEnv | RequestEnv,>(
   effect: RemixActionHandler<A, R>
 ) => ((args: ActionFunctionArgs) => {
   const runnable = effect.pipe(
-    T.tapError(e =>
+    T.catchAll(e =>
       T.sync(() =>
         matchActionError({
-          Unexpected: () => Response.json({ status: 500 }),
-          FormError: () => Response.json({ status: 400 }),
+          Unexpected: () => data({ status: 500 }),
+          FormError: () => data({ status: 400 }),
           Redirect: e => {
-            const response = Response.json({
-              status: 302
-            })
-            response.headers.set('Location', e.location)
-            response.headers.append('Set-Cookie', e.headers?.['Set-Cookie'] ?? '')
-            return response
+            return redirect(e.location, { headers: e.headers })
           },
-          ParseError: () => Response.json({ status: 400 }),
+          ParseError: () => data({ status: 400 }),
           NotFound: () => {
-            return Response.json({ status: 404 })
+            return data({ status: 404 })
           }
         })(e)
       )
     ),
-    T.catchTag('FormError', e => T.succeed(e.toJSON())),
+    // T.catchTag('FormError', e => T.succeed(e.toJSON())),
     // TODO: map FormError to ErrorResponse
-    // T.provide(CookieSessionStorage.layer),
-    T.provide(makeRequestContext(args)),
     T.scoped,
+    T.provide(CookieSessionStorageLayer),
+    T.provide(makeRequestContext(args)),
     T.exit
   )
 

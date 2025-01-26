@@ -2,7 +2,6 @@ import { HttpBody, HttpClient, HttpClientRequest } from '@effect/platform'
 import { Context, pipe } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
-import * as L from 'effect/Layer'
 import { Trip, TripCreate, TripStats } from '../types/api'
 const API_URL = 'http://localhost:8080/api'
 
@@ -20,47 +19,72 @@ async function handleResponse<T,>(response: Response): Promise<T> {
   return response.clone().json()
 }
 
-export const makeApiHttp = () => {
-  const login = (login: string) => {
-    return T.gen(function* () {
-      const defaultClient = yield* HttpClient.HttpClient
-      const loginUrl = HttpClientRequest.get(`${API_URL}/login`)
+export class ApiService extends T.Service<ApiService>()('ApiService', {
+  effect: T.gen(function* () {
+    const defaultClient = yield* HttpClient.HttpClient
 
-      const body = yield* HttpBody.json({ name: login })
-      const titi = pipe(
-        loginUrl,
-        HttpClientRequest.setHeader('Content-Type', 'application/json'),
-        HttpClientRequest.setBody(body),
-        HttpClientRequest.setMethod('POST')
-      )
+    const login = (login: string) => {
+      return T.gen(function* () {
+        const loginUrl = HttpClientRequest.post(`${API_URL}/login`)
 
-      const response = yield* defaultClient.execute(titi)
-      yield* T.logInfo('login http response :', response)
-      const responseJson = yield* response.json
+        const body = yield* HttpBody.json({ name: login })
+        const loginRequest = pipe(
+          loginUrl,
+          HttpClientRequest.setHeader('Content-Type', 'application/json'),
+          HttpClientRequest.setBody(body)
+        )
 
-      if (response.status === 401) {
-        yield* T.logInfo(response.status === 401)
-        yield* T.fail(stringify(responseJson))
-      }
+        const response = yield* defaultClient.execute(loginRequest)
+        yield* T.logInfo('login http response :', response)
+        const responseJson = yield* response.json
 
-      return responseJson as { token: string }
-    }).pipe(
-      T.scoped
-    )
-  }
+        if (response.status === 401) {
+          yield* T.logInfo(response.status === 401)
+          yield* T.fail(stringify(responseJson))
+        }
 
-  return ({
-    login
+        return responseJson as { token: string }
+      })
+    }
+
+    const createTrip = (trip: TripCreate) => {
+      return T.gen(function* () {
+        const loginUrl = HttpClientRequest.post(`${API_URL}/trips`)
+
+        const body = yield* HttpBody.json(trip)
+        const createTrip = pipe(
+          loginUrl,
+          HttpClientRequest.setHeader('Content-Type', 'application/json'),
+          HttpClientRequest.setBody(body)
+        )
+
+        const response = yield* defaultClient.execute(createTrip)
+
+        if (response.status === 401 || response.status === 400) {
+          const error = yield* response.text
+          yield* T.logInfo('Unauthorized Error', error)
+          yield* T.logInfo('Error status :', response.status)
+        }
+
+        const responseJson = yield* response.json
+
+        return responseJson as { tripId: string }
+      })
+    }
+    return ({
+      login,
+      createTrip
+    })
   })
-}
+}) {}
 
-export class Api extends Context.Tag('Api')<
-  Api,
-  ReturnType<typeof makeApiHttp>
+export class Api extends Context.Tag('ApiService')<
+  ApiService,
+  ApiService
 >() {
 }
 
-export const ApiLayer = L.succeed(Api, makeApiHttp())
+export const ApiLayer = ApiService.Default
 
 export const api = {
   login(login: string) {

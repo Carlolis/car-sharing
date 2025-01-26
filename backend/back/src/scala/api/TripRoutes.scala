@@ -37,13 +37,11 @@ class TripRoutes(tripService: TripService, personService: PersonService, authSer
     TripEndpoints.createTripEndpoint.serverLogic {
       case (token, tripCreate) =>
         (for {
-          userOpt <- authService.authenticate(token)
-          // user <- ZIO
-          //   .fromOption(userOpt)
-          //   .orElseFail(new Exception("Unauthorized"))
+          _ <- authService.authenticate(token)
           uuid    <- tripService.createTrip(tripCreate)
         } yield uuid)
           .map(Right(_))
+          .tapError(error => ZIO.logError(s"Error: $error"))
           .catchAll(err => ZIO.left(StatusCode.BadRequest, ErrorResponse(err.getMessage)))
     }
 

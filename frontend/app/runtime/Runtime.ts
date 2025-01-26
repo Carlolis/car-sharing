@@ -7,7 +7,7 @@ import { ApiLayer } from '~/services/api'
 export const AppLayer = pipe(
   NodeFileSystem.layer,
   L.provideMerge(Path.layer),
-  L.provideMerge(FetchHttpClient.layer),
   Layer.provide(Logger.minimumLogLevel(LogLevel.All)),
-  Layer.provideMerge(ApiLayer)
+  Layer.provideMerge(ApiLayer),
+  L.provideMerge(FetchHttpClient.layer)
 )

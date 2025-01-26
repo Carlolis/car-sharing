@@ -24,7 +24,7 @@ export default function Index() {
           >
             <strong className="font-bold">Connecté!</strong>
             <span className="block sm:inline">
-              Vous êtes connecté en tant que {auth.user?.name}
+              Vous êtes connecté en tant que {auth.user}
             </span>
           </div>
         )}

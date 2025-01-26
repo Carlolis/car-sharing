@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { Form, useActionData, useNavigate } from 'react-router'
 import { Remix } from '~/runtime/Remix'
 
+import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { useAuth } from '../contexts/AuthContext'
 import { Api } from '../services/api'
 
@@ -16,6 +17,7 @@ const UserNotFound = Sc.TaggedStruct('NotFound', {
 
 export const action = Remix.action(
   T.gen(function* () {
+    const cookieSession = yield* CookieSessionStorage
     const api = yield* Api
     const { username } = yield* HttpServerRequest.schemaBodyForm(
       Sc.Struct({
@@ -26,6 +28,9 @@ export const action = Remix.action(
     yield* T.logInfo(`Login.... ${username}`)
     const { token } = yield* api.login(username)
     yield* T.logInfo(`Token.... ${stringify(token)}`)
+
+    cookieSession.getUserInfo()
+
     return { token, username }
   }).pipe(T.catchAll(error =>
     // Only for 404 if you want to do something with it
@@ -41,19 +46,19 @@ export default function Login() {
   const navigate = useNavigate()
   const actionData = useActionData<typeof action>()
 
-  const match = Match.type<typeof actionData>().pipe(
-    Match.when(undefined, () => setIsNotFound(false)),
-    Match.tag('NotFound', ({ message }) => {
-      setIsNotFound(true)
-      setErrorMessage(message)
-    }),
-    Match.when({ token: Match.string }, ({ token, username }) => {
-      setAuth({ token, username })
-      navigate('/dashboard')
-    }),
-    Match.exhaustive
-  )
   useEffect(() => {
+    const match = Match.type<typeof actionData>().pipe(
+      Match.when(undefined, () => setIsNotFound(false)),
+      Match.tag('NotFound', ({ message }) => {
+        setIsNotFound(true)
+        setErrorMessage(message)
+      }),
+      Match.when({ token: Match.string }, ({ token, username }) => {
+        setAuth({ token, username })
+        navigate('/dashboard')
+      }),
+      Match.exhaustive
+    )
     match(actionData)
   }, [actionData])
 
