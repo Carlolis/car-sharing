@@ -5,6 +5,7 @@ import { api } from '../services/api'
 
 import { useAuth } from '~/contexts/AuthContext'
 // eslint-disable-next-line import/no-unresolved
+import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { Route } from './+types/dashboard'
 
 function StatsCard({ title, value }: { title: string; value: string | number }) {
@@ -18,13 +19,21 @@ function StatsCard({ title, value }: { title: string; value: string | number }) 
   )
 }
 
-export const loader = Remix.unwrapLoader(
+export const loader = Remix.loader(
   T.gen(function* () {
+    const cookieSession = yield* CookieSessionStorage
+    const user = yield* cookieSession.getUserName()
+
+    console.log('user', user)
     yield* T.logInfo('Fetching total stats')
     const totalStats = yield* api.getTotalStats()
 
-    return T.succeed({ totalStats })
-  })
+    return { totalStats }
+  }).pipe(T.catchAll(error =>
+    // Only for 404 if you want to do something with it
+
+    T.succeed('Error')
+  ))
 )
 
 export default function Dashboard({ loaderData: { totalStats } }: Route.ComponentProps) {

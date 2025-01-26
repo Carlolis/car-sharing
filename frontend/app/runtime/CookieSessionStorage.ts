@@ -2,6 +2,7 @@ import { HttpServerRequest } from '@effect/platform'
 
 // import { json, TypedResponse } from 'react-router';
 import { Context, Effect as T, pipe, Schema as Sc } from 'effect'
+import { stringify } from 'effect/FastCheck'
 import * as O from 'effect/Option'
 import { commitSession, getSession } from '~/session'
 import { NotAuthenticated } from './NotAuthenticatedError'
@@ -65,13 +66,14 @@ export class CookieSessionStorage
           session.set('userName', userName)
 
           const cookie = yield* _(T.promise(() => commitSession(session)))
-
-          return yield* _(ServerResponse.Redirect({
-            location: '/login',
-            headers: {
-              'Set-Cookie': cookie
-            }
-          }))
+          yield* T.logInfo(`Cookie.... ${stringify(cookie)}`)
+          return cookie
+          // return yield* _(ServerResponse.Redirect({
+          //   location: '/login',
+          //   headers: {
+          //     'Set-Cookie': cookie
+          //   }
+          // }))
         })
 
       const getUserInfo = () =>
@@ -123,7 +125,7 @@ export class CookieSessionStorage
           return yield* _(
             session.get('userName'),
             Sc.decodeUnknown(Sc.String),
-            T.catchAll(() => T.succeed(null))
+            T.catchAll(() => T.succeed(undefined))
           )
         })
       return {

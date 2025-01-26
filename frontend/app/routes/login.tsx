@@ -8,6 +8,7 @@ import { Form, useActionData, useNavigate } from 'react-router'
 import { Remix } from '~/runtime/Remix'
 
 import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
+import { Redirect } from '~/runtime/ServerResponse'
 import { useAuth } from '../contexts/AuthContext'
 import { Api } from '../services/api'
 
@@ -15,49 +16,67 @@ const UserNotFound = Sc.TaggedStruct('NotFound', {
   message: Sc.String
 })
 
-export const action = Remix.action(
+export const action = Remix.unwrapAction(
   T.gen(function* () {
-    const cookieSession = yield* CookieSessionStorage
     const api = yield* Api
-    const { username } = yield* HttpServerRequest.schemaBodyForm(
-      Sc.Struct({
-        username: Sc.String
+
+    return T.gen(function* () {
+      const cookieSession = yield* CookieSessionStorage
+      const { username } = yield* HttpServerRequest.schemaBodyForm(
+        Sc.Struct({
+          username: Sc.String
+        })
+      )
+
+      yield* T.logInfo(`Login.... ${username}`)
+      const { token } = yield* api.login(username)
+      yield* T.logInfo(`Token.... ${stringify(token)}`)
+      const cookie = yield* cookieSession.commitUserName(username)
+      // yield* T.fail(cookie)
+      return cookie
+    }).pipe(
+      T.catchAll(error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })),
+      T.flatMap(cookie => {
+        const match = Match.type<typeof cookie>().pipe(
+          Match.tag(
+            'NotFound',
+            error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })
+          ),
+          Match.orElse(cookie =>
+            new Redirect({ location: '/dashboard', headers: { 'Set-Cookie': cookie } })
+          )
+          // Match.when({ token: Match.string }, ({ token, username }) => {
+          //   setAuth({ token, username })
+          //   navigate('/dashboard')
+          // }),
+        )
+        const toto = match(cookie)
       })
     )
 
-    yield* T.logInfo(`Login.... ${username}`)
-    const { token } = yield* api.login(username)
-    yield* T.logInfo(`Token.... ${stringify(token)}`)
-
-    cookieSession.getUserInfo()
-
-    return { token, username }
-  }).pipe(T.catchAll(error =>
-    // Only for 404 if you want to do something with it
-
-    Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })
-  ))
+    // .pipe(
+    //
+    // )
+  })
 )
 
 export default function Login() {
-  const { setAuth } = useAuth()
   const [isNotFound, setIsNotFound] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const navigate = useNavigate()
+
   const actionData = useActionData<typeof action>()
 
   useEffect(() => {
     const match = Match.type<typeof actionData>().pipe(
       Match.when(undefined, () => setIsNotFound(false)),
-      Match.tag('NotFound', ({ message }) => {
+      Match.orElse(({ message }) => {
         setIsNotFound(true)
         setErrorMessage(message)
-      }),
-      Match.when({ token: Match.string }, ({ token, username }) => {
-        setAuth({ token, username })
-        navigate('/dashboard')
-      }),
-      Match.exhaustive
+      })
+      // Match.when({ token: Match.string }, ({ token, username }) => {
+      //   setAuth({ token, username })
+      //   navigate('/dashboard')
+      // }),
     )
     match(actionData)
   }, [actionData])

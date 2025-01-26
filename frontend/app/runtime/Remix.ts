@@ -144,7 +144,8 @@ export const action = <A extends Serializable, R extends AppEnv | RequestEnv,>(
           Unexpected: () => data({ status: 500 }),
           FormError: () => data({ status: 400 }),
           Redirect: e => {
-            return redirect(e.location, { headers: e.headers })
+            console.log('Redirect', e)
+            return redirect(e.location, { headers: e.headers, status: 302 })
           },
           ParseError: () => data({ status: 400 }),
           NotFound: () => {
