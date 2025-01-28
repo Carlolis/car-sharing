@@ -4,6 +4,7 @@ import { HttpServerRequest } from '@effect/platform'
 import { Context, Effect as T, pipe, Schema as Sc } from 'effect'
 import { stringify } from 'effect/FastCheck'
 import * as O from 'effect/Option'
+import { redirect } from 'react-router'
 import { commitSession, getSession } from '~/session'
 import { NotAuthenticated } from './NotAuthenticatedError'
 import { ServerResponse } from './ServerResponse'
@@ -67,7 +68,7 @@ export class CookieSessionStorage
 
           const cookie = yield* _(T.promise(() => commitSession(session)))
           yield* T.logInfo(`Cookie.... ${stringify(cookie)}`)
-          return cookie
+          return redirect('/dashboard', { headers: { 'Set-Cookie': cookie } })
           // return yield* _(ServerResponse.Redirect({
           //   location: '/login',
           //   headers: {

@@ -4,60 +4,54 @@ import { Match, Schema as Sc } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import { useEffect, useState } from 'react'
-import { Form, useActionData, useNavigate } from 'react-router'
+import { Form, useActionData } from 'react-router'
 import { Remix } from '~/runtime/Remix'
 
 import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
-import { Redirect } from '~/runtime/ServerResponse'
-import { useAuth } from '../contexts/AuthContext'
 import { Api } from '../services/api'
 
 const UserNotFound = Sc.TaggedStruct('NotFound', {
   message: Sc.String
 })
 
-export const action = Remix.unwrapAction(
+export const action = Remix.action(
   T.gen(function* () {
     const api = yield* Api
-
-    return T.gen(function* () {
-      const cookieSession = yield* CookieSessionStorage
-      const { username } = yield* HttpServerRequest.schemaBodyForm(
-        Sc.Struct({
-          username: Sc.String
-        })
-      )
-
-      yield* T.logInfo(`Login.... ${username}`)
-      const { token } = yield* api.login(username)
-      yield* T.logInfo(`Token.... ${stringify(token)}`)
-      const cookie = yield* cookieSession.commitUserName(username)
-      // yield* T.fail(cookie)
-      return cookie
-    }).pipe(
-      T.catchAll(error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })),
-      T.flatMap(cookie => {
-        const match = Match.type<typeof cookie>().pipe(
-          Match.tag(
-            'NotFound',
-            error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })
-          ),
-          Match.orElse(cookie =>
-            new Redirect({ location: '/dashboard', headers: { 'Set-Cookie': cookie } })
-          )
-          // Match.when({ token: Match.string }, ({ token, username }) => {
-          //   setAuth({ token, username })
-          //   navigate('/dashboard')
-          // }),
-        )
-        const toto = match(cookie)
+    const cookieSession = yield* CookieSessionStorage
+    const { username } = yield* HttpServerRequest.schemaBodyForm(
+      Sc.Struct({
+        username: Sc.String
       })
     )
 
-    // .pipe(
-    //
-    // )
-  })
+    yield* T.logInfo(`Login.... ${username}`)
+    const { token } = yield* api.login(username)
+    yield* T.logInfo(`Token.... ${stringify(token)}`)
+    return yield* cookieSession.commitUserName(username)
+
+    // yield* T.fail(cookie)
+  }).pipe(
+    T.catchAll(error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' }))
+    // T.flatMap(cookie => {
+    //   const match = Match.type<typeof cookie>().pipe(
+    //     Match.tag(
+    //       'NotFound',
+    //       error => Sc.decode(UserNotFound)({ message: error.toString(), _tag: 'NotFound' })
+    //     ),
+    //     Match.orElse(cookie =>
+    //       new Redirect({ location: '/dashboard', headers: { 'Set-Cookie': cookie } })
+    //     )
+    //     // Match.when({ token: Match.string }, ({ token, username }) => {
+    //     //   setAuth({ token, username })
+    //     //   navigate('/dashboard')
+    //     // }),
+    //   )
+    //   const toto = match(cookie)
+    // })
+  )
+  // .pipe(
+  //
+  // )
 )
 
 export default function Login() {

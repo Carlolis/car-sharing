@@ -3,9 +3,11 @@ import * as T from 'effect/Effect'
 import { Remix } from '~/runtime/Remix'
 import { api } from '../services/api'
 
-import { useAuth } from '~/contexts/AuthContext'
-// eslint-disable-next-line import/no-unresolved
 import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
+
+import { stringify } from 'effect/FastCheck'
+import { NotFound } from '~/runtime/ServerResponse'
+// eslint-disable-next-line import/no-unresolved
 import { Route } from './+types/dashboard'
 
 function StatsCard({ title, value }: { title: string; value: string | number }) {
@@ -28,25 +30,22 @@ export const loader = Remix.loader(
     yield* T.logInfo('Fetching total stats')
     const totalStats = yield* api.getTotalStats()
 
-    return { totalStats }
+    return { totalStats, user }
   }).pipe(T.catchAll(error =>
     // Only for 404 if you want to do something with it
 
-    T.succeed('Error')
+    T.fail(new NotFound({ message: stringify(error) }))
   ))
 )
 
-export default function Dashboard({ loaderData: { totalStats } }: Route.ComponentProps) {
-  // const { totalStats } = useLoaderData<typeof loader>()
-  const auth = useAuth()
-
+export default function Dashboard({ loaderData: { totalStats, user } }: Route.ComponentProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="py-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-8">
           Statistiques Globales
         </h2>
-        {auth.isAuthenticated && (
+        {user && (
           <div
             className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
             role="alert"
@@ -54,7 +53,7 @@ export default function Dashboard({ loaderData: { totalStats } }: Route.Componen
             <strong className="font-bold">Connecté !</strong>
             <span>{' '}</span>
             <span className="block sm:inline">
-              Vous êtes connecté en tant que {auth.user}
+              Vous êtes connecté en tant que {user}
             </span>
           </div>
         )}
