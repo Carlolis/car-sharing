@@ -11,7 +11,7 @@ case class TripServiceInMemory() extends TripService {
   private var trips: List[Trip] = List.empty
 
   private val knownPersons =
-    Set(PersonCreate("Maé"), PersonCreate("Brigitte"), PersonCreate("Charles"))
+    Set("Maé", "Brigitte", "Charles")
 
   override def createTrip(
     tripCreate: TripCreate
@@ -26,7 +26,7 @@ case class TripServiceInMemory() extends TripService {
             distance = tripCreate.distance,
             date = tripCreate.date,
             name = tripCreate.name,
-            drivers = tripCreate.drivers
+            drivers = tripCreate.drivers.map(PersonCreate(_))
           )
           trips = trips :+ newTrip
           newTrip

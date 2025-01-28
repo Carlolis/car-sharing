@@ -32,7 +32,7 @@ case class TripCreate(
   distance: Int,
   date: LocalDate,
   name: String,
-  drivers: Set[PersonCreate]
+  drivers: Set[String]
 )
 
 object TripCreate {

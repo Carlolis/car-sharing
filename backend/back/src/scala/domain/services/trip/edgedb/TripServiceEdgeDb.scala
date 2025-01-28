@@ -25,7 +25,7 @@ case class TripServiceEdgeDb(edgeDb: EdgeDbDriverLive) extends TripService {
             .date.getYear}, ${tripCreate
             .date.getMonthValue}, ${tripCreate
             .date.getDayOfMonth}), edgeDrivers := (select detached default::PersonEdge filter .name in ${tripCreate
-            .drivers.map(_.name).mkString("{'", "','", "'}")}) }) select new_trip.id;
+            .drivers.mkString("{'", "','", "'}")}) }) select new_trip.id;
           |"""
       ).tapBoth(error => ZIO.logError(s"Created trip with id: $error"), UUID => ZIO.logInfo(s"Created trip with id: $UUID"))
 
