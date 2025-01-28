@@ -3,46 +3,46 @@ import { Match, Schema as Sc } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import { useEffect, useState } from 'react'
-import { Form, useActionData, useSubmit } from 'react-router'
+import { Form, useActionData } from 'react-router'
+import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { Remix } from '~/runtime/Remix'
 import { Redirect } from '~/runtime/ServerResponse'
 import { Api } from '~/services/api'
 import { TripCreate } from '~/types/api'
 
-export const action = Remix.unwrapAction(
+export const action = Remix.action(
   T.gen(function* () {
     yield* T.logInfo(`Creating Trip....`)
+    const cookieSession = yield* CookieSessionStorage
+    yield* T.logInfo(`Getting token....`)
+    const token = yield* cookieSession.getUserToken()
+    yield* T.logInfo(`Token ?.... ${stringify(token)}`)
     const api = yield* Api
-    return T.gen(function* () {
-      const tripCreate2 = yield* HttpServerRequest.schemaBodyJson(
-        Sc.Any
-      )
 
-      yield* T.logInfo(`WTF ?.... ${stringify(tripCreate2)}`)
-      const tripCreate = yield* HttpServerRequest.schemaBodyForm(
-        TripCreate
-      )
-      const token = yield* HttpServerRequest.schemaHeaders(Sc.Any)
-      yield* T.logInfo(`Token ?.... ${stringify(token)}`)
+    const tripCreate = yield* HttpServerRequest.schemaBodyForm(
+      TripCreate
+    )
 
-      yield* T.logInfo(`Creating Trip.... ${stringify(tripCreate2)}`)
-      const tripId = yield* api.createTrip(tripCreate)
-      yield* T.logInfo(`Trip created .... ${stringify(tripId)}`)
-      return { tripId }
-    }).pipe(T.catchAll(() => new Redirect({ location: '/login' })))
-  })
+    yield* T.logInfo(`Creating Trip.... ${stringify(tripCreate)}`)
+    const tripId = yield* api.createTrip(token)(tripCreate)
+    yield* T.logInfo(`Trip created .... ${stringify(tripId)}`)
+    return tripId
+  }).pipe(
+    T.tapError(T.logError),
+    T.catchAll(() => new Redirect({ location: '/trip/new' }))
+  )
 )
 
 export default function CreateTrip() {
   const actionData = useActionData<typeof action>()
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
   const [userName, setUserName] = useState<string | undefined>(undefined)
-  const submit = useSubmit()
+
   useEffect(() => {
     const match = Match.type<typeof actionData>().pipe(
       Match.when(undefined, () => setErrorMessage('Bienvenue')),
       Match.orElse(({ tripId }) => {
-        setUserName(tripId.tripId)
+        setUserName(tripId)
       })
     )
     match(actionData)
@@ -66,15 +66,6 @@ export default function CreateTrip() {
       <Form
         method="post"
         className="space-y-6"
-        onSubmit={e => {
-          {
-            console.log('submit', { ...e.currentTarget, token: localStorage.getItem('token') })
-
-            submit(
-              { ...e.currentTarget }
-            )
-          }
-        }}
       >
         <div>
           <label className="block text-sm font-medium text-gray-700">

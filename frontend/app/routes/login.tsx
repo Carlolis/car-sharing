@@ -27,7 +27,7 @@ export const action = Remix.action(
     yield* T.logInfo(`Login.... ${username}`)
     const { token } = yield* api.login(username)
     yield* T.logInfo(`Token.... ${stringify(token)}`)
-    return yield* cookieSession.commitUserName(username)
+    return yield* cookieSession.commitUserInfo({ username, token })
 
     // yield* T.fail(cookie)
   }).pipe(

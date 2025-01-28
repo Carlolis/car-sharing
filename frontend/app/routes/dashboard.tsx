@@ -31,11 +31,7 @@ export const loader = Remix.loader(
     const totalStats = yield* api.getTotalStats()
 
     return { totalStats, user }
-  }).pipe(T.catchAll(error =>
-    // Only for 404 if you want to do something with it
-
-    T.fail(new NotFound({ message: stringify(error) }))
-  ))
+  }).pipe(T.catchAll(error => T.fail(new NotFound({ message: stringify(error) }))))
 )
 
 export default function Dashboard({ loaderData: { totalStats, user } }: Route.ComponentProps) {

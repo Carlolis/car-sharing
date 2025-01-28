@@ -2,7 +2,6 @@ import { HttpServerRequest } from '@effect/platform'
 
 // import { json, TypedResponse } from 'react-router';
 import { Context, Effect as T, pipe, Schema as Sc } from 'effect'
-import { stringify } from 'effect/FastCheck'
 import * as O from 'effect/Option'
 import { redirect } from 'react-router'
 import { commitSession, getSession } from '~/session'
@@ -12,6 +11,13 @@ import { ServerResponse } from './ServerResponse'
 // import { commitSession, getSession } from '~/session'
 // import { NotAuthenticated } from '../models/NotAuthenticatedError'
 // import { Redirect, ServerResponse } from '../ServerResponse'
+
+const UserInfo = Sc.Struct({
+  username: Sc.String,
+  token: Sc.String
+})
+
+type UserInfo = Sc.Schema.Type<typeof UserInfo>
 
 export class CookieSessionStorage
   extends T.Service<CookieSessionStorage>()('CookieSessionStorage', {
@@ -24,7 +30,7 @@ export class CookieSessionStorage
         T.catchAll(() => T.succeed(O.none()))
       )
 
-      const commitUserInfo = (userInfo: string) =>
+      const commitUserInfo = (userInfo: UserInfo) =>
         T.gen(function* (_) {
           const session = yield* _(T.promise(() =>
             pipe(
@@ -42,48 +48,16 @@ export class CookieSessionStorage
 
           const cookie = yield* _(T.promise(() => commitSession(session)))
 
-          return Response.json({
-            body: userInfo,
-            headers: {
-              // eslint-disable-next-line @typescript-eslint/naming-convention
-              'Set-Cookie': cookie
-            }
-          })
-        })
-      const commitUserName = (userName: string) =>
-        T.gen(function* (_) {
-          const session = yield* _(T.promise(() =>
-            pipe(
-              optionalCookies,
-              O.getOrUndefined,
-              cookies =>
-                getSession(
-                  cookies
-                )
-            )
-          ))
-          yield* T.logInfo(`CookieSessionStorage - commitUserName`, userName, session)
-
-          session.set('userName', userName)
-
-          const cookie = yield* _(T.promise(() => commitSession(session)))
-          yield* T.logInfo(`Cookie.... ${stringify(cookie)}`)
           return redirect('/dashboard', { headers: { 'Set-Cookie': cookie } })
-          // return yield* _(ServerResponse.Redirect({
-          //   location: '/login',
-          //   headers: {
-          //     'Set-Cookie': cookie
-          //   }
-          // }))
         })
 
-      const getUserInfo = () =>
+      const getUserToken = () =>
         T.gen(function* (_) {
           const cookies = yield* _(
             optionalCookies,
             T.catchAll(() => {
               return ServerResponse.Redirect({
-                location: '/notauthorize'
+                location: '/login'
               })
             })
           )
@@ -94,19 +68,20 @@ export class CookieSessionStorage
             )
           ))
 
-          const userInfo = yield* _(
+          const token = yield* _(
             session.get('user_info'),
-            Sc.decodeUnknown(Sc.String),
+            Sc.decodeUnknown(UserInfo),
+            T.map(({ token }) => token),
             T.mapError(e => NotAuthenticated.of(e.message)),
-            T.tapError(e => T.logError(`CookieSessionStorage - getUserInfo`, e)),
+            T.tapError(e => T.logError(`CookieSessionStorage - getUserToken`, e)),
             T.catchAll(() =>
               ServerResponse.Redirect({
-                location: '/notauthorize'
+                location: '/login'
               })
             )
           )
 
-          return userInfo
+          return token
         })
       const getUserName = () =>
         T.gen(function* (_) {
@@ -124,15 +99,15 @@ export class CookieSessionStorage
           ))
 
           return yield* _(
-            session.get('userName'),
-            Sc.decodeUnknown(Sc.String),
+            session.get('user_info'),
+            Sc.decodeUnknown(UserInfo),
+            T.map(({ username }) => username),
             T.catchAll(() => T.succeed(undefined))
           )
         })
       return {
-        getUserInfo,
+        getUserToken,
         getUserName,
-        commitUserName,
         commitUserInfo
       }
     })

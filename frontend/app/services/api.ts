@@ -2,7 +2,9 @@ import { HttpBody, HttpClient, HttpClientRequest } from '@effect/platform'
 import { Context, pipe } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
+import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { Trip, TripCreate, TripStats } from '../types/api'
+
 const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
@@ -47,30 +49,32 @@ export class ApiService extends T.Service<ApiService>()('ApiService', {
       })
     }
 
-    const createTrip = (trip: TripCreate) => {
-      return T.gen(function* () {
-        const loginUrl = HttpClientRequest.post(`${API_URL}/trips`)
+    const createTrip = (token: string) =>
+      (trip: TripCreate) => {
+        return T.gen(function* () {
+          const loginUrl = HttpClientRequest.post(`${API_URL}/trips`)
 
-        const body = yield* HttpBody.json(trip)
-        const createTrip = pipe(
-          loginUrl,
-          HttpClientRequest.setHeader('Content-Type', 'application/json'),
-          HttpClientRequest.setBody(body)
-        )
+          const body = yield* HttpBody.jsonSchema(TripCreate)({ ...trip, drivers: ['maé'] })
+          const createTrip = pipe(
+            loginUrl,
+            HttpClientRequest.setHeader('Content-Type', 'application/json'),
+            HttpClientRequest.setHeader('Authorization', `Bearer ${token}`),
+            HttpClientRequest.setBody(body)
+          )
 
-        const response = yield* defaultClient.execute(createTrip)
+          const response = yield* defaultClient.execute(createTrip)
 
-        if (response.status === 401 || response.status === 400) {
-          const error = yield* response.text
-          yield* T.logInfo('Unauthorized Error', error)
-          yield* T.logInfo('Error status :', response.status)
-        }
+          if (response.status === 401 || response.status === 400) {
+            const error = yield* response.text
+            yield* T.logInfo('Unauthorized Error', error)
+            yield* T.logInfo('Error status :', response.status)
+          }
 
-        const responseJson = yield* response.json
+          const responseJson = yield* response.json
 
-        return responseJson as { tripId: string }
-      })
-    }
+          return responseJson as { tripId: string }
+        })
+      }
     return ({
       login,
       createTrip
