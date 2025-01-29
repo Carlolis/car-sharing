@@ -26,7 +26,7 @@ export const action = Remix.action(
     yield* T.logInfo(`Creating Trip.... ${stringify(tripCreate)}`)
     const tripId = yield* api.createTrip(token)(tripCreate)
     yield* T.logInfo(`Trip created .... ${stringify(tripId)}`)
-    return tripId
+    return { tripId }
   }).pipe(
     T.tapError(T.logError),
     T.catchAll(() => new Redirect({ location: '/trip/new' }))
@@ -70,12 +70,11 @@ export default function CreateTrip() {
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Quoi ?
-
             <input
               type="text"
               name="name"
               required
-              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
           </label>
         </div>
@@ -89,7 +88,7 @@ export default function CreateTrip() {
               name="date"
               required
               defaultValue={new Date().toISOString().split('T')[0]}
-              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
           </label>
         </div>
@@ -104,7 +103,7 @@ export default function CreateTrip() {
               required
               min="0"
               step="0.1"
-              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
           </label>
         </div>
@@ -116,7 +115,7 @@ export default function CreateTrip() {
               name="drivers"
               required
               multiple
-              className="block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="mt-1 block w-full px-3 py-2 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100"
             >
               <option value="maé">Maé</option>
               <option value="charles">Charles</option>

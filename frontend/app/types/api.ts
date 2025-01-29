@@ -1,4 +1,5 @@
-import { DateTime, pipe, Schema as Sc } from 'effect'
+import { DateTime, identity, pipe, Schema as Sc } from 'effect'
+import { ensure } from 'effect/Array'
 import { format, formatIsoDateUtc } from 'effect/DateTime'
 
 export interface Trip {
@@ -58,11 +59,21 @@ const LocalDate = Sc.transform(
   }
 )
 
+const ArrayEnsure = Sc.transform(
+  Sc.Union(Sc.String, Sc.Array(Sc.String)),
+  Sc.Array(Sc.String),
+  {
+    strict: true,
+    decode: ensure,
+    encode: identity
+  }
+)
+
 export const TripCreate = Sc.Struct({
   name: Sc.String,
   date: LocalDate,
   distance: Sc.NumberFromString,
-  drivers: Sc.Array(Sc.String)
+  drivers: ArrayEnsure
 })
 
 export type TripCreate = Sc.Schema.Type<typeof TripCreate>

@@ -1,5 +1,5 @@
 import { HttpBody, HttpClient, HttpClientRequest } from '@effect/platform'
-import { Context, pipe } from 'effect'
+import { Context, pipe, Schema as Sc } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import { Trip, TripCreate, TripStats } from '../types/api'
@@ -73,7 +73,7 @@ export class ApiService extends T.Service<ApiService>()('ApiService', {
 
           const responseJson = yield* response.json
 
-          return responseJson as { tripId: string }
+          return Sc.decodeUnknownSync(Sc.String)(responseJson)
         })
       }
     return ({
