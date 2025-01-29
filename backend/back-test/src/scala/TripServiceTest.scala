@@ -14,7 +14,7 @@ object TripServiceTest extends ZIOSpecDefault {
   val personName = "Maé"
   val maé        = PersonCreate(personName)
   val tripCreate =
-    TripCreate(100, LocalDate.now(), "Business", Set(maé))
+    TripCreate(100, LocalDate.now(), "Business", Set(personName))
 
   def spec =
     (suiteAll("TripServiceTest in EdgeDb") {
@@ -30,10 +30,10 @@ object TripServiceTest extends ZIOSpecDefault {
       }
       test("Charles createTrip should create a trip successfully with Charles") {
         val personName = "Charles"
-        val charles    = PersonCreate(personName)
+
         for {
 
-          UUID       <- TripService.createTrip(tripCreate.copy(drivers = Set(charles)))
+          UUID       <- TripService.createTrip(tripCreate.copy(drivers = Set(personName)))
           tripByUser <- TripService.getUserTrips(personName)
 
         } yield assertTrue(UUID != null, tripByUser.trips.length == 1)
