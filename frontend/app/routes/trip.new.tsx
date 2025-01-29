@@ -1,5 +1,5 @@
 import { HttpServerRequest } from '@effect/platform'
-import { Match, Schema as Sc } from 'effect'
+import { Match } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
 import { useEffect, useState } from 'react'

@@ -1,64 +1,69 @@
-import { Link, Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from 'react-router'
 import type { LinksFunction } from 'react-router'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
+import {
+  Links,
+  Meta,
+  NavLink,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+  useRouteError
+} from 'react-router'
 
+import { Remix } from './runtime/Remix'
 import stylesheet from './tailwind.css?url'
 
 export const links: LinksFunction = () => [
   //  { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: 'stylesheet', href: stylesheet }
-  // {
-  //   rel: "preconnect",
-  //   href: "https://fonts.gstatic.com",
-  //   crossOrigin: "anonymous",
-  // },
-  // {
-  //   rel: "stylesheet",
-  //   href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  // },
 ]
 
-function Navigation() {
-  const { isAuthenticated } = useAuth()
+import * as T from 'effect/Effect'
+import { CookieSessionStorage } from './runtime/CookieSessionStorage'
 
+interface NavigationPros {
+  isAuthenticated: boolean
+}
+
+const Navigation = ({ isAuthenticated }: NavigationPros) => {
   return (
     <nav className="bg-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <Link to="/" className="text-white font-bold text-xl">
+              <NavLink to="/" className="text-white font-bold text-xl">
                 Car Share
-              </Link>
+              </NavLink>
             </div>
             {isAuthenticated && (
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link
+                <NavLink
                   to="/dashboard"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Tableau de bord
-                </Link>
-                <Link
+                </NavLink>
+                <NavLink
                   to="/trip/new"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Nouveau trajet
-                </Link>
+                </NavLink>
               </div>
             )}
           </div>
           <div className="flex items-center">
             {isAuthenticated ?
               (
-                <form action="/logout" method="post">
+                <NavLink to="/logout">
                   <button
                     type="submit"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     Déconnexion
                   </button>
-                </form>
+                </NavLink>
               ) :
               null}
           </div>
@@ -68,7 +73,18 @@ function Navigation() {
   )
 }
 
+export const loader = Remix.loader(
+  T.gen(function* () {
+    const cookieSession = yield* CookieSessionStorage
+    const token = yield* cookieSession.getUserToken()
+
+    return { isAuthenticated: token !== undefined }
+  }).pipe(T.catchAll(_ => T.succeed({ isAuthenticated: false })))
+)
+
 export default function App() {
+  const { isAuthenticated } = useLoaderData<typeof loader>()
+
   return (
     <html lang="fr">
       <head>
@@ -79,10 +95,8 @@ export default function App() {
       </head>
       <body>
         <div className="min-h-screen bg-gray-100">
-          <AuthProvider>
-            <Navigation />
-            <Outlet />
-          </AuthProvider>
+          <Navigation isAuthenticated={isAuthenticated} />
+          <Outlet />
         </div>
         <ScrollRestoration />
         <Scripts />

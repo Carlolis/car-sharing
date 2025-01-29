@@ -2,12 +2,12 @@ import { HttpBody, HttpClient, HttpClientRequest } from '@effect/platform'
 import { Context, pipe } from 'effect'
 import * as T from 'effect/Effect'
 import { stringify } from 'effect/FastCheck'
-import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { Trip, TripCreate, TripStats } from '../types/api'
 
 const API_URL = 'http://localhost:8080/api'
 
 export class ApiError extends Error {
+  // eslint-disable-next-line no-unused-vars
   constructor(public statusCode: number, message: string) {
     super(message)
   }
@@ -16,6 +16,7 @@ export class ApiError extends Error {
 async function handleResponse<T,>(response: Response): Promise<T> {
   if (!response.ok) {
     const error = await response.clone().json()
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     throw new ApiError(response.status, error.message)
   }
   return response.clone().json()

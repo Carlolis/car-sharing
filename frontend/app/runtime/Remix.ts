@@ -34,7 +34,6 @@ type Serializable =
   | object
 
 interface Params {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   readonly _: unique symbol
 }
 const Params = Context.GenericTag<Params, RemixParams>('@services/Params')

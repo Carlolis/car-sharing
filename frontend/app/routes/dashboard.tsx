@@ -26,7 +26,6 @@ export const loader = Remix.loader(
     const cookieSession = yield* CookieSessionStorage
     const user = yield* cookieSession.getUserName()
 
-    console.log('user', user)
     yield* T.logInfo('Fetching total stats')
     const totalStats = yield* api.getTotalStats()
 

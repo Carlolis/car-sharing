@@ -31,28 +31,23 @@ export default function Index({ loaderData: { user } }: Route.ComponentProps) {
     <div className="bg-white">
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" />
         </div>
         {user && (
           <div
             className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
             role="alert"
           >
-            <strong className="font-bold">Connecté!</strong>
+            <strong className="font-bold">Connecté !</strong>
             <span className="block sm:inline">
-              Vous êtes connecté en tant que {user}
+              {' '}Vous êtes connecté en tant que {user}.
             </span>
           </div>
         )}
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Partagez vos trajets simplement
+              Partagez la C3 simplement
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Réduisez votre empreinte carbone et vos coûts en partageant vos trajets quotidiens.
-              Suivez vos statistiques et contribuez à une mobilité plus durable.
-            </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 to="/login"
