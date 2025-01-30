@@ -1,7 +1,7 @@
 import * as T from 'effect/Effect'
 
 import { Remix } from '~/runtime/Remix'
-import { api } from '../services/api'
+import { ApiClass2 } from '../services/api'
 
 import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 
@@ -30,9 +30,11 @@ export const loader = Remix.loader(
     const user = yield* cookieSession.getUserName()
 
     yield* T.logInfo('Fetching total stats')
-    const totalStats = yield* api.getTotalStats()
+    const totalStats = yield* ApiClass2.getTotalStats()
 
-    return { totalStats, user }
+    const trips = yield* ApiClass2.getAllTrips()
+
+    return { totalStats, user, trips }
   }).pipe(T.catchAll(error => T.fail(new NotFound({ message: stringify(error) }))))
 )
 

@@ -76,12 +76,29 @@ export class ApiService extends T.Service<ApiService>()('ApiService', {
           return Sc.decodeUnknownSync(Sc.String)(responseJson)
         })
       }
+
+    const getTotalStats = () => {
+      return T.gen(function* () {
+        const defaultClient = yield* HttpClient.HttpClient
+        const toto = HttpClientRequest.get(`${API_URL}/trips/total`)
+
+        const response = yield* defaultClient.execute(toto)
+        const responseJson = yield* response.json
+        return responseJson as TripStats
+      })
+    }
+
+    const getAllTrips = () => []
     return ({
       login,
-      createTrip
+      createTrip,
+      getTotalStats,
+      getAllTrips
     })
   })
 }) {}
+
+export class ApiClass2 extends T.Tag('ApiService')<ApiService, ApiService>() {}
 
 export class Api extends Context.Tag('ApiService')<
   ApiService,
