@@ -8,8 +8,18 @@ import { CookieSessionStorage } from '~/runtime/CookieSessionStorage'
 import { stringify } from 'effect/FastCheck'
 import { NotFound } from '~/runtime/ServerResponse'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { TripCreate } from '~/types/api'
+
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  RowData,
+  useReactTable
+} from '@tanstack/react-table'
 // eslint-disable-next-line import/no-unresolved
 import { Route } from './+types/dashboard'
 
@@ -22,6 +32,13 @@ function StatsCard({ title, value }: { title: string; value: string | number }) 
       </div>
     </div>
   )
+}
+declare module '@tanstack/react-table' {
+  // eslint-disable-next-line no-unused-vars
+  interface TableMeta<TData extends RowData,> {
+    // eslint-disable-next-line no-unused-vars
+    updateData: (rowIndex: number, columnId: string, value: unknown) => void
+  }
 }
 
 export const loader = Remix.loader(
@@ -39,7 +56,98 @@ export const loader = Remix.loader(
 )
 
 export default function Dashboard({ loaderData: { totalStats, user } }: Route.ComponentProps) {
+  // Give our default column cell renderer editing superpowers!
+  const defaultColumn: Partial<ColumnDef<TripCreate>> = {
+    cell: ({ getValue, row: { index }, column: { id }, table }) => {
+      const initialValue = getValue()
+      // We need to keep and update the state of the cell normally
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [value, setValue] = useState(initialValue)
+
+      // When the input is blurred, we'll call our table meta's updateData function
+      const onBlur = () => {
+        table.options.meta?.updateData(index, id, value)
+      }
+
+      // If the initialValue is changed external, sync it up with our state
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+        setValue(initialValue)
+      }, [initialValue])
+
+      return (
+        <input
+          value={value as string}
+          onChange={e => setValue(e.target.value)}
+          onBlur={onBlur}
+        />
+      )
+    }
+  }
+
   const [trips, setTrips] = useState<TripCreate[]>([])
+
+  const columns = useMemo<ColumnDef<TripCreate>[]>(
+    () => [
+      {
+        header: 'Trip Infos',
+        footer: props => props.column.id,
+        columns: [
+          {
+            accessorKey: 'name',
+            header: () => <span>Name</span>,
+            footer: props => props.column.id
+          },
+          {
+            accessorKey: 'date',
+            header: () => <span>Date</span>,
+            footer: props => props.column.id,
+            cell: info => info.getValue().toDateString()
+          },
+
+          {
+            accessorKey: 'distance',
+            header: () => <span>Distance (km)</span>,
+            footer: props => props.column.id
+          },
+          {
+            accessorKey: 'drivers',
+            header: () => <span>Personnes</span>,
+            footer: props => props.column.id,
+            cell: info => info.getValue().join(', ')
+          }
+        ]
+      }
+    ],
+    []
+  )
+
+  const table = useReactTable({
+    data: trips,
+    columns,
+    defaultColumn,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+
+    // Provide our updateData function to our table meta
+    meta: {
+      updateData: (rowIndex, columnId, value) => {
+        setTrips(old =>
+          old.map((row, index) => {
+            if (index === rowIndex) {
+              return {
+                ...old[rowIndex]!,
+                [columnId]: value
+              }
+            }
+            return row
+          })
+        )
+      }
+    },
+    debugTable: true
+  })
 
   useEffect(() => {
     // Fetch trips data from API or any other source
@@ -103,26 +211,56 @@ export default function Dashboard({ loaderData: { totalStats, user } }: Route.Co
               Math.round(totalStats.totalKilometers / totalStats.trips.length)}
           />
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-4">
-          {trips.map((trip, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg p-4">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h3 className="text-xl font-semibold">{trip.name}</h3>
-                  <p className="text-gray-700">Date: {trip.date.toDateString()}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-gray-700">Distance: {trip.distance} km</p>
-                  <div className="flex gap-2 items-center">
-                    <span className="text-gray-700">Personnes:</span>
-                    <span className="text-gray-700">
-                      {trip.drivers.join(', ')}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="mt-8">
+          <div className="bg-white shadow-md rounded-lg overflow-hidden">
+            {trips.length > 0 && (
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  {table.getHeaderGroups().map(headerGroup => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map(header => {
+                        return (
+                          <th key={header.id} colSpan={header.colSpan}>
+                            {header.isPlaceholder ? null : (
+                              <div>
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                              </div>
+                            )}
+                          </th>
+                        )
+                      })}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody>
+                  {table.getRowModel().rows.map(row => {
+                    return (
+                      <tr key={row.id} className="border-b border-gray-200">
+                        {row.getVisibleCells().map(cell => {
+                          return (
+                            <td
+                              key={cell.id}
+                              className={`border-r border-gray-200 p-4 ${
+                                cell.column.id === 'distance' ? 'w-32' : ''
+                              }`}
+                            >
+                              {flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext()
+                              )}
+                            </td>
+                          )
+                        })}
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
     </div>
