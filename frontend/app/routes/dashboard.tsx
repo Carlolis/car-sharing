@@ -101,18 +101,24 @@ export default function Dashboard({ loaderData: { totalStats, user } }: Route.Co
               Math.round(totalStats.totalKilometers / totalStats.trips.length)}
           />
         </div>
-        <div className="grid grid-cols-1 gap-4">
+        <div className="mt-8 grid grid-cols-1 gap-4">
           {trips.map((trip, index) => (
             <div key={index} className="bg-white shadow-md rounded-lg p-4">
-              <h3 className="text-xl font-semibold mb-2">{trip.name}</h3>
-              <p className="text-gray-700">Date: {trip.date.toDateString()}</p>
-              <p className="text-gray-700">Distance: {trip.distance} km</p>
-              <p className="text-gray-700">Drivers:</p>
-              <ul className="list-disc list-inside">
-                {trip.drivers.map((driver, idx) => (
-                  <li key={idx} className="text-gray-700">{driver}</li>
-                ))}
-              </ul>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-xl font-semibold">{trip.name}</h3>
+                  <p className="text-gray-700">Date: {trip.date.toDateString()}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-gray-700">Distance: {trip.distance} km</p>
+                  <div className="flex gap-2 items-center">
+                    <span className="text-gray-700">Personnes:</span>
+                    <span className="text-gray-700">
+                      {trip.drivers.join(', ')}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
