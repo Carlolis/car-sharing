@@ -15,12 +15,11 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
   RowData,
   useReactTable
 } from '@tanstack/react-table'
-// eslint-disable-next-line import/no-unresolved
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { Route } from './+types/dashboard'
 
 function StatsCard({ title, value }: { title: string; value: string | number }) {
@@ -57,33 +56,33 @@ export const loader = Remix.loader(
 
 export default function Dashboard({ loaderData: { totalStats, user } }: Route.ComponentProps) {
   // Give our default column cell renderer editing superpowers!
-  const defaultColumn: Partial<ColumnDef<TripCreate>> = {
-    cell: ({ getValue, row: { index }, column: { id }, table }) => {
-      const initialValue = getValue()
-      // We need to keep and update the state of the cell normally
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const [value, setValue] = useState(initialValue)
+  // const defaultColumn: Partial<ColumnDef<TripCreate>> = {
+  //   cell: ({ getValue, row: { index }, column: { id }, table }) => {
+  //     const initialValue = getValue()
+  //     // We need to keep and update the state of the cell normally
+  //     // eslint-disable-next-line react-hooks/rules-of-hooks
+  //     const [value, setValue] = useState(initialValue)
 
-      // When the input is blurred, we'll call our table meta's updateData function
-      const onBlur = () => {
-        table.options.meta?.updateData(index, id, value)
-      }
+  //     // When the input is blurred, we'll call our table meta's updateData function
+  //     const onBlur = () => {
+  //       table.options.meta?.updateData(index, id, value)
+  //     }
 
-      // If the initialValue is changed external, sync it up with our state
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      useEffect(() => {
-        setValue(initialValue)
-      }, [initialValue])
+  //     // If the initialValue is changed external, sync it up with our state
+  //     // eslint-disable-next-line react-hooks/rules-of-hooks
+  //     useEffect(() => {
+  //       setValue(initialValue)
+  //     }, [initialValue])
 
-      return (
-        <input
-          value={value as string}
-          onChange={e => setValue(e.target.value)}
-          onBlur={onBlur}
-        />
-      )
-    }
-  }
+  //     return (
+  //       <input
+  //         value={value as string}
+  //         onChange={e => setValue(e.target.value)}
+  //         onBlur={onBlur}
+  //       />
+  //     )
+  //   }
+  // }
 
   const [trips, setTrips] = useState<TripCreate[]>([])
 
@@ -101,8 +100,23 @@ export default function Dashboard({ loaderData: { totalStats, user } }: Route.Co
           {
             accessorKey: 'date',
             header: () => <span>Date</span>,
-            footer: props => props.column.id,
-            cell: info => info.getValue().toDateString()
+            footer: props => props.column.id
+            // cell: ({ getValue, row, column }) => {
+            //   const initialValue = getValue<Date>()
+            //   // eslint-disable-next-line react-hooks/rules-of-hooks
+            //   const [startDate, setStartDate] = useState<null | Date>(
+            //     initialValue
+            //   )
+            //   return (
+            //     <DatePicker
+            //       selected={startDate}
+            //       onChange={date => {
+            //         setStartDate(date)
+            //         table.options.meta?.updateData(row.index, column.id, date)
+            //       }}
+            //     />
+            //   )
+            // }
           },
 
           {
@@ -125,27 +139,27 @@ export default function Dashboard({ loaderData: { totalStats, user } }: Route.Co
   const table = useReactTable({
     data: trips,
     columns,
-    defaultColumn,
+    // defaultColumn,
     getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    // getFilteredRowModel: getFilteredRowModel(),
+    // getPaginationRowModel: getPaginationRowModel(),
 
     // Provide our updateData function to our table meta
-    meta: {
-      updateData: (rowIndex, columnId, value) => {
-        setTrips(old =>
-          old.map((row, index) => {
-            if (index === rowIndex) {
-              return {
-                ...old[rowIndex]!,
-                [columnId]: value
-              }
-            }
-            return row
-          })
-        )
-      }
-    },
+    // meta: {
+    //   updateData: (rowIndex, columnId, value) => {
+    //     setTrips(old =>
+    //       old.map((row, index) => {
+    //         if (index === rowIndex) {
+    //           return {
+    //             ...old[rowIndex]!,
+    //             [columnId]: value
+    //           }
+    //         }
+    //         return row
+    //       })
+    //     )
+    //   }
+    // },
     debugTable: true
   })
 
@@ -179,6 +193,7 @@ export default function Dashboard({ loaderData: { totalStats, user } }: Route.Co
         <h2 className="text-2xl font-semibold text-gray-900 mb-8">
           Statistiques Globales
         </h2>
+        <DatePicker />
         {user && (
           <div
             className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
