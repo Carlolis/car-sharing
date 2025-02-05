@@ -5,7 +5,9 @@ import { Unexpected } from 'effect/ParseResult'
 import { Ollama } from 'ollama'
 
 import { useEffect, useState } from 'react'
+import { FaCircle } from 'react-icons/fa'
 import { FiCommand } from 'react-icons/fi'
+import { GiBrain } from 'react-icons/gi'
 import { LuLoaderCircle } from 'react-icons/lu'
 import { MdOutlineGppBad } from 'react-icons/md'
 import { Form, useActionData } from 'react-router'
@@ -92,7 +94,7 @@ export default function IA() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex space-x-2">
               <div className="flex-1">
-                <Select>
+                <Select name="model">
                   <SelectTrigger
                     id="model"
                     name="model"
@@ -100,24 +102,38 @@ export default function IA() {
                     <SelectValue placeholder="Choisi un modèle" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="codestral:latest">🇫🇷 Mistral Codestral Latest</SelectItem>
-                    <SelectItem value="mistral-small:24b">🇫🇷 Mistral Small 3 24B</SelectItem>
+                    <SelectItem value="codestral:latest">
+                      <FaCircle className="inline-block mr-1 text-green-600" />
+                      🇫🇷 Mistral Codestral Latest
+                    </SelectItem>
+                    <SelectItem value="mistral-small:24b">
+                      <FaCircle className="inline-block mr-1 text-green-600" />
+                      🇫🇷 Mistral Small 3 24B
+                    </SelectItem>
                     <SelectItem value="deepseek-coder-v2:latest">
                       <div>
                         <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
+                        <FaCircle className="inline-block mr-1 text-green-600" />
+                        <GiBrain className="inline-block mr-1 text-purple-600" />
                         🇨🇳 DeepSeek Coder V2 Latest
                       </div>
                     </SelectItem>
                     <SelectItem value="deepseek-r1:32b-qwen-distill-q4_K_M">
                       <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
+                      <FaCircle className="inline-block mr-1 text-red-600" />
+                      <GiBrain className="inline-block mr-1 text-purple-600" />
                       🇨🇳 DeepSeek R1 32B Distill
                     </SelectItem>
                     <SelectItem value="deepseek-r1:14b-qwen-distill-q4_K_M">
                       <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
+                      <FaCircle className="inline-block mr-1 text-green-600" />
+                      <GiBrain className="inline-block mr-1 text-purple-600" />
                       🇨🇳 DeepSeek R1 14B Distill
                     </SelectItem>
                     <SelectItem value="deepseek-r1:latest">
                       <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
+                      <FaCircle className="inline-block mr-1 text-blue-600" />
+                      <GiBrain className="inline-block mr-1 text-purple-600" />
                       🇨🇳 DeepSeek R1 Latest
                     </SelectItem>
                   </SelectContent>
@@ -163,12 +179,38 @@ export default function IA() {
             </div>
           )}
         </div>
-        <div className="mt-8 text-center">
-          <MdOutlineGppBad className="mx-auto my-4 text-red-600" size={24} />
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Les modèles DeepSeek peuvent être censurés. Exemple: les événements de la place
-            Tiananmen en 1989.
-          </p>
+        <div className="mt-8 text-left">
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
+            <h3 className="text-md font-medium text-gray-900 dark:text-white">
+              Rapidité des modèles
+            </h3>
+            <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
+              <li>
+                <FaCircle className="inline-block mr-1 text-red-600" /> Modèle très lent
+              </li>
+              <li>
+                <FaCircle className="inline-block mr-1 text-yellow-600" /> Modèle lent
+              </li>
+              <li>
+                <FaCircle className="inline-block mr-1 text-green-600" /> Modèle rapide
+              </li>
+              <li>
+                <FaCircle className="inline-block mr-1 text-blue-600" /> Modèle très rapide
+              </li>
+            </ul>
+          </div>
+          <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md border border-gray-300 dark:border-gray-600 mt-4">
+            <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
+              <li>
+                <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
+                Modèle censuré. Exemple: Tiananmen en 1989.
+              </li>
+              <li>
+                <GiBrain className="inline-block mr-1 text-purple-600" />{' '}
+                Modèle de Raisonnement Avancé (SRA)
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
