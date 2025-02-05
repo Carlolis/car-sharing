@@ -58,6 +58,7 @@ export default function IA() {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [texte, setTexte] = useState('')
+  const [selectedModel, setSelectedModel] = useState<string | null>(null)
 
   console.log('First render', actionData)
 
@@ -94,14 +95,18 @@ export default function IA() {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex space-x-2">
               <div className="flex-1">
-                <Select name="model">
+                <Select
+                  name="model"
+                  onValueChange={value => setSelectedModel(value)}
+                >
                   <SelectTrigger
                     id="model"
                     name="model"
+                    className="dark:bg-gray-800 dark:text-white"
                   >
                     <SelectValue placeholder="Choisi un modèle" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="dark:bg-gray-800 dark:text-white">
                     <SelectItem value="codestral:latest">
                       <FaCircle className="inline-block mr-1 text-green-600" />
                       🇫🇷 Mistral Codestral Latest
@@ -163,7 +168,12 @@ export default function IA() {
 
                 setIsLoading(true)
               }}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                selectedModel ?
+                  'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' :
+                  'bg-gray-400 cursor-not-allowed'
+              }`}
+              disabled={!selectedModel}
             >
               Envoyez
             </button>
@@ -186,16 +196,16 @@ export default function IA() {
             </h3>
             <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
               <li>
-                <FaCircle className="inline-block mr-1 text-red-600" /> Modèle très lent
+                <FaCircle className="inline-block mr-1 text-red-600" /> très lent
               </li>
               <li>
-                <FaCircle className="inline-block mr-1 text-yellow-600" /> Modèle lent
+                <FaCircle className="inline-block mr-1 text-yellow-600" /> lent
               </li>
               <li>
-                <FaCircle className="inline-block mr-1 text-green-600" /> Modèle rapide
+                <FaCircle className="inline-block mr-1 text-green-600" /> rapide
               </li>
               <li>
-                <FaCircle className="inline-block mr-1 text-blue-600" /> Modèle très rapide
+                <FaCircle className="inline-block mr-1 text-blue-600" /> très rapide
               </li>
             </ul>
           </div>
