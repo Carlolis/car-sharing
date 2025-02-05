@@ -50,14 +50,14 @@ const Navigation = ({ isAuthenticated }: NavigationPros) => {
                 >
                   Nouveau trajet
                 </NavLink>
-                <NavLink
-                  to="/ia"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  IA
-                </NavLink>
               </div>
             )}
+            <NavLink
+              to="/ia"
+              className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              IA
+            </NavLink>
           </div>
           <div className="flex items-center">
             {isAuthenticated ?
