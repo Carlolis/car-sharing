@@ -14,9 +14,10 @@ import { Remix } from '~/runtime/Remix'
 
 export const action = Remix.action(
   T.gen(function* () {
-    const { message } = yield* HttpServerRequest.schemaBodyForm(
+    const { message, model } = yield* HttpServerRequest.schemaBodyForm(
       Sc.Struct({
-        message: Sc.String
+        message: Sc.String,
+        model: Sc.String
       })
     )
 
@@ -27,7 +28,7 @@ export const action = Remix.action(
     const chatResponse = yield* pipe(
       T.promise(() =>
         ollama.chat({
-          model: 'deepseek-r1:14b-qwen-distill-q4_K_M',
+          model,
           messages: [{ content: message, role: 'user' }],
           stream: true
         })
@@ -82,18 +83,42 @@ export default function IA() {
         </div>
         <Form className="mt-8 space-y-6" method="post">
           <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="message" className="sr-only">
-                Message
-              </label>
-              <input
-                id="message"
-                name="message"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Demandez à l'IA"
-              />
+            <div className="flex space-x-2">
+              <div className="flex-1">
+                <label htmlFor="message" className="sr-only">
+                  Message
+                </label>
+                <input
+                  id="message"
+                  name="message"
+                  type="text"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Demandez à l'IA"
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="model" className="sr-only">
+                  Modèle
+                </label>
+                <select
+                  id="model"
+                  name="model"
+                  required
+                  className=" rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm cursor-pointer"
+                >
+                  <option value="codestral:latest">Codestral Latest</option>
+                  <option value="mistral-small:24b">Mistral Small 24B</option>
+                  <option value="deepseek-coder-v2:latest">DeepSeek Coder V2 Latest</option>
+                  <option value="deepseek-r1:32b-qwen-distill-q4_K_M">
+                    DeepSeek R1 32B Qwen Distill Q4 K M
+                  </option>
+                  <option value="deepseek-r1:14b-qwen-distill-q4_K_M">
+                    DeepSeek R1 14B Qwen Distill Q4 K M
+                  </option>
+                  <option value="deepseek-r1:latest">DeepSeek R1 Latest</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -116,9 +141,11 @@ export default function IA() {
           {isLoading ?
             <LuLoaderCircle className="mx-auto my-4 text-indigo-600 animate-spin" size={48} /> :
             <FiCommand className="mx-auto my-4 text-indigo-600" size={48} />}
-          <div className="text-lg text-gray-900 dark:text-white p-4 bg-gray-200 dark:bg-gray-700 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
-            {texte}
-          </div>
+          {texte.length > 0 && (
+            <div className="text-lg text-gray-900 dark:text-white p-4 bg-gray-200 dark:bg-gray-700 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
+              {texte}
+            </div>
+          )}
         </div>
       </div>
     </div>
