@@ -7,7 +7,7 @@ import { Unexpected } from 'effect/ParseResult'
 import { Ollama } from 'ollama'
 import Markdown from 'react-markdown'
 
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaCircle } from 'react-icons/fa'
 import { FiCommand } from 'react-icons/fi'
 import { GiBrain } from 'react-icons/gi'
@@ -180,11 +180,11 @@ export default function IA() {
                     </SelectItem>
                     <SelectItem value="llama3.1:8b">
                       <FaCircle className="inline-block mr-1 text-blue-600" />
-                      🇺🇸 Llama 3.1
+                      🇺🇸 Llama 3.1 8b
                     </SelectItem>
                     <SelectItem value="llama3.2:3b">
                       <FaCircle className="inline-block mr-1 text-blue-600" />
-                      🇺🇸 Llama 3.2
+                      🇺🇸 Llama 3.2 3b
                     </SelectItem>
                   </SelectContent>
                 </Select>
