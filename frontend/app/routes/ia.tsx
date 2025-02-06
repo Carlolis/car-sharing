@@ -119,7 +119,6 @@ export default function IA() {
                       <div>
                         <MdOutlineGppBad className="inline-block mr-1 text-red-600" />
                         <FaCircle className="inline-block mr-1 text-green-600" />
-                        <GiBrain className="inline-block mr-1 text-purple-600" />
                         🇨🇳 DeepSeek Coder V2 Latest
                       </div>
                     </SelectItem>
@@ -141,54 +140,56 @@ export default function IA() {
                       <GiBrain className="inline-block mr-1 text-purple-600" />
                       🇨🇳 DeepSeek R1 Latest
                     </SelectItem>
+                    <SelectItem value="llama3.1:8b">
+                      <FaCircle className="inline-block mr-1 text-blue-600" />
+                      🇺🇸 Llama 3.1
+                    </SelectItem>
+                    <SelectItem value="llama3.2:3b">
+                      <FaCircle className="inline-block mr-1 text-blue-600" />
+                      🇺🇸 Llama 3.2
+                    </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
-              <div className="flex-1">
-                <label htmlFor="message" className="sr-only">
-                  Message
-                </label>
-                <input
-                  id="message"
-                  name="message"
-                  type="text"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Demandez à l'IA"
-                />
               </div>
             </div>
           </div>
 
-          <div>
+          <div className="mt-8 text-center">
+            {isLoading ?
+              <LuLoaderCircle className="mx-auto my-4 text-indigo-600 animate-spin" size={48} /> :
+              <FiCommand className="mx-auto my-4 text-indigo-600" size={48} />}
+            {texte.length > 0 && (
+              <div className="text-lg text-gray-900 dark:text-white p-4 bg-gray-200 dark:bg-gray-700 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
+                {texte}
+              </div>
+            )}
+          </div>
+          <div className="flex">
+            <input
+              id="message"
+              name="message"
+              type="text"
+              required
+              className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white bg-white dark:bg-gray-800 rounded-l-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Demandez à l'IA"
+            />
             <button
               type="submit"
               onClick={() => {
                 setTexte('')
-
                 setIsLoading(true)
               }}
-              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+              className={`px-4 py-2 flex items-center justify-center text-white ${
                 selectedModel ?
                   'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' :
                   'bg-gray-400 cursor-not-allowed'
-              }`}
+              } rounded-r-md`}
               disabled={!selectedModel}
             >
-              Envoyez
+              <GiBrain size={20} />
             </button>
           </div>
         </Form>
-        <div className="mt-8 text-center">
-          {isLoading ?
-            <LuLoaderCircle className="mx-auto my-4 text-indigo-600 animate-spin" size={48} /> :
-            <FiCommand className="mx-auto my-4 text-indigo-600" size={48} />}
-          {texte.length > 0 && (
-            <div className="text-lg text-gray-900 dark:text-white p-4 bg-gray-200 dark:bg-gray-700 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
-              {texte}
-            </div>
-          )}
-        </div>
         <div className="mt-8 text-left">
           <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
             <h3 className="text-md font-medium text-gray-900 dark:text-white">
