@@ -192,7 +192,7 @@ export default function IA() {
         </Form>
         <div className="mt-8 text-left">
           <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
-            <h3 className="text-md font-medium text-gray-900 dark:text-white">
+            <h3 className="text-md text-gray-900 dark:text-white">
               Rapidité des modèles
             </h3>
             <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
@@ -209,6 +209,9 @@ export default function IA() {
                 <FaCircle className="inline-block mr-1 text-blue-600" /> très rapide
               </li>
             </ul>
+            <div className="text-sm text-gray-900 dark:text-white">
+              À la première exécution, le lancement peut être lent.
+            </div>
           </div>
           <div className="bg-white dark:bg-gray-700 p-4 rounded-md shadow-md border border-gray-300 dark:border-gray-600 mt-4">
             <ul className="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
