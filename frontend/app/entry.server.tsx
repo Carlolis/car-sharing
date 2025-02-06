@@ -11,7 +11,7 @@ import { renderToPipeableStream } from 'react-dom/server'
 import type { EntryContext } from 'react-router'
 import { ServerRouter } from 'react-router'
 
-const ABORT_DELAY = 5_000_0
+export const streamTimeout = 5_000_000
 
 export default function handleRequest(
   request: Request,
@@ -54,6 +54,6 @@ export default function handleRequest(
       }
     )
 
-    setTimeout(abort, ABORT_DELAY)
+    setTimeout(abort, 5000)
   })
 }

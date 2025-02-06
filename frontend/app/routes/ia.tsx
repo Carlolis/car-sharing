@@ -1,10 +1,13 @@
 import { HttpServerRequest } from '@effect/platform'
 import { pipe, Schema as Sc } from 'effect'
+import * as A from 'effect/Array'
 import * as T from 'effect/Effect'
+import * as O from 'effect/Option'
 import { Unexpected } from 'effect/ParseResult'
 import { Ollama } from 'ollama'
+import Markdown from 'react-markdown'
 
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { FaCircle } from 'react-icons/fa'
 import { FiCommand } from 'react-icons/fi'
 import { GiBrain } from 'react-icons/gi'
@@ -57,16 +60,38 @@ export default function IA() {
   const actionData = useActionData<typeof action>()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [texte, setTexte] = useState('')
+  const [responses, setAIResponses] = useState<{ response: O.Option<string>; question: string }[]>(
+    []
+  )
   const [selectedModel, setSelectedModel] = useState<string | null>(null)
 
   console.log('First render', actionData)
 
   const handleChatChunk = (chat: ChatChunk) => {
     if (chat.type === 'text') {
-      console.log('Set Texte first', chat.content)
       setIsLoading(false)
-      setTexte(content => content + chat.content)
+      setAIResponses(contents => {
+        const lastContents: {
+          question: string
+          response: O.Option<string>
+        } = pipe(
+          A.last(contents),
+          O.map(({ question, response }) => ({
+            question,
+            response: pipe(
+              response,
+              O.match({
+                onNone: () => O.some(chat.content),
+                onSome: response => O.some(response + chat.content)
+              })
+            )
+          })),
+          O.getOrElse(() => ({ question: '', response: O.none() }))
+        )
+        const contentsWithoutLast = A.dropRight(contents, 1)
+
+        return [...contentsWithoutLast, lastContents]
+      })
       chat.next?.then(nextChat => {
         handleChatChunk(nextChat)
       })
@@ -81,17 +106,30 @@ export default function IA() {
     }
   }, [actionData])
 
-  console.log(texte)
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
+      <div className="max-w-2xl w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">
             Demandez à l&apos;IA
           </h2>
         </div>
-        <Form className="mt-8 space-y-6" method="post">
+        <Form
+          className="mt-8 space-y-6"
+          method="post"
+          onSubmit={event => {
+            const form = event.currentTarget
+
+            const question = (form.elements.namedItem('message') as HTMLTextAreaElement).value
+
+            setAIResponses(responses => [...responses, { question, response: O.none() }])
+            setIsLoading(true)
+
+            setTimeout(() => {
+              form.reset()
+            })
+          }}
+        >
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="flex space-x-2">
               <div className="flex-1">
@@ -102,7 +140,7 @@ export default function IA() {
                   <SelectTrigger
                     id="model"
                     name="model"
-                    className="dark:bg-gray-800 dark:text-white"
+                    className="dark:bg-gray-800 dark:text-white bg-white"
                   >
                     <SelectValue placeholder="Choisi un modèle" />
                   </SelectTrigger>
@@ -112,7 +150,7 @@ export default function IA() {
                       🇫🇷 Mistral Codestral Latest
                     </SelectItem>
                     <SelectItem value="mistral-small:24b">
-                      <FaCircle className="inline-block mr-1 text-green-600" />
+                      <FaCircle className="inline-block mr-1 text-yellow-600" />
                       🇫🇷 Mistral Small 3 24B
                     </SelectItem>
                     <SelectItem value="deepseek-coder-v2:latest">
@@ -158,11 +196,35 @@ export default function IA() {
             {isLoading ?
               <LuLoaderCircle className="mx-auto my-4 text-indigo-600 animate-spin" size={48} /> :
               <FiCommand className="mx-auto my-4 text-indigo-600" size={48} />}
-            {texte.length > 0 && (
-              <div className="text-lg text-gray-900 dark:text-white p-4 bg-gray-200 dark:bg-gray-700 rounded-md shadow-md border border-gray-300 dark:border-gray-600">
-                {texte}
+            {responses.map(({ question, response }, i) => (
+              <div
+                key={i}
+                className="text-lg text-gray-900 dark:text-white p-4 bg-white dark:bg-gray-800 rounded-md border border-gray-300 dark:border-gray-600 mt-4"
+              >
+                <div className="flex justify-end mb-4">
+                  <div className="inline-block py-2 px-3 bg-gray-200 dark:bg-gray-700 rounded-full">
+                    {question}
+                  </div>
+                </div>
+                <div className="text-left flex items-start">
+                  <div className="overflow-auto break-words">
+                    {O.match({
+                      onNone: () => (
+                        <>
+                          <LuLoaderCircle className="text-indigo-600 animate-spin" size={24} />
+                        </>
+                      ),
+                      onSome: (res: string) => (
+                        <>
+                          <GiBrain className="flex-shrink-0 mr-2 text-indigo-600 mt-1" size={24} />
+                          <Markdown>{res}</Markdown>
+                        </>
+                      )
+                    })(response)}
+                  </div>
+                </div>
               </div>
-            )}
+            ))}
           </div>
           <div className="flex">
             <input
@@ -175,10 +237,6 @@ export default function IA() {
             />
             <button
               type="submit"
-              onClick={() => {
-                setTexte('')
-                setIsLoading(true)
-              }}
               className={`px-4 py-2 flex items-center justify-center text-white ${
                 selectedModel ?
                   'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' :
