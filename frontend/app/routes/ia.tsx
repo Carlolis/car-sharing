@@ -5,15 +5,17 @@ import * as T from 'effect/Effect'
 import * as O from 'effect/Option'
 import { Unexpected } from 'effect/ParseResult'
 import { Ollama } from 'ollama'
-import Markdown from 'react-markdown'
-
 import { useEffect, useState } from 'react'
 import { FaCircle } from 'react-icons/fa'
 import { FiCommand } from 'react-icons/fi'
 import { GiBrain } from 'react-icons/gi'
 import { LuLoaderCircle } from 'react-icons/lu'
 import { MdOutlineGppBad } from 'react-icons/md'
+import Markdown from 'react-markdown'
 import { Form, useActionData } from 'react-router'
+import SyntaxHighlighter from 'react-syntax-highlighter'
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+
 import { ChatChunk, streamResponse } from '~/contexts/ia.util'
 import { Remix } from '~/runtime/Remix'
 import {
@@ -65,8 +67,6 @@ export default function IA() {
   )
   const [selectedModel, setSelectedModel] = useState<string | null>(null)
 
-  console.log('First render', actionData)
-
   const handleChatChunk = (chat: ChatChunk) => {
     if (chat.type === 'text') {
       setIsLoading(false)
@@ -99,8 +99,6 @@ export default function IA() {
   }
 
   useEffect(() => {
-    console.log('useEffect')
-
     if (actionData) {
       handleChatChunk(actionData)
     }
@@ -152,6 +150,13 @@ export default function IA() {
                     <SelectItem value="mistral-small:24b">
                       <FaCircle className="inline-block mr-1 text-yellow-600" />
                       🇫🇷 Mistral Small 3 24B
+                    </SelectItem>
+                    <SelectItem value="milkey/Simplescaling-S1:latest">
+                      <div>
+                        <FaCircle className="inline-block mr-1 text-red-600" />
+                        <GiBrain className="inline-block mr-1 text-purple-600" />
+                        🇺🇸 Simplescaling S1
+                      </div>
                     </SelectItem>
                     <SelectItem value="deepseek-coder-v2:latest">
                       <div>
@@ -217,7 +222,31 @@ export default function IA() {
                       onSome: (res: string) => (
                         <>
                           <GiBrain className="flex-shrink-0 mr-2 text-indigo-600 mt-1" size={24} />
-                          <Markdown>{res}</Markdown>
+                          <Markdown
+                            components={{
+                              code({ className, children, ...props }) {
+                                const match = /language-(\w+)/.exec(className || '')
+
+                                return match ?
+                                  (
+                                    <SyntaxHighlighter
+                                      style={atomOneDark}
+                                      language={match[1]}
+                                      PreTag="div"
+                                    >
+                                      {String(children)}
+                                    </SyntaxHighlighter>
+                                  ) :
+                                  (
+                                    <code className={className} {...props}>
+                                      {children}
+                                    </code>
+                                  )
+                              }
+                            }}
+                          >
+                            {res}
+                          </Markdown>
                         </>
                       )
                     })(response)}
